@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+      # Database default password for "root" user
+      MYSQL_ROOT_PASSWORD: Azerty@123
+  phpmyadmin:
+    image: phpmyadmin
+    # Port to use to access phpmyadmin in localhost (localhost:8888)
+    ports:
+      - 8888:80
+    # Link the phpmyadmin to the db database created above
+    depends_on:
+      - db
+    environment:
+      - PMA_ARBITRARY=1
+volumes:
+  mysql-data:

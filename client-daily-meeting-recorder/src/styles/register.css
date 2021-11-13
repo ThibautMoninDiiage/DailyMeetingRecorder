@@ -1,7 +1,7 @@
 body {
-    background-color: white;
     margin: 0;
     width: 100%;
+    background-color: white;
 }
 
 input {
@@ -31,7 +31,9 @@ form {
 }
 
 #register-box {
-    background-color: #6699FF;
+    /* background-color: #6699FF;*/
+    background-color: #045de9;
+    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
     display: flex;
     flex-direction: column;
     align-items: center;
