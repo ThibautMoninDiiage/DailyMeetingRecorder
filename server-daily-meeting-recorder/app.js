@@ -9,6 +9,7 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const authenticationRouter = require('./routes/authenticationRoutes');
+const projectRouter = require('./routes/projectRoutes')
 
 var app = express();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/project', projectRouter);
 
 // Database initialization
 dbConnection.initialize();
