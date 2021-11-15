@@ -19,6 +19,24 @@ class AuthenticationController {
         response.status(200).send(token);
     }
 
+    async login(request, response) {
+        const data = request.body;
+        const user = await AuthenticationService.login(data.username, data.email, data.password);
+
+        if (user) {
+            const payload = {
+                sub : data.id,
+                username : data.username,
+                email : data.email,
+                password : data.password
+            }
+            const token = jwt.sign(payload, 'secret');
+            response.status(200).send(token);
+        } else {
+            response.status(403).send();
+        }
+    }
+
 }
 
 // Exporting the AuthenticationController
