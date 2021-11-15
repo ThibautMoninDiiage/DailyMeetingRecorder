@@ -9,6 +9,7 @@
             <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
             <input v-model="passwordConfirmation" type="password" name="user-password-confirmation" id="user-password-confirmation" placeholder="Password confirmation">
             <input type="submit" value="Register" id="btn-register">
+            <router-link id="alreadyHaveAccount" to="/login">Already have an account ? Login</router-link>
         </div>
     </form>
 </template>
@@ -19,6 +20,7 @@
 
 <script>
     import AuthenticationService from '../services/authenticationService';
+    import Router from '../router/index';
 
     export default {
         name : 'Register',
@@ -31,25 +33,28 @@
                 password : '',
                 passwordConfirmation : '',
                 validEmail : undefined,
-                validPassword : undefined
+                validPassword : undefined,
+                validFields : undefined
             }
         },
         mounted() {
             // We instanciate the authentication service class
-            this.authenticationService = new AuthenticationService()
+            this.authenticationService = new AuthenticationService();
         },
         methods : {
             register() {
                 // Don't refresh the page on activating submit button
                 event.preventDefault();
+                this.verifyEmptyFields();
                 this.emailVerification(this.email, this.emailConfirmation);
                 this.passwordVerification(this.password, this.passwordConfirmation);
 
-                if (this.validEmail && this.validPassword) {
+                if (this.validEmail && this.validPassword && this.validFields) {
                     // We call the register function from the client authentication service
                     this.authenticationService.register(this.username, this.email, this.password);
+                    Router.push('/login');
                 } else {
-                    alert('Wrong email or password confirmation');
+                    alert('Wrong email or password confirmation or invalid fields !');
                 }
             },
             emailVerification() {
@@ -64,6 +69,13 @@
                     this.validPassword = false;
                 } else {
                     this.validPassword = true;
+                }
+            },
+            verifyEmptyFields() {
+                if (this.username == '' || this.email == '' || this.password == '') {
+                    this.validFields = false;
+                } else {
+                    this.validFields = true;
                 }
             }
         }
