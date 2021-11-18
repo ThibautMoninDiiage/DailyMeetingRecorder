@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Register from '../views/Register.vue'
-import NewProject from '../views/Project.vue'
+import Project from '../views/Project.vue'
 
 Vue.use(VueRouter)
 
@@ -12,9 +12,9 @@ const routes = [
     component: Register
   },
   {
-    path: '/newProject',
-    name: 'NewProject',
-    component: NewProject
+    path: '/project',
+    name: 'project',
+    component: Project
   }
 ]
 

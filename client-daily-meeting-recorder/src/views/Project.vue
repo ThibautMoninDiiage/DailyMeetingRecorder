@@ -1,23 +1,44 @@
 <template>
     <div>
+        
+        <p>Create Project : </p>
         <!-- formulaire du bouton pour créer un projet -->
-        <form @submit="createProject">
-            <div id="create-project">
-                <label for="createProject">pour créer un nouveau projet =</label>
+        <form @submit="createNewProject" v-if="projectCreated === false">
+            <div id="createNewProject">
                 <input type="submit" value="Create Project">
             </div>
         </form>
+        
+        <!-- appelle du component pour la creation d'un nouveau projet -->
+        <div v-if="projectCreated == true">
+            <form @submit="cancelcreateNewProject">
+                <div id="cancelCreateNewProject">
+                    <input type="submit" value="Cancel Create New Project">
+                </div>
+            </form>
+
+            <ProjectComponents></ProjectComponents>
+        </div>
 
         <hr/> <!-- séparation pour début de la liste des projet -->
 
         <!-- liste des projet du user connecter --> 
         <div>
-            <p>project name</p>
-            <p>description project</p>
-            <p>Project creator</p>
-            <p>List user of project</p>
-            <button>Change button</button>
-            <button>delete button</button><!-- regarder fenêtre modal -->
+            <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
+
+            <span v-if="totalProject == 0">
+                <p>vous n'avais pas de projet</p>
+            </span>
+
+            <span v-else>
+                <p>project name</p>
+                <p>description project</p>
+                <p>Project creator</p>
+                <p>List user of project</p>
+                <button>Change button</button>
+                <button>delete button</button><!-- regarder fenêtre modal -->
+            </span>
+            
         </div>
     </div>
     
@@ -25,20 +46,34 @@
 
 <script>
 import ProjectService from '../services/projectService';
+import ProjectComponents from '../components/CreateNewProjectComponent.vue';
 
-export default ({
+export default {
     name:'Project',
+    components: {
+        ProjectComponents
+    },
     data(){
-
+        return{
+            projectCreated: false,
+            totalProjectCount: undefined
+        }
     },
     mounted(){
-
+        this.ProjectService = new ProjectService();
     },
     methods: {
         createNewProject(){
-            this.ProjectService.createNewProject
+            this.projectCreated = true
+            // this.ProjectService.createNewProject()
+        },
+        cancelcreateNewProject(){
+            this.projectCreated = false;
+        },
+        totalProject(){
+            this.totalProjectCount == 0;
         }
         
     },
-})
+}
 </script>

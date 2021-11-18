@@ -1,9 +1,8 @@
 var express = require('express');
-const { router } = require('../app');
-var route = express.Router();
+var router = express.Router();
 
 const projectController = require('../controllers/projectController');
 
-router.post('/newProject', projectController.newProject);
+router.post('/createNewProject', projectController.createNewProject);
 
-module.exports = router
+module.exports = router;
