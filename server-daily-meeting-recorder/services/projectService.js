@@ -8,7 +8,7 @@ class ProjectService {
         });
     }
 
-    getProjectByUser(id){
+    async getProjectByUser(id){
         return await projectModel.findAll({
             include: [{
                 
