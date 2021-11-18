@@ -24,10 +24,11 @@ input {
 #btn-login {
     background-color: white;
     border-radius: 5px;
+    width: 100px;
 }
 
 #btn-login:hover {
-    background-color: whitesmoke;
+    background-color: #DDDDDD;
     border-radius: 5px;
 }
 
@@ -41,11 +42,10 @@ form {
 }
 
 #login-box {
-    /* background-color: #6699FF;*/
-    background-color: #045de9;
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
     display: flex;
     flex-direction: column;
+    top: 50%;
     align-items: center;
     width: 30%;
     height: 280px;

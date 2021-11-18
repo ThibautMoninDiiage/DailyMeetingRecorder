@@ -24,10 +24,11 @@ input {
 #btn-register {
     background-color: white;
     border-radius: 5px;
+    width: 100px;
 }
 
 #btn-register:hover {
-    background-color: whitesmoke;
+    background-color: #DDDDDD;
     border-radius: 5px;
 }
 
@@ -41,8 +42,6 @@ form {
 }
 
 #register-box {
-    /* background-color: #6699FF;*/
-    background-color: #045de9;
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
     display: flex;
     flex-direction: column;

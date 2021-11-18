@@ -1,10 +1,7 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/register">Register</router-link>
+    <div id="app">
+        <router-view/>
     </div>
-    <router-view/>
-  </div>
 </template>
 
 <style>

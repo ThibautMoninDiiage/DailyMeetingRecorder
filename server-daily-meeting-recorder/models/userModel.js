@@ -43,10 +43,6 @@ class UserModel extends Model {
         super.sync()
     }
 
-    async verifyUser(password) {
-        return await bcrypt.compare(password, this.password);
-    }
-
 }
 
 // Exporting the user model

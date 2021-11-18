@@ -12,23 +12,14 @@ class AuthenticationService {
         return user;
     }
 
-    async login(username, email, password) {
+    async login(username, email) {
         const user = await UserModel.findOne({
             where : {
                 username : username,
-                email : email,
-                password : password
+                email : email
             }
         })
-        
-        // const userFound = await user.verifyUser(password);
-
-        // if (userFound) {
-        //     return user;
-        // } else {
-        //     return undefined;
-        // }
-
+        return user
     }
 }
 
