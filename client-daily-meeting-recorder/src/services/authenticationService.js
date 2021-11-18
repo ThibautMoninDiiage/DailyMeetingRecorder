@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router/index';
 
 export default class AuthenticationService {
 
@@ -30,6 +31,7 @@ export default class AuthenticationService {
             // Locally store the user token (username, email)
             localStorage.setItem('jwt', loginApiCall.data);
             localStorage.getItem('jwt');
+            router.push('/project');
         }
         } catch (error) {
             console.log('Login error : ' + error);

@@ -1,0 +1,11 @@
+#projectsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+table>div:hover {
+    background-color: #CCCCCC;
+    cursor: pointer;
+}

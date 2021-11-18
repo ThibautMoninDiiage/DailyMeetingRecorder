@@ -1,5 +1,4 @@
 const projectService = require('../services/projectService');
-const jwt = require('jsonwebtoken');
 
 class ProjectController {
     constructor(){
@@ -12,6 +11,11 @@ class ProjectController {
         const project = await projectService.createNewProject(data);
 
         response.status(200).send(project);
+    }
+
+    async getAllUserProjects(request, response) {
+        const projects = await projectService.getAllUserProjects();
+        response.status(200).send(projects)
     }
      
 }
