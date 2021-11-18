@@ -26,17 +26,11 @@
         <div>
             <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
 
-            <span v-if="totalProject == 0">
+            <span v-if="totalProjectCount == 0">
                 <p>vous n'avais pas de projet</p>
             </span>
-
             <span v-else>
-                <p>project name</p>
-                <p>description project</p>
-                <p>Project creator</p>
-                <p>List user of project</p>
-                <button>Change button</button>
-                <button>delete button</button><!-- regarder fenêtre modal -->
+                <button></button>
             </span>
             
         </div>
@@ -56,7 +50,7 @@ export default {
     data(){
         return{
             projectCreated: false,
-            totalProjectCount: undefined
+            totalProjectCount: 0
         }
     },
     mounted(){
@@ -72,6 +66,9 @@ export default {
         },
         totalProject(){
             this.totalProjectCount == 0;
+        },
+        recupProjectByUser(){
+            
         }
         
     },
