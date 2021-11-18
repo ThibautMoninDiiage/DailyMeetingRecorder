@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
-const bcrypt = require('bcrypt');
 
-class UserModel extends Model {
+class MeetingModel extends Model {
 
     static async init(sequelizeInstance) {
         super.init({
@@ -12,39 +11,37 @@ class UserModel extends Model {
                 autoIncrement : true,
                 unique : true
             },
-            username : {
+            name : {
                 type : DataTypes.STRING,
                 allowNull : false
             },
-            email : {
-                type : DataTypes.STRING,
+            startDate : {
+                type : DataTypes.DATE,
                 allowNull : false
             },
-            password : {
-                type : DataTypes.STRING,
+            endDate : {
+                type : DataTypes.DATE,
                 allowNull : false
+            },
+            idProject : {
+                type : DataTypes.INTEGER,
+                allowNull : false,
+                references : {
+                    model : 'Project',
+                    key : 'id'
+                }
             }
         },
         {
-            hooks : {
-                beforeCreate : async (user, options) => {
-                    // Password hashing
-                    const hashedPassword = await bcrypt.hash(user.password, 10);
-                    // Replacing the user password by the hashed password
-                    user.password = hashedPassword;
-                }
-            },
             // Table name in the database
-            modelName : "User",
+            modelName : "Meeting",
             sequelize : sequelizeInstance,
             freezeTableName : true
         })
-
         // Synchronize the class with the database
         super.sync()
     }
 
 }
-
-// Exporting the user model
-module.exports = UserModel;
+// Exporting the meeting model
+module.exports = MeetingModel;
