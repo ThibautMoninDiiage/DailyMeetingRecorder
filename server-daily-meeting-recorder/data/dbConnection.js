@@ -1,5 +1,12 @@
 // Importing the Sequelize package
 var { Sequelize } = require('sequelize');
+const MeetingModel = require('../models/meetingModel');
+const ProjectModel = require('../models/projectModel');
+const RecordModel = require('../models/recordModel');
+const RemarkModel = require('../models/remarkModel');
+const StatusModel = require('../models/statusModel');
+const TeamModel = require('../models/teamModel');
+const TimestampMeetingModel = require('../models/timestampMeetingModel');
 const UserModel = require('../models/userModel');
 
 class DbConnection {
@@ -18,6 +25,13 @@ class DbConnection {
             console.log('Connected to DB');
             // Creating the user table in the database
             await UserModel.init(this.sequelize);
+            await StatusModel.init(this.sequelize);
+            await ProjectModel.init(this.sequelize);
+            await TeamModel.init(this.sequelize);
+            await MeetingModel.init(this.sequelize);
+            await RemarkModel.init(this.sequelize);
+            await RecordModel.init(this.sequelize);
+            await TimestampMeetingModel.init(this.sequelize);
         })
     }
 

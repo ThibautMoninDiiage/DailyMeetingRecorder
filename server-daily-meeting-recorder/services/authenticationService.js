@@ -9,13 +9,18 @@ class AuthenticationService {
             email : email,
             password : password
         })
+        return user;
+    }
+
+    async login(username, email) {
+        const user = await UserModel.findOne({
+            where : {
+                username : username,
+                email : email
+            }
+        })
         return user
     }
-
-    async login(email, password) {
-
-    }
-
 }
 
 // Exporting the server authentication service

@@ -11,23 +11,23 @@ input {
     margin: 1%;
 }
 
-#register-text {
+#login-text {
     color: white;
     font-size: 50px;
 }
 
-#alreadyHaveAccount {
+#dontHaveAccount {
     color: white;
     font-size: 150%;
 }
 
-#btn-register {
+#btn-login {
     background-color: white;
     border-radius: 5px;
     width: 100px;
 }
 
-#btn-register:hover {
+#btn-login:hover {
     background-color: #DDDDDD;
     border-radius: 5px;
 }
@@ -41,13 +41,14 @@ form {
     width: 100%;
 }
 
-#register-box {
+#login-box {
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
     display: flex;
     flex-direction: column;
+    top: 50%;
     align-items: center;
     width: 30%;
-    height: 350px;
+    height: 280px;
     margin: auto;
     border-radius: 5%;
     box-shadow: -3px 3px 20px black;
