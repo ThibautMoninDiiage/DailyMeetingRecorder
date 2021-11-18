@@ -36,9 +36,10 @@
         <div>
             <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
 
-            <span v-if="totalProject == 0">
+            <span v-if="totalProjectCount == 0">
                 <p>vous n'avais pas de projet</p>
             </span>
+           
         </div>
     </div>
     
@@ -83,6 +84,6 @@ export default {
         totalProject(){
             this.totalProjectCount == 0;
         }
-    },
+    }
 }
 </script>

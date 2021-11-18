@@ -5,7 +5,8 @@ class ProjectService {
     async createNewProject(data) {
         return await ProjectModel.create({
             title: data.title,
-            description: data.description
+            description: data.description,
+            status: data.status
         });
     }
 

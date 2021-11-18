@@ -16,29 +16,32 @@ export default {
     name: 'ProjectCreate',
     data() {
         return {
-            idUser: 20,
+            idUser: 1,
             titleProject: '',
             descriptionProject: '',
-            validFields: ''
+            validFields: undefined,
+            projectService: undefined
         }
     },
     mounted(){
-        this.ProjectService = ProjectService();
+        this.projectService = new ProjectService();
     },
     methods: {
         checkForm(){
            if(this.titleProject == '' || this.descriptionProject == ''){
-               this.validFields == false
+               this.validFields = false
            }else{
-               this.validFields == true
+               this.validFields = true
            }
             
         },
         addNewProject(){
+            event.preventDefault();
             this.checkForm();
+            console.log(this.validFields)
             if(this.validFields == true){
-                this.ProjectService.createNewProject(this.idUser, this.titleProject, this.descriptionProject);
-                alert('projet ajouter dans la bdd');
+                this.projectService.createNewProject(this.idUser, this.titleProject, this.descriptionProject);
+                console.log('ok')
             }
             else{
                 alert('un champs non remplis');
