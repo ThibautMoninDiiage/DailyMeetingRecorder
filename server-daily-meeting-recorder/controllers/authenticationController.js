@@ -21,14 +21,14 @@ class AuthenticationController {
 
     async login(request, response) {
         const data = request.body;
-        const user = await AuthenticationService.login(data.username, data.email, data.password);
-
+        const user = await AuthenticationService.login(data.username, data.email);
+        
         if (user) {
             const payload = {
-                sub : data.id,
+                sub : user.id,
                 username : data.username,
                 email : data.email,
-                password : data.password
+                userState : true
             }
             const token = jwt.sign(payload, 'secret');
             response.status(200).send(token);

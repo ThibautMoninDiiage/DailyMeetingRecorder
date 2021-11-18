@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import jwtDecode from 'jwt-decode'
 
 export default class AuthenticationService {
 
@@ -21,7 +20,6 @@ export default class AuthenticationService {
     // Method that permit to the user to login on the website
     async login(username, email, password) {
         try {
-            console.log('Client service');
             // We call the login function in the server authentication controller
             const loginApiCall = await axios.post('http://localhost:3000/authentication/login', {
             username : username,
@@ -29,10 +27,9 @@ export default class AuthenticationService {
             password : password
         })
         if (loginApiCall) {
-            console.log(loginApiCall);
-            // localStorage.setItem('jwt', loginApiCall.data);
-            // const generatedToken = jwtDecode(this.loginApiCall.data);
-            // console.log(generatedToken);
+            // Locally store the user token (username, email)
+            localStorage.setItem('jwt', loginApiCall.data);
+            localStorage.getItem('jwt');
         }
         } catch (error) {
             console.log('Login error : ' + error);
