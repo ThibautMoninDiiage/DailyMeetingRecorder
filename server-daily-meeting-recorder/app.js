@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const authenticationRouter = require('./routes/authenticationRoutes');
 const meetingRouter = require('./routes/meetingRoutes');
+const projectRouter = require('./routes/projectRoutes')
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/meeting', meetingRouter);
+app.use('/project', projectRouter);
 
 // Database initialization
 dbConnection.initialize();

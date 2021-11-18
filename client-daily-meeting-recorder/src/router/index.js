@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Meeting from '../views/Meeting.vue'
+import Project from '../views/Project.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
     path: '/meeting',
     name: 'Meeting',
     component: Meeting
+  },
+  {
+    path: '/project',
+    name: 'project',
+    component: Project
   }
 ]
 
