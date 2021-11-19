@@ -20,13 +20,18 @@
         <hr>
 
         <div id="projectsContainer">
+            <h1>My Projects</h1>
             <table>
-                <thead><h1>My Projects</h1></thead>
-                <div v-for="project in projects" :key="project.id">
-                    <td>{{ project.title }}</td>
-                    <td>|</td>
-                    <td>{{ project.description }}</td>
-                </div>
+                <thead>
+                    <th>Title</th>
+                    <th>Description</th>
+                </thead>
+                <tbody>
+                    <tr v-for="project in projects" :key="project.id">
+                        <td>{{ project.title }}</td>
+                        <td>{{ project.description }}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         
