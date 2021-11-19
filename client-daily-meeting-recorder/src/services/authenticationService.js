@@ -29,8 +29,8 @@ export default class AuthenticationService {
         })
         if (loginApiCall) {
             // Locally store the user token (username, email)
-            localStorage.setItem('jwt', loginApiCall.data);
-            localStorage.getItem('jwt');
+            sessionStorage.setItem('jwt', loginApiCall.data);
+            // Redirect to the project page
             router.push('/project');
         }
         } catch (error) {

@@ -52,6 +52,7 @@
 <script>
 import ProjectService from '../services/projectService';
 import ProjectComponents from '../components/CreateNewProjectComponent.vue';
+import jwtdecode from 'jwt-decode'
 
 export default {
     name:'Project',
@@ -63,12 +64,14 @@ export default {
             projectCreated: false,
             totalProjectCount: undefined,
             projects : undefined,
-            projectService : undefined
+            projectService : undefined,
+            userId : undefined
         }
     },
     mounted(){
+        this.userId = jwtdecode(sessionStorage.getItem('jwt')).sub;
         this.projectService = new ProjectService();
-        this.projectService.getAllUserProjects().then(projects => {
+        this.projectService.getAllUserProjects(this.userId).then(projects => {
             this.projects = projects
         })
         // this.getAllUserProjects();

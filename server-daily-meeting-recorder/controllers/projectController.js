@@ -14,7 +14,8 @@ class ProjectController {
     }
 
     async getAllUserProjects(request, response) {
-        const projects = await projectService.getAllUserProjects();
+        const userId = request.headers.authorization;
+        const projects = await projectService.getAllUserProjects(userId);
         response.status(200).send(projects)
     }
      

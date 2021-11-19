@@ -21,10 +21,6 @@ class TeamModel extends Model {
                     model : 'User',
                     key : 'id'
                 }
-            },
-            name : {
-                type : DataTypes.STRING,
-                allowNull : false
             }
         },
         {

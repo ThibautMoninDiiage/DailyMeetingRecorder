@@ -10,8 +10,12 @@ export default class ProjectService {
        })
     }
 
-    async getAllUserProjects() {
-        const projects = await axios.get('http://localhost:3000/project/getAllUserProjects');
+    async getAllUserProjects(userId) {
+        const projects = await axios.get('http://localhost:3000/project/getAllUserProjects/', {
+            headers : {
+                Authorization : userId
+            }
+        });
         return projects.data;
     }
 

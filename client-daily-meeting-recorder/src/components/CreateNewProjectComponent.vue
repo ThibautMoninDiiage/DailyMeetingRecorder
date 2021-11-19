@@ -41,7 +41,6 @@ export default {
             console.log(this.validFields)
             if(this.validFields == true){
                 this.projectService.createNewProject(this.idUser, this.titleProject, this.descriptionProject);
-                console.log('ok')
             }
             else{
                 alert('un champs non remplis');
