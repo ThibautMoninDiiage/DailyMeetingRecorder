@@ -13,6 +13,14 @@ class ProjectController {
 
         response.status(200).send(project);
     }
+
+    async addProjectToTeam(request, response){
+        const data = request.body;
+
+        const project = await projectService.addProjectToTeam(data);
+
+        response.status(200).send(project);
+    }
      
 }
 

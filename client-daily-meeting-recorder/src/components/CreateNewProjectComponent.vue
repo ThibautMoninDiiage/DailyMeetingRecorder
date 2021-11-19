@@ -3,7 +3,7 @@
     <form @submit="addNewProject">
         <div>
             <input type="text" placeholder="Project Title" name="titleProject" id="titleProject" v-model="titleProject" style="border: black 1px solid">
-            <textarea placeholder="Project Desciption" name="descriptionProject" id="descriptionProject" v-model="descriptionProject"></textarea>
+            <textarea placeholder="Project Desciption" name="descriptionProject" id="descriptionProject" v-model="descriptionProject"></textarea>         
             <input type="submit" value="Validate">
         </div>
     </form>
@@ -17,6 +17,7 @@ export default {
     data() {
         return {
             idUser: 1,
+            idProject: undefined,
             titleProject: '',
             descriptionProject: '',
             validFields: undefined,
@@ -25,6 +26,7 @@ export default {
     },
     mounted(){
         this.projectService = new ProjectService();
+    
     },
     methods: {
         checkForm(){
@@ -40,8 +42,11 @@ export default {
             this.checkForm();
             console.log(this.validFields)
             if(this.validFields == true){
-                this.projectService.createNewProject(this.idUser, this.titleProject, this.descriptionProject);
-                console.log('ok')
+                this.projectService.createNewProject(this.idUser, this.titleProject, this.descriptionProject).then((project) => { 
+                    this.idProject = project.id
+                    this.projectService.addProjectToTeam(this.idUser, this.idProject);
+                });
+               
             }
             else{
                 alert('un champs non remplis');
