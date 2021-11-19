@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export default class MeetingService {
+    
     /**
      * Appel du serveur pour la création du meeting
      * @param {string} name nom du meeting
@@ -17,12 +18,15 @@ export default class MeetingService {
     }
 
     /**
-     * Appel du serveur pour la récupération des projets
+     * Récupération des meetings du project
+     * @param {number} idProject id du project
+     * @returns Les meetings du projet
      */
-    async getProjects() {
-        axios.get('http://localhost:3000/meeting/getProjects').then((response)=> {
-           return response.data
-        })
+    async getMeetingProject(idProject){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/meeting/getMeetingProject/'+ idProject).then( (response) => {
+              resolve(response.data);
+            })
+          });
     }
-
 }

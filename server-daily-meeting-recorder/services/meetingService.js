@@ -1,7 +1,5 @@
 const MeetingModel = require('../models/meetingModel');
 const ProjectModel = require('../models/projectModel');
-const TeamModel = require('../models/teamModel');
-const UserModel = require('../models/userModel');
 
 class MeetingService {
 
@@ -15,21 +13,17 @@ class MeetingService {
         return meeting
     }
 
-    async getProjects() {
-        // return await ProjectModel.findAll({
-        //         include: [{
-        //             model : TeamModel
-        //         },
-        //         {
-        //             model : UserModel,
-        //             where : {
-        //                 id : 1
-        //             }
-        //         }
-        //         ]
-        //     })
-
-        return await ProjectModel.findAll()
+    /**
+     * Récupération des meetings du projets à partir de la bdd
+     * @param {number} idProject Id du projet
+     * @returns Les meetings du projet
+     */
+    async getMeetingProject(idProject){
+        return await MeetingModel.findAll({
+            where : {
+                idProject : idProject
+            }
+        })
     }
 }
 

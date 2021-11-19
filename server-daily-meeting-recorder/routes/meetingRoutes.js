@@ -3,6 +3,6 @@ const meetingController = require('../controllers/meetingController');
 const router = express.Router();
 
 router.post('/createMeeting', meetingController.createMeeting);
-router.get('/getProjects', meetingController.getProjects);
+router.get('/getMeetingProject/:idProject', meetingController.getMeetingProject);
 
 module.exports = router;
