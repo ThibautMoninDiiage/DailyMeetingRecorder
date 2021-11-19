@@ -1,3 +1,4 @@
+const { sequelize } = require('../models/projectModel');
 const ProjectModel = require('../models/projectModel');
 const TeamModel = require('../models/teamModel');
 
@@ -12,8 +13,8 @@ class ProjectService {
     }
 
 
-    async getAllUserProjects() {
-        return await ProjectModel.findAll();
+async getAllUserProjects(userId) {
+    return await sequelize.query("SELECT title, description, status FROM Project INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
     }
 
     async addProjectToTeam(data){
