@@ -17,6 +17,14 @@ class ProjectController {
         const projects = await projectService.getAllUserProjects();
         response.status(200).send(projects)
     }
+
+    async addProjectToTeam(request, response){
+        const data = request.body;
+
+        const project = await projectService.addProjectToTeam(data);
+
+        response.status(200).send(project);
+    }
      
 }
 

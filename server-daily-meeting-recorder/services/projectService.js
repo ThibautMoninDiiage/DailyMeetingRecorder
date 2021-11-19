@@ -8,12 +8,21 @@ class ProjectService {
             description: data.description,
             status: data.status
         });
+        
     }
 
 
-async getAllUserProjects() {
+    async getAllUserProjects() {
         return await ProjectModel.findAll();
+    }
 
+    async addProjectToTeam(data){
+        return await TeamModel.create({
+            idProject: data.idProject,
+            idUser: data.idUser,
+            name: ''
+
+        });
     }
 
 }
