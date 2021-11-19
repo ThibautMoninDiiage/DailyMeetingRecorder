@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ProjectService from '../services/projectService';
+// import ProjectService from '../services/projectService';
 
 export default {
     name: 'ProjectCreate',

@@ -1,4 +1,3 @@
-const MeetingService = require('../services/meetingService');
 const jwt = require('jsonwebtoken');
 const meetingService = require('../services/meetingService');
 
@@ -20,11 +19,15 @@ class MeetingController {
         response.status(200).send(token);
     }
 
-    async getProjects(request, response) {
-        const projects = await meetingService.getProjects();
-        response.status(200).send(projects);
+    /**
+     * Appel du service du serveur pour récupérer les meetings du projet
+     * @param {number} idProject Id du projet
+     */
+    async getMeetingProject(request, response){
+        const idProject = request.params.idProject
+        const meetings = await meetingService.getMeetingProject(idProject)
+        response.status(200).send(meetings);
     }
-
 }
 
 // Exporting the MeetingController

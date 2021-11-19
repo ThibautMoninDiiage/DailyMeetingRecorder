@@ -38,9 +38,6 @@
         mounted() {
             this.meetingService = new MeetingService()
             this.getMinDate()
-            this.meetingService.getProjects().then((projects) => {
-                this.lstProject = projects;
-            })
         },
         methods : {
             /**
