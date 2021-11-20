@@ -1,13 +1,17 @@
 <template>
     <!-- formulaire de création d'un nouveau projet -->
     <form @submit="createProject">
-        <div>
+        <div id="createProjectContainer">
             <input type="text" placeholder="Project Title" name="projectTitle" id="projectTitle" v-model="projectTitle">
             <textarea placeholder="Project Description" name="projectDescription" id="projectDescription" v-model="projectDescription"></textarea>         
-            <input type="submit" value="Validate">
+            <input id="btnValidate" type="submit" value="Validate">
         </div>
     </form>
 </template>
+
+<style>
+    @import '../styles/project.css';
+</style>
 
 <script>
 import ProjectService from '../services/projectService';
