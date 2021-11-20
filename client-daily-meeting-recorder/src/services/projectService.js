@@ -17,7 +17,6 @@ export default class ProjectService {
     }
     
     async addProjectToTeam(idUser, idProject){
-        console.log(idProject)
         await axios.post('http://localhost:3000/project/addProjectToTeam', {
             idUser: idUser,
             idProject: idProject
@@ -25,12 +24,12 @@ export default class ProjectService {
     }
 
     async getAllUserProjects(userId) {
-        const projects = await axios.get('http://localhost:3000/project/getAllUserProjects/', {
+        const projects = await axios.get('http://localhost:3000/project/getAllUserProjects', {
             headers : {
                 Authorization : userId
             }
         });
-        return projects.data;
+        return projects.data[0];
     }
 
 }

@@ -11,25 +11,26 @@
 
 <script>
 import ProjectService from '../services/projectService';
+import jwtdecode from 'jwt-decode';
 
 export default {
     name: 'ProjectCreate',
     data() {
         return {
-            idUser: 1,
-            idProject: undefined,
-            titleProject: '',
-            descriptionProject: '',
-            validFields: undefined,
-            projectService: undefined
+            userId : undefined,
+            idProject : undefined,
+            titleProject : '',
+            descriptionProject : '',
+            validFields : undefined,
+            projectService : undefined
         }
     },
-    mounted(){
+    mounted() {
         this.projectService = new ProjectService();
-    
+        this.userId = jwtdecode(sessionStorage.getItem('jwt')).sub;
     },
     methods: {
-        checkForm(){
+        checkForm() {
            if(this.titleProject == '' || this.descriptionProject == ''){
                this.validFields = false
            }else{
@@ -40,16 +41,15 @@ export default {
         addNewProject(){
             event.preventDefault();
             this.checkForm();
-            console.log(this.validFields)
             if(this.validFields == true){
-                this.projectService.createNewProject(this.idUser, this.titleProject, this.descriptionProject).then((project) => { 
+                this.projectService.createNewProject(this.userId, this.titleProject, this.descriptionProject).then((project) => { 
                     this.idProject = project.id
-                    this.projectService.addProjectToTeam(this.idUser, this.idProject);
+                    this.projectService.addProjectToTeam(this.userId, this.idProject);
                 });
                
             }
             else{
-                alert('un champs non remplis');
+                alert('You need to fill every fields !');
             }
         }
     }    

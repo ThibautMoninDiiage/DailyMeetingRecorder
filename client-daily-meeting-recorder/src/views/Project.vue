@@ -34,22 +34,12 @@
                 </tbody>
             </table>
         </div>
-        
-        <hr> <!-- séparation pour début de la liste des projet -->
-
-        <!-- liste des projet du user connecter --> 
-        <div>
-            <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
-
-            <span v-if="totalProjectCount == 0">
-                <p>vous n'avais pas de projet</p>
-            </span>
-           
-        </div>
+        <hr>
     </div>
     
 </template>
 
+<!-- Importing external CSS file-->
 <style>
     @import '../styles/project.css';
 </style>
@@ -60,36 +50,37 @@ import ProjectComponents from '../components/CreateNewProjectComponent.vue';
 import jwtdecode from 'jwt-decode'
 
 export default {
-    name:'Project',
-    components: {
+    name : 'Project',
+    components : {
         ProjectComponents
     },
-    data(){
-        return{
-            projectCreated: false,
-            totalProjectCount: undefined,
+    data() {
+        return {
+            projectCreated : false,
+            totalProjectCount : undefined,
             projects : undefined,
             projectService : undefined,
             userId : undefined
         }
     },
-    mounted(){
+    mounted() {
+        // Defining the user id from the token stored in the session
         this.userId = jwtdecode(sessionStorage.getItem('jwt')).sub;
         this.projectService = new ProjectService();
         this.projectService.getAllUserProjects(this.userId).then(projects => {
             this.projects = projects
+            console.log(projects);
+            console.log(this.projects);
         })
-        // this.getAllUserProjects();
     },
     methods: {
-        createNewProject(){
+        createNewProject() {
             this.projectCreated = true
-            // this.ProjectService.createNewProject()
         },
-        cancelcreateNewProject(){
+        cancelcreateNewProject() {
             this.projectCreated = false;
         },
-        totalProject(){
+        totalProject() {
             this.totalProjectCount == 0;
         }
     }

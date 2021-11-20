@@ -1,5 +1,5 @@
 // Importing the Sequelize package
-var { Sequelize } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const MeetingModel = require('../models/meetingModel');
 const ProjectModel = require('../models/projectModel');
 const RecordModel = require('../models/recordModel');
