@@ -5,10 +5,10 @@ class ProjectController {
 
     }
 
-    async createNewProject(request, response) {
+    async createProject(request, response) {
         const data = request.body;
         
-        const project = await projectService.createNewProject(data);
+        const project = await projectService.createProject(data);
 
         response.status(200).send(project);
     }

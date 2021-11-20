@@ -3,13 +3,12 @@ const { Sequelize } = require('sequelize');
 const TeamModel = require('../models/teamModel');
 
 class ProjectService {
-    async createNewProject(data) {
+    async createProject(data) {
         return await ProjectModel.create({
             title : data.title,
             description : data.description,
             status : data.status
         });
-        
     }
 
     async getAllUserProjects(userId) {
@@ -20,14 +19,13 @@ class ProjectService {
             dialect : 'mysql'
         })
 
-        return await sequelize.query("SELECT title, description, status FROM Project INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
+        return await sequelize.query("SELECT name, title, description, status FROM Status INNER JOIN Project ON Status.id = Project.status INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
     }
 
     async addProjectToTeam(data) {
-        console.log('UID' + data.idUser);
         return await TeamModel.create({
-            idProject : data.idProject,
-            idUser : data.idUser,
+            idProject : data.projectId,
+            idUser : data.userId,
             name : ''
         });
     }

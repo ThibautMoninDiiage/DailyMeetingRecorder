@@ -1,9 +1,9 @@
 <template>
     <!-- formulaire de création d'un nouveau projet -->
-    <form @submit="addNewProject">
+    <form @submit="createProject">
         <div>
-            <input type="text" placeholder="Project Title" name="titleProject" id="titleProject" v-model="titleProject" style="border: black 1px solid">
-            <textarea placeholder="Project Desciption" name="descriptionProject" id="descriptionProject" v-model="descriptionProject"></textarea>         
+            <input type="text" placeholder="Project Title" name="projectTitle" id="projectTitle" v-model="projectTitle">
+            <textarea placeholder="Project Description" name="projectDescription" id="projectDescription" v-model="projectDescription"></textarea>         
             <input type="submit" value="Validate">
         </div>
     </form>
@@ -14,13 +14,13 @@ import ProjectService from '../services/projectService';
 import jwtdecode from 'jwt-decode';
 
 export default {
-    name: 'ProjectCreate',
+    name : 'ProjectCreate',
     data() {
         return {
             userId : undefined,
-            idProject : undefined,
-            titleProject : '',
-            descriptionProject : '',
+            projectId : undefined,
+            projectTitle : '',
+            projectDescription : '',
             validFields : undefined,
             projectService : undefined
         }
@@ -29,24 +29,23 @@ export default {
         this.projectService = new ProjectService();
         this.userId = jwtdecode(sessionStorage.getItem('jwt')).sub;
     },
-    methods: {
+    methods : {
         checkForm() {
-           if(this.titleProject == '' || this.descriptionProject == ''){
+           if(this.projectTitle == '' || this.projectDescription == ''){
                this.validFields = false
            }else{
                this.validFields = true
            }
             
         },
-        addNewProject(){
+        createProject(){
             event.preventDefault();
             this.checkForm();
             if(this.validFields == true){
-                this.projectService.createNewProject(this.userId, this.titleProject, this.descriptionProject).then((project) => { 
-                    this.idProject = project.id
-                    this.projectService.addProjectToTeam(this.userId, this.idProject);
+                this.projectService.createProject(this.userId, this.projectTitle, this.projectDescription).then((project) => { 
+                    this.projectId = project.id
+                    this.projectService.addProjectToTeam(this.userId, this.projectId);
                 });
-               
             }
             else{
                 alert('You need to fill every fields !');

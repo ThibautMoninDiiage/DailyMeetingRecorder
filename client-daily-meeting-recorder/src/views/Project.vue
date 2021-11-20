@@ -1,17 +1,17 @@
 <template>
     <div>
         <!-- formulaire du bouton pour créer un projet -->
-        <form @submit="createNewProject" v-if="projectCreated === false">
-            <div id="createNewProject">
-                <input type="submit" value="New Project">
+        <form @submit="createProject" v-if="projectCreated === false">
+            <div id="createProject">
+                <input id="btnCreateProject" type="submit" value="New Project">
             </div>
         </form>
 
         <!-- appelle du component pour la creation d'un nouveau projet -->
-        <div v-if="projectCreated == true">
-            <form @submit="cancelcreateNewProject">
-                <div id="cancelCreateNewProject">
-                    <input type="submit" value="Cancel">
+        <div v-if="projectCreated === true">
+            <form @submit="cancelCreateProject">
+                <div id="cancelCreateProject">
+                    <input id="btnCancel" type="submit" value="Cancel">
                 </div>
             </form>
             <ProjectComponents></ProjectComponents>
@@ -25,11 +25,13 @@
                 <thead>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Status</th>
                 </thead>
                 <tbody>
                     <tr v-for="project in projects" :key="project.id">
                         <td>{{ project.title }}</td>
                         <td>{{ project.description }}</td>
+                        <td>{{ project.name }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -57,7 +59,6 @@ export default {
     data() {
         return {
             projectCreated : false,
-            totalProjectCount : undefined,
             projects : undefined,
             projectService : undefined,
             userId : undefined
@@ -67,21 +68,17 @@ export default {
         // Defining the user id from the token stored in the session
         this.userId = jwtdecode(sessionStorage.getItem('jwt')).sub;
         this.projectService = new ProjectService();
+        // Getting all user's project with the current user id
         this.projectService.getAllUserProjects(this.userId).then(projects => {
             this.projects = projects
-            console.log(projects);
-            console.log(this.projects);
         })
     },
-    methods: {
-        createNewProject() {
+    methods : {
+        createProject() {
             this.projectCreated = true
         },
-        cancelcreateNewProject() {
+        cancelCreateProject() {
             this.projectCreated = false;
-        },
-        totalProject() {
-            this.totalProjectCount == 0;
         }
     }
 }

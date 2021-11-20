@@ -6,7 +6,19 @@
     width: 100%;
 }
 
-table>div:hover {
+table {
+    border: 1px solid black;
+}
+
+table>tbody>tr:hover {
     background-color: #CCCCCC;
     cursor: pointer;
+}
+
+#btnCreateProject {
+    width: 10%;
+}
+
+#btnCancel {
+    width: 10%;
 }
