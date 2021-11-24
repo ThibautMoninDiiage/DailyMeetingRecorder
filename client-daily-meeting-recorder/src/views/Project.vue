@@ -28,7 +28,7 @@
                     <th>Status</th>
                 </thead>
                 <tbody>
-                    <tr v-for="project in projects" :key="project.id">
+                    <tr @click="getProjectMeetings(project)" v-for="project in projects" :key="project.id">
                         <td>{{ project.title }}</td>
                         <td>{{ project.description }}</td>
                         <td>{{ project.name }}</td>
@@ -50,6 +50,7 @@
 import ProjectService from '../services/projectService';
 import ProjectComponents from '../components/CreateNewProjectComponent.vue';
 import jwtdecode from 'jwt-decode'
+import router from '../router';
 
 export default {
     name : 'Project',
@@ -79,6 +80,10 @@ export default {
         },
         cancelCreateProject() {
             this.projectCreated = false;
+        },
+        getProjectMeetings(project) {
+            this.projectService.getProjectMeetings(project.id)
+            router.push({name : 'Meeting', params : { projectId : project.id}});
         }
     }
 }

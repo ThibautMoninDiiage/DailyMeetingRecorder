@@ -1,5 +1,30 @@
 <template>
     <div>
+
+        <form @submit="createMeeting" v-if="meetingCreated === false">
+            <div id="createMeeting">
+                <input id="btnCreateMeeting" type="submit" value="New Meeting">
+            </div>
+        </form>
+
+        <div id="projectsContainer">
+            <h1>Meetings for project name</h1>
+            <table>
+                <thead>
+                    <th>Meeting Name</th>
+                    <th>Starting Date</th>
+                    <th>Ending Date</th>
+                </thead>
+                <tbody>
+                    <tr v-for="meeting in meetings" :key="meeting.id">
+                        <td>{{ meeting.name }}</td>
+                        <td>{{ meeting.startDate }}</td>
+                        <td>{{ meeting.endDate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <form @submit="createMeeting">
             <select v-model="selectProject" name="projectSelection" id="projectSelection" required>
                 <option v-bind:value="project.id" v-for="(project) in lstProject" v-bind:key="project.id">{{project.title}}</option>
@@ -20,6 +45,8 @@
 
 <script>
     import MeetingService from '../services/meetingService';
+    import ProjectService from '../services/projectService';
+
     export default {
         name : 'Meeting',
         data() {
@@ -32,12 +59,21 @@
                 lstProject: undefined,
                 validDate : undefined,
                 validNotEmpty : undefined,
-                meetingService : undefined
+                meetingService : undefined,
+                projectService : undefined,
+                meetings : undefined,
+                projectId : undefined, 
+                meetingCreated : false
             }
         },
         mounted() {
-            this.meetingService = new MeetingService()
-            this.getMinDate()
+            this.meetingService = new MeetingService();
+            this.projectService = new ProjectService()
+            this.getMinDate();
+            this.projectId = this.$route.params.projectId;
+            this.projectService.getProjectMeetings(this.projectId).then(meetings => {
+            this.meetings = meetings
+        })
         },
         methods : {
             /**
@@ -58,8 +94,6 @@
             verifDate() {
                 if (this.endDate > this.startDate) this.validDate = true
                 else this.validDate = false
-
-                console.log(this.validDate)
             },
             /**
              * Verifie si les champs sont remplis dans le formulaire

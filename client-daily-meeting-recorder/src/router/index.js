@@ -24,7 +24,7 @@ const routes = [
     component : Login
   },
   {
-    path: '/meeting',
+    path: '/meeting/:projectId',
     name: 'Meeting',
     component: Meeting
   },
