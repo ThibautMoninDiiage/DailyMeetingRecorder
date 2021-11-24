@@ -1,15 +1,15 @@
 <template>
     <div>
         <form @submit="createMeeting">
-            <select v-model="selectProject" name="" id="" required>
+            <select v-model="selectProject" name="projectSelection" id="projectSelection" required>
                 <option v-bind:value="project.id" v-for="(project) in lstProject" v-bind:key="project.id">{{project.title}}</option>
             </select>
-            <input v-model="name" type="text" name="" id="" placeholder="nom du meeting" required>
-            <input v-model="startDate" type="datetime-local" v-bind:min="minDate" name="" id="" required>
+            <input v-model="name" type="text" name="meetingName" id="meetingName" placeholder="Meeting Name" required>
+            <input v-model="startDate" type="datetime-local" v-bind:min="minDate" name="meetingStartingDate" id="meetingStartingDate" required>
             <span class="validity"></span>
-            <input v-model="endDate" type="datetime-local" v-bind:min="minDate" name="" id="" required>
+            <input v-model="endDate" type="datetime-local" v-bind:min="minDate" name="meetingEndingDate" id="meetingEndingDate" required>
             <span class="validity"></span>
-            <input type="submit" value="Créer meeting">
+            <input type="submit" value="New Meeting">
         </form>
     </div>
 </template>
