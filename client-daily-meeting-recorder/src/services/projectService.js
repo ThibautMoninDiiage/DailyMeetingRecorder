@@ -30,4 +30,13 @@ export default class ProjectService {
         return projects.data[0];
     }
 
+    async getProjectMeetings(projectId) {
+        const meetings = await axios.get('http://localhost:3000/project/getProjectMeetings', {
+            headers : {
+                Authorization : projectId
+            }
+        })
+        return meetings.data[0];
+    }
+
 }

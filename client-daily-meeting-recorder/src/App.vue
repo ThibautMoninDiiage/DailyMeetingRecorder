@@ -3,7 +3,6 @@
     <div id="nav">
         <div v-if="isLoggedIn"><LogoutComponent></LogoutComponent></div>
         <router-link to="/register">Register</router-link> |
-        <router-link to="/meeting">Meeting</router-link> |
         <router-link to="/project">Project</router-link>
     </div>
     <router-view/>

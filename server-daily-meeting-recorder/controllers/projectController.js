@@ -26,6 +26,12 @@ class ProjectController {
 
         response.status(200).send(project);
     }
+
+    async getProjectMeetings(request, response) {
+        const projectId = request.headers.authorization;
+        const meetings = await projectService.getProjectMeetings(projectId);
+        response.status(200).send(meetings);
+    }
      
 }
 
