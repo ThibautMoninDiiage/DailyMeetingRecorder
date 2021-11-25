@@ -1,13 +1,13 @@
 <template>
     <div>
-        <!-- formulaire du bouton pour créer un projet -->
+
+        <!--On button click, call the project component to create a new project-->
         <form @submit="createProject" v-if="projectCreated === false">
             <div id="createProject">
                 <input id="btnCreateProject" type="submit" value="New Project">
             </div>
         </form>
 
-        <!-- appelle du component pour la creation d'un nouveau projet -->
         <div v-if="projectCreated === true">
             <form @submit="cancelCreateProject">
                 <div id="cancelCreateProject">

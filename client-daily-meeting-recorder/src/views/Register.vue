@@ -3,11 +3,11 @@
         <div id="register-box">
             <div id="register-text">Register</div>
             <hr id="separator">
-            <input v-model="username" type="text" name="username" id="username" placeholder="Username">
-            <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail">
-            <input v-model="emailConfirmation" type="email" name="user-email-confirm" id="user-email-confirm" placeholder="E-Mail confirmation">
-            <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
-            <input v-model="passwordConfirmation" type="password" name="user-password-confirmation" id="user-password-confirmation" placeholder="Password confirmation">
+            <input v-model="username" type="text" name="username" id="username" placeholder="Username" required>
+            <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
+            <input v-model="emailConfirmation" type="email" name="user-email-confirm" id="user-email-confirm" placeholder="E-Mail confirmation" required>
+            <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password" required>
+            <input v-model="passwordConfirmation" type="password" name="user-password-confirmation" id="user-password-confirmation" placeholder="Password confirmation" required>
             <input type="submit" value="Register" id="btn-register">
             <router-link id="alreadyHaveAccount" to="/login">Already have an account ? Login</router-link>
         </div>
