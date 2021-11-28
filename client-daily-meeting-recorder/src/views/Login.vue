@@ -1,15 +1,22 @@
 <template>
-    <form @submit="login">
-        <div id="login-box">
+    <div class="bodyComponent">
+        <form @submit="login">
+        <div>
             <div id="login-text">Login</div>
-            <hr id="separator">
             <input v-model="username" type="text" name="username" id="username" placeholder="Username">
             <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail">
             <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
-            <input type="submit" value="Login" id="btn-login">
-            <router-link id="dontHaveAccount" to="/register">Don't have an account ? Register</router-link>
+            <br/>
+            <input type="submit" value="Connexion" class="btnLien" style="width: 15vh;">
         </div>
-    </form>
+        </form>
+
+        <section id="btnNoAccount">
+            <router-link class="btnLien" to="/register">Mot de passe oublier</router-link> 
+            <router-link class="btnLien" to="/register">Créer un compte</router-link> 
+        </section>
+        
+    </div>
 </template>
 
 <style>

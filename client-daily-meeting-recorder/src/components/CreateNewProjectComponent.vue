@@ -1,10 +1,10 @@
 <template>
     <!-- formulaire de création d'un nouveau projet -->
     <form @submit="addNewProject">
-        <div>
-            <input type="text" placeholder="Project Title" name="titleProject" id="titleProject" v-model="titleProject" style="border: black 1px solid">
+        <div class="FormAddProject">
+            <input type="text" placeholder="Project Title" name="titleProject" id="titleProject" v-model="titleProject">
             <textarea placeholder="Project Desciption" name="descriptionProject" id="descriptionProject" v-model="descriptionProject"></textarea>         
-            <input type="submit" value="Validate">
+            <input class="btnValide" type="submit" value="Validate">
         </div>
     </form>
 </template>

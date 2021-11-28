@@ -1,12 +1,43 @@
-#projectsContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.FormAddProject{
+    display: grid;
 }
 
-table>div:hover {
-    background-color: #CCCCCC;
+#titleProject{
+    width: 70%;
+    margin: 20px auto 20px auto;
+}
+
+#descriptionProject{
+    width: 70%;
+    height: 15em;
+    margin: 20px auto 20px auto;
+}
+
+#statusProject{
+    width: 70%;
+    height: 2em;
+    margin: 20px auto 20px auto;
+}
+
+.btnValide{
+    margin: auto;
+    width: 15vw;
+    background-color: #2C9066;
+    padding: 1%;
+    border-radius: 10px;
     cursor: pointer;
+}
+
+.listProject{
+    display: flex;
+}
+.listProject a{
+    width: 70%;
+    margin: 15px auto 15px auto;
+}
+
+.labelProject{
+    width: 70%;
+    text-align: left;
+    margin: 20px auto auto auto;
 }

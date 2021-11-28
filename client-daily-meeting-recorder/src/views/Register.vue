@@ -1,17 +1,23 @@
 <template>
-    <form @submit="register">
-        <div id="register-box">
-            <div id="register-text">Register</div>
-            <hr id="separator">
-            <input v-model="username" type="text" name="username" id="username" placeholder="Username">
-            <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail">
-            <input v-model="emailConfirmation" type="email" name="user-email-confirm" id="user-email-confirm" placeholder="E-Mail confirmation">
-            <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
-            <input v-model="passwordConfirmation" type="password" name="user-password-confirmation" id="user-password-confirmation" placeholder="Password confirmation">
-            <input type="submit" value="Register" id="btn-register">
-            <router-link id="alreadyHaveAccount" to="/login">Already have an account ? Login</router-link>
-        </div>
-    </form>
+     <div class="bodyComponent">
+        <form @submit="register">
+            <div>
+                <div id="register-text">Register</div>
+                <input v-model="username" type="text" name="username" id="username" placeholder="Username">
+                <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail">
+                <input v-model="emailConfirmation" type="email" name="user-email-confirm" id="user-email-confirm" placeholder="E-Mail confirmation">
+                <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
+                <input v-model="passwordConfirmation" type="password" name="user-password-confirmation" id="user-password-confirmation" placeholder="Password confirmation">
+                <br/>
+                <input type="submit" value="Valider" class="btnLien" style="width: 15vh;">
+            </div>
+        </form>
+
+        <section id="btnNoAccount">
+            <router-link class="btnLien" to="/">Annuler - retour à la connexion</router-link> 
+        </section>
+        
+    </div>
 </template>
 
 <style>

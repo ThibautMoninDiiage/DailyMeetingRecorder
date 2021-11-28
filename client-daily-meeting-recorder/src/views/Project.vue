@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div  class="bodyComponent">
         <!-- formulaire du bouton pour créer un projet -->
         <form @submit="createNewProject" v-if="projectCreated === false">
             <div id="createNewProject">
-                <input type="submit" value="New Project">
+                <input class="btnComponent" type="submit" value="New Project">
             </div>
         </form>
 
@@ -11,7 +11,7 @@
         <div v-if="projectCreated == true">
             <form @submit="cancelcreateNewProject">
                 <div id="cancelCreateNewProject">
-                    <input type="submit" value="Cancel">
+                    <input class="btnComponent" type="submit" value="Cancel">
                 </div>
             </form>
             <ProjectComponents></ProjectComponents>
@@ -19,32 +19,25 @@
 
         <hr>
 
+        <!-- liste des projet du user connecter --> 
         <div id="projectsContainer">
             <h1>My Projects</h1>
-            <table>
-                <thead>
-                    <th>Title</th>
-                    <th>Description</th>
-                </thead>
-                <tbody>
-                    <tr v-for="project in projects" :key="project.id">
-                        <td>{{ project.title }}</td>
-                        <td>{{ project.description }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <hr> <!-- séparation pour début de la liste des projet -->
 
-        <!-- liste des projet du user connecter --> 
-        <div>
             <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
-
             <span v-if="totalProjectCount == 0">
                 <p>vous n'avais pas de projet</p>
             </span>
-           
+
+            <span v-if="totalProjectCount != 0">
+                <section>
+                    <h2>Title - Description - Status</h2>
+                </section>
+                <section>
+                    <span class="listProject" v-for="project in projects" :key="project.id">
+                        <router-link class="btnLien" to="/">{{ project.title }} - {{ project.description }} - {{ project.Status }}</router-link>
+                    </span>
+                </section>
+            </span>
         </div>
     </div>
     
@@ -76,12 +69,10 @@ export default {
         this.projectService.getAllUserProjects().then(projects => {
             this.projects = projects
         })
-        // this.getAllUserProjects();
     },
     methods: {
         createNewProject(){
             this.projectCreated = true
-            // this.ProjectService.createNewProject()
         },
         cancelcreateNewProject(){
             this.projectCreated = false;
