@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Meeting from '../views/Meeting.vue'
 import Project from '../views/Project.vue'
 import ProjectSelected from '../views/ProjectSelected.vue';
+import RecordingComponent from '../components/RecordingComponent'
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
     path: '/projectSelected',
     name: 'ProjectSelected',
     component: ProjectSelected
+  },
+  {
+    path : '/record',
+    name : 'RecordManager',
+    component : RecordingComponent
   }
 ]
 

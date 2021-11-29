@@ -1,0 +1,11 @@
+#btnStartAudioRecord {
+    width: 10%;
+    cursor: pointer;
+    background-color: green;
+}
+
+#btnStopAudioRecord {
+    width: 10%;
+    cursor: pointer;
+    background-color: red;
+}
