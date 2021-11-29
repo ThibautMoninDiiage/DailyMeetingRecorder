@@ -4,6 +4,7 @@ import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Meeting from '../views/Meeting.vue'
 import Project from '../views/Project.vue'
+import ProjectSelected from '../views/ProjectSelected.vue';
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,11 @@ const routes = [
     path: '/project',
     name: 'Project',
     component: Project
+  },
+  {
+    path: '/projectSelected',
+    name: 'ProjectSelected',
+    component: ProjectSelected
   }
 ]
 
