@@ -1,6 +1,19 @@
 <template>
     <div>
-        <h1>My Projects</h1>
+        <h1>My Meetings</h1>
+
+        <!-- bouton pour créer un nouveau meeting -->
+        <div v-if="meetingCreated === false">
+            <button class="btnComponent" @click="createMeeting">New Project</button>
+        </div>
+
+        <!-- appelle du component pour la creation d'un nouveau meeting -->
+        <div v-if="meetingCreated === true">
+            <button class="btnComponent" @click="cancelCreateMeeting">Cancel</button>
+            <CreateMeeting v-bind:projectId="2"></CreateMeeting>
+        </div>
+        
+
         <table>
             <thead>
                 <th>Name</th>
@@ -20,20 +33,34 @@
 
 <script>
 import MeetingService from '../services/meetingService';
+import CreateMeeting from '../components/CreateMeetingComponent.vue'
+
 export default {
     name: 'ManageMeeting',
     props: {
-        idProject : undefined
+        projectId : undefined
+    },
+    components:{
+        CreateMeeting,
+    },
+    methods:{
+        createMeeting() {
+            this.meetingCreated = true
+        },
+        cancelCreateMeeting() {
+            this.meetingCreated = false;
+        },
     },
     data() {
         return {
             lstMeeting: [],
-            meetingService : undefined
+            meetingService : undefined,
+            meetingCreated : false
         }
     },
     mounted() {
         this.meetingService = new MeetingService()
-        this.lstMeeting = this.meetingService.getMeetingProject(this.idProject).then((meetings) => {
+        this.lstMeeting = this.meetingService.getMeetingProject(this.projectId).then((meetings) => {
             this.lstMeeting = meetings
         })
     }
@@ -44,5 +71,9 @@ export default {
     ul>li {
         display: inline-block;
         margin-right: 5px;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>

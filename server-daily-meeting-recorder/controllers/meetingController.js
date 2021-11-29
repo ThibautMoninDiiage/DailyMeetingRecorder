@@ -9,14 +9,8 @@ class MeetingController {
     
     async createMeeting(request, response) {
         // We call the register function in the server authentication service
-        const meeting = await meetingService.createMeeting(request.body.name, request.body.startDate, request.body.endDate);
-        const payload = {
-            sub : user.id,
-            username : user.username,
-            email : user.email
-        }
-        const token =  jwt.sign(payload, 'secret');
-        response.status(200).send(token);
+        const meeting = await meetingService.createMeeting(request.body.name, request.body.startDate, request.body.endDate, request.body.idProject);
+        response.status(200).send(meeting);
     }
 
     /**
@@ -24,8 +18,8 @@ class MeetingController {
      * @param {number} idProject Id du projet
      */
     async getMeetingProject(request, response){
-        const idProject = request.params.idProject
-        const meetings = await meetingService.getMeetingProject(idProject)
+        const projectId = request.params.projectId
+        const meetings = await meetingService.getMeetingProject(projectId)
         response.status(200).send(meetings);
     }
 }
