@@ -24,7 +24,8 @@
 
         <hr/>
 
-        <manageMember></manageMember>
+        <ManageMember></ManageMember>
+        <ManageMeeting v-bind:projectId="1"></ManageMeeting>
 
     </div>
 </template>
@@ -35,14 +36,15 @@
 
 <script>
 //import ProjectService from '../services/projectService';
-import manageMember from '../components/ManageMemberComponent.vue';
+import ManageMember from '../components/ManageMemberComponent.vue';
+import ManageMeeting from '../components/ManageMeetingComponent.vue';
 import ProjectService from '../services/projectService';
 
 export default({
     name:'ProjectSelected',
     components: {
-        manageMember,
-        
+        ManageMember,
+        ManageMeeting
     },
     data(){
         return{
