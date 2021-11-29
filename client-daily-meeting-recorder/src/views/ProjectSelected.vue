@@ -30,17 +30,8 @@
 
         <hr/>
 
-        <div>
-            <input class="btnValide" v-if="manageMember === false" type="submit" value="Manage membre">
-            <input class="btnValide" v-if="manageMember === true" type="submit" value="cacher membre">
-            <input class="btnValide" v-if="manageMeeting === false" type="submit" value="Manage meeting">
-            <input class="btnValide" v-if="manageMeeting === true" type="submit" value="cacher meeting">
-        </div>
-
-        <hr/>
-
         <manageMember v-if="manageMember === true"></manageMember><!-- components -->
-        <manageMeeting v-if="manageMeeting === true"></manageMeeting><!-- components -->
+        <ManageMeeting v-bind:projectId="1"></ManageMeeting><!-- components -->
 
     </div>
 </template>
@@ -50,14 +41,14 @@
 </style>
 
 <script>
-import manageMember from '../components/ManageMemberComponent.vue';
-import manageMeeting from '../components/ManageMeetingComponent.vue';
+import ManageMember from '../components/ManageMemberComponent.vue';
+import ManageMeeting from '../components/ManageMeetingComponent.vue';
 
 export default({
     name:'ProjectSelected',
     components: {
-        manageMember,
-        manageMeeting
+        ManageMember,
+        ManageMeeting
     },
     data(){
         return{

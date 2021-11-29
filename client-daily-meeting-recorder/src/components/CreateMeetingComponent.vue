@@ -20,6 +20,9 @@
 
     export default {
         name : 'MeetingComponent', 
+        props:{
+            projectId: undefined
+        },
         data() {
             return {
                 name:'',
@@ -68,13 +71,16 @@
             createMeeting(){
                 event.preventDefault()
                 this.verifDate()
+
                 this.verifIfEmpty()
 
-                if (this.validDate && this.validNotEmpty) {
-                    console.log('ok')
-                } else {
-                    alert('Attention la durée de la réunion est négative ou un champs n\'est pas remplis');
-                }
+                this.meetingService.createMeeting(this.name, this.startDate, this.endDate, this.projectId)
+
+                // if (this.validDate && this.validNotEmpty) {
+                    
+                // } else {
+                //     alert('Attention la durée de la réunion est négative ou un champs n\'est pas remplis');
+                // }
             },
         }
     }

@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import createNewMember from '../components/CreateNewMemberComponent.vue';
+import createNewMember from './CreateMemberComponent.vue';
 import ProjectService from '../services/projectService';
 
 export default {

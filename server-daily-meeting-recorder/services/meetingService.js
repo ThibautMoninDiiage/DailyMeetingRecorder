@@ -3,12 +3,13 @@ const ProjectModel = require('../models/projectModel');
 
 class MeetingService {
 
-    async createMeeting(name, startDate, endDate) {
+    async createMeeting(name, startDate, endDate, projectId) {
         // We create a new user in the database
         const meeting = await MeetingModel.create({
             name: name,
             startDate : startDate,
-            endDate : endDate
+            endDate : endDate,
+            idProject : projectId
         })
         return meeting
     }
@@ -18,10 +19,10 @@ class MeetingService {
      * @param {number} idProject Id du projet
      * @returns Les meetings du projet
      */
-    async getMeetingProject(idProject){
+    async getMeetingProject(projectId){
         return await MeetingModel.findAll({
             where : {
-                idProject : idProject
+                idProject : projectId
             }
         })
     }

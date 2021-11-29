@@ -96,6 +96,7 @@
     font-weight: normal !important;
     margin-top: 20px;
     width: 50vw;
+    border: none;
 }
 
 textarea{
