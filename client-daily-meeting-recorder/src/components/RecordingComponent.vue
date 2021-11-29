@@ -18,7 +18,8 @@
         data() {
             return {
                 mediaRecorder : null,
-                chunks : []
+                chunks : [],
+                recording : undefined
             }
         },
         methods : {
