@@ -2,11 +2,11 @@
 
   <div id="app">
     <div id="nav">
-      <p>Bienvenu sur l'application Meeting Record</p>
+      <p>Welcome to the daily meeting recorder app.</p>
       <section>
-        <router-link class="btnLien" to="/">Déconnexion</router-link> <!--  v-if="homePage()"-->
         <router-link class="btnLien" to="/">Retour liste projet</router-link> 
         <router-link class="btnLien" to="/">retour au projet</router-link> 
+        <LogoutComponent></LogoutComponent>
       </section>
     </div>
     <router-view/>

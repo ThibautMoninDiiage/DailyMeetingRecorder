@@ -1,5 +1,5 @@
 <template>
-    <div  class="bodyComponent">
+    <div class="bodyComponent">
 
         <!-- formulaire du bouton pour créer un projet -->
         <form @submit="createProject" v-if="projectCreated === false">
@@ -7,7 +7,6 @@
                 <input class="btnComponent" type="submit" value="New Project">
             </div>
         </form>
-
 
         <!-- appelle du component pour la creation d'un nouveau projet -->
         <div v-if="projectCreated == true">
@@ -26,8 +25,8 @@
             <h1>My Projects</h1>
 
             <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
-            <span><!-- v-if="totalProjectCount == 0" -->
-                <p>vous n'avais pas de projet</p>
+            <span v-if="totalProjectCount == 0"> 
+                <p>You don't have projects.</p>
             </span>
 
             <span> <!--  v-if="totalProjectCount != 0" -->
@@ -36,10 +35,11 @@
                 </section>
                 <section>
                     <span class="listProject" v-for="project in projects" :key="project.id">
-                        <router-link class="btnLien" to="/">{{ project.title }} - {{ project.description }} - {{ project.Status }}</router-link>
+                        <router-link class="btnLien" to="/">{{ project.title }} - {{ project.description }} - {{ project.name }}</router-link>
                     </span>
                 </section>
             </span>
+        </div>
     </div>
     
 </template>
