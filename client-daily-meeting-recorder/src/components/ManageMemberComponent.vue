@@ -14,7 +14,7 @@
                     <input class="btnComponent" type="submit" value="Cancel add new member">
                 </div>
             </form>
-            <createNewMember></createNewMember>
+            <createMember></createMember>
         </div>
 
         <div>
@@ -29,24 +29,25 @@
 </template>
 
 <script>
-import createNewMember from '../components/CreateNewMemberComponent.vue';
+import createMember from '../components/CreateMemberComponent.vue';
 import ProjectService from '../services/projectService';
 
 export default {
     name: 'manageMember',
     components: {
-        createNewMember
+        createMember
     },
     data() {
         return {
             newMember: false,
-            membres: undefined
+            membres: undefined,
+            projectId: 1
         }
     },
     mounted(){
         this.projectService = new ProjectService();
         // a faire
-        this.projectService.getAllMember().then(members => {
+        this.projectService.getAllMemberByProject(this.projectId).then(members => {
             this.members = members
         })
     },

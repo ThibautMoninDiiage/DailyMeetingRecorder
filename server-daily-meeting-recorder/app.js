@@ -10,9 +10,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const authenticationRouter = require('./routes/authenticationRoutes');
 const meetingRouter = require('./routes/meetingRoutes');
-const projectRouter = require('./routes/projectRoutes')
-const projectSelectedRouter = require('./routes/projectSelectedRoutes')
-
+const projectRouter = require('./routes/projectRoutes');
+const projectSelectedRouter = require('./routes/projectSelectedRoutes');
+const memberRouter = require('./routes/memberRoutes');
 var app = express();
 
 app.use(logger('dev'));
@@ -27,7 +27,8 @@ app.use('/users', usersRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/meeting', meetingRouter);
 app.use('/project', projectRouter);
-app.use('/projectSelected', projectSelectedRouter)
+app.use('/projectSelected', projectSelectedRouter);
+app.use('/member', memberRouter);
 
 // Database initialization
 dbConnection.initialize();

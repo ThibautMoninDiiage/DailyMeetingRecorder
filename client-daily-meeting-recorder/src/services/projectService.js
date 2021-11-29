@@ -39,4 +39,13 @@ export default class ProjectService {
         return meetings.data[0];
     }
 
+    async getAllMemberByProject(projectId){
+        const members = await axios.get('http://localhost:3000/project/getAllMemberByProject', {
+            headers : {
+                Authorization : projectId
+            }
+        })
+        return members.data[0];
+    }
+
 }

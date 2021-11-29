@@ -51,7 +51,7 @@
 
 <script>
 import ProjectService from '../services/projectService';
-import ProjectComponents from '../components/CreateNewProjectComponent.vue';
+import ProjectComponents from '../components/CreateProjectComponent.vue';
 import jwtdecode from 'jwt-decode'
 import router from '../router';
 
