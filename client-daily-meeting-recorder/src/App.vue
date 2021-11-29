@@ -98,6 +98,10 @@
     width: 50vw;
 }
 
+button{
+     border: none;
+}
+
 textarea{
   resize: none;
 }

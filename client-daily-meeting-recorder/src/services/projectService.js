@@ -40,9 +40,18 @@ export default class ProjectService {
     }
 
     async getAllMemberByProject(projectId){
-        const members = await axios.get('http://localhost:3000/project/getAllMemberByProject', {
+        const members = await axios.get('http://localhost:3000/member/getAllMemberByProject', {
             headers : {
                 Authorization : projectId
+            }
+        })
+        return members.data[0];
+    }
+
+    async getAllStatus(){
+        const members = await axios.get('http://localhost:3000/member/getAllMemberByProject', {
+            headers : {
+                
             }
         })
         return members.data[0];

@@ -2,18 +2,18 @@
     display: grid;
 }
 
-#titleProject{
+.projectTitle{
     width: 70%;
     margin: 20px auto 20px auto;
 }
 
-#descriptionProject{
+.projectDescription{
     width: 70%;
     height: 15em;
     margin: 20px auto 20px auto;
 }
 
-#statusProject{
+.statusProject{
     width: 70%;
     height: 2em;
     margin: 20px auto 20px auto;

@@ -20,7 +20,7 @@ class ProjectService {
             dialect : 'mysql'
         })
 
-        return await sequelize.query("SELECT Project.id, name, title, description, status FROM Status INNER JOIN Project ON Status.id = Project.status INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
+        return await sequelize.query("SELECT Project.id, Status.name, title, description, status FROM Status INNER JOIN Project ON Status.id = Project.status INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
     }
 
     async addProjectToTeam(data) {
