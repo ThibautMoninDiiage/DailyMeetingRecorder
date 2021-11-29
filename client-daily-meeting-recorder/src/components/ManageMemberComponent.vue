@@ -9,53 +9,51 @@
         </form>
 
         <div v-if="newMember == true">
-            <form @submit="cancelAddNewMember">
-                <div>
-                    <input class="btnComponent" type="submit" value="Cancel add new member">
-                </div>
-            </form>
-            <createNewMember></createNewMember>
+            <div>
+                <input class="btnComponent" type="submit" @click="cancelAddNewMember" value="Cancel add new member">
+            </div>
+            <createMember></createMember>
         </div>
 
         <div>
             <p>liste des membre :</p>
 
-            <span class="listMembre" v-for="membre in membres" :key="membre.id">
-                <p>{{ membre.username }} - {{ membre.email }}</p>
-                <input class="btnLien" type="submit" value="Supprimer">
+            <span class="listMembre" v-for="member in members" :key="member.id">
+                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" type="submit" value="Supprimer"></p>
             </span>
         </div>
     </div>
 </template>
 
 <script>
-import createNewMember from '../components/CreateNewMemberComponent.vue';
+import createMember from '../components/CreateMemberComponent.vue';
 import ProjectService from '../services/projectService';
 
 export default {
     name: 'manageMember',
     components: {
-        createNewMember
+        createMember
     },
     data() {
         return {
             newMember: false,
-            membres: undefined
+            members: undefined,
+            projectId: 14
         }
     },
     mounted(){
         this.projectService = new ProjectService();
         // a faire
-        this.projectService.getAllMember().then(members => {
+        this.projectService.getAllMemberByProject(this.projectId).then(members => {
             this.members = members
         })
     },
     methods: {
         addNewMember(){
-            this.createNewMember = true
+            this.newMember = true
         },
         cancelAddNewMember(){
-            this.createNewMember = false
+            this.newMember = false
         }
 
     }    

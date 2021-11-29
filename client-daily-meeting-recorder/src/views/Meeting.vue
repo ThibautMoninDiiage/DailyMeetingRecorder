@@ -46,7 +46,7 @@
 
 <script>
     import ProjectService from '../services/projectService';
-    import MeetingComponent from '../components/CreateNewMeetingComponent.vue';
+    import MeetingComponent from '../components/CreateMeetingComponent.vue';
 
     export default {
         name : 'Meeting',

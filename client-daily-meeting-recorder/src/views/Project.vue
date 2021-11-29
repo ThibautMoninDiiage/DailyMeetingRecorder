@@ -2,19 +2,16 @@
     <div class="bodyComponent">
 
         <!-- formulaire du bouton pour créer un projet -->
-        <form @submit="createProject" v-if="projectCreated === false">
-            <div id="createProject">
-                <input class="btnComponent" type="submit" value="New Project">
+            <div id="createProject" v-if="projectCreated === false">
+                <button class="btnComponent" type="submit" @click="createProject" >New Project</button>
             </div>
-        </form>
+  
 
         <!-- appelle du component pour la creation d'un nouveau projet -->
         <div v-if="projectCreated == true">
-            <form @submit="cancelCreateProject">
-                <div id="cancelCreateProject">
-                    <input class="btnComponent" type="submit" value="Cancel">
-                </div>
-            </form>
+            <div id="cancelCreateProject">
+                <button class="btnComponent" @click="cancelCreateProject" type="submit">Cancel</button>
+            </div>
             <ProjectComponents></ProjectComponents>
         </div>
 
@@ -25,7 +22,7 @@
             <h1>My Projects</h1>
 
             <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
-            <span v-if="totalProjectCount == 0"> 
+            <span ><!--v-if="totalProjectCount == 0"--> 
                 <p>You don't have projects.</p>
             </span>
 
@@ -51,7 +48,7 @@
 
 <script>
 import ProjectService from '../services/projectService';
-import ProjectComponents from '../components/CreateNewProjectComponent.vue';
+import ProjectComponents from '../components/CreateProjectComponent.vue';
 import jwtdecode from 'jwt-decode'
 import router from '../router';
 

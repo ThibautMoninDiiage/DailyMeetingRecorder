@@ -4,7 +4,7 @@ import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Meeting from '../views/Meeting.vue'
 import Project from '../views/Project.vue'
-import ProjectSelected from '../views/ProjectSelected.vue';
+import SelectedProject from '../views/SelectedProject.vue';
 
 Vue.use(VueRouter)
 
@@ -37,7 +37,7 @@ const routes = [
   {
     path: '/projectSelected',
     name: 'ProjectSelected',
-    component: ProjectSelected
+    component: SelectedProject
   }
 ]
 
