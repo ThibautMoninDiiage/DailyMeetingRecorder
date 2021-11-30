@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const authenticationRouter = require('./routes/authenticationRoutes');
 const meetingRouter = require('./routes/meetingRoutes');
+const recordingRouter = require('./routes/recordingRoutes')
 const projectRouter = require('./routes/projectRoutes')
 const projectSelectedRouter = require('./routes/projectSelectedRoutes')
 
@@ -26,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/meeting', meetingRouter);
+app.use('/recording', recordingRouter)
 app.use('/project', projectRouter);
 app.use('/projectSelected', projectSelectedRouter)
 

@@ -13,14 +13,20 @@
 </template>
 
 <script>
+    import RecordingService from '../services/recordingService'
+
     export default {
         name : 'RecordingComponent',
         data() {
             return {
                 mediaRecorder : null,
                 chunks : [],
-                recording : undefined
+                recording : undefined,
+                recordingService : undefined
             }
+        },
+        mounted() {
+            this.recordingService = new RecordingService()
         },
         methods : {
             // Function that will start an audio recording
@@ -66,6 +72,7 @@
                 // Reset the media recorder and the chunks
                 this.mediaRecorder = null
                 this.chunks = []
+                this.recordingService.saveRecording(30, mediaURL, 3)
             }
         }
     }

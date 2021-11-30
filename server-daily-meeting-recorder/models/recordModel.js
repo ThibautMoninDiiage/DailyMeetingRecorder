@@ -11,7 +11,7 @@ class RecordModel extends Model {
                 autoIncrement : true
             },
             duration : {
-                type : DataTypes.DATE,
+                type : DataTypes.INTEGER,
                 allowNull : false
             },
             url : {
