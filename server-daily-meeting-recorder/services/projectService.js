@@ -26,11 +26,11 @@ class ProjectService {
         return await sequelize.query("SELECT Project.id, Status.name, title, description, status FROM Status INNER JOIN Project ON Status.id = Project.status INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
     }
 
-    async addProjectToTeam(data) {
+    async addProjectToTeam(data, token) {
+        const userId = jwtdecode(token.substr(7)).sub;
         return await TeamModel.create({
             idProject : data.projectId,
-            idUser : data.userId,
-            name : ''
+            idUser : userId
         });
     }
 
