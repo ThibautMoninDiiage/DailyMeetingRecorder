@@ -17,12 +17,12 @@ class RecordingService {
         //     url : data.url,
         //     idMeeting : data.meetingId
         // });
-        return await sequelize.query(`INSERT INTO Record (url, idMeeting, createdAt, updatedAt) VALUES ('${data.url}', '30', '2021-11-18 13:22:26', '2021-11-18 13:22:26')`)
+        // return await sequelize.query(`INSERT INTO Meeting (url, idMeeting, createdAt, updatedAt) VALUES ('${data.url}', '30', '2021-11-18 13:22:26', '2021-11-18 13:22:26')`)
     }
 
     async getMeetingRecording(data) {
         console.log(data);
-        return await sequelize.query(`SELECT * FROM Record`)
+        return await sequelize.query(`SELECT * FROM Meeting`)
     }
 
 }

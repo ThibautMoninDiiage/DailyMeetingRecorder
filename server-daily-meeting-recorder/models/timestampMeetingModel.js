@@ -1,4 +1,5 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
+const MeetingModel = require('./meetingModel');
 
 class TimestampMeetingModel extends Model {
 
@@ -18,11 +19,11 @@ class TimestampMeetingModel extends Model {
                 type : DataTypes.DATE,
                 allowNull : false
             },
-            idRecord : {
+            meetingId : {
                 type : DataTypes.INTEGER,
                 allowNull : false,
                 references : {
-                    model : 'Record',
+                    model : 'Meeting',
                     key : 'id'
                 }
             }

@@ -34,7 +34,7 @@ class MeetingModel extends Model {
             mediaUrl : {
                 type : DataTypes.STRING,
                 allowNull : false
-            },
+            }
         },
         {
             // Table name in the database
