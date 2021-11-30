@@ -47,9 +47,9 @@ export default {
             event.preventDefault();
             this.checkForm();
             if(this.validFields == true){
-                this.projectService.createProject(this.userId, this.projectTitle, this.projectDescription).then((project) => { 
+                this.projectService.createProject(this.projectTitle, this.projectDescription).then((project) => { 
                     this.projectId = project.id
-                    this.projectService.addProjectToTeam(this.userId, this.projectId);
+                    this.projectService.addProjectToTeam(this.projectId);
                 });
             }
             else{

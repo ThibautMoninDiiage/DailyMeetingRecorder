@@ -2,10 +2,13 @@ const ProjectModel = require('../models/projectModel');
 const { Sequelize } = require('sequelize');
 const TeamModel = require('../models/teamModel');
 const MeetingModel = require('../models/meetingModel');
+const jwtdecode = require('jwt-decode');
 
 class ProjectService {
-    async createProject(data) {
+    async createProject(data, token) {
+        const userId = jwtdecode(token.substr(7)).sub;
         return await ProjectModel.create({
+            userId: userId,
             title : data.title,
             description : data.description,
             status : data.status
@@ -23,11 +26,11 @@ class ProjectService {
         return await sequelize.query("SELECT Project.id, Status.name, title, description, status FROM Status INNER JOIN Project ON Status.id = Project.status INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
     }
 
-    async addProjectToTeam(data) {
+    async addProjectToTeam(data, token) {
+        const userId = jwtdecode(token.substr(7)).sub;
         return await TeamModel.create({
             idProject : data.projectId,
-            idUser : data.userId,
-            name : ''
+            idUser : userId
         });
     }
 
