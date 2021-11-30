@@ -30,7 +30,11 @@ class MeetingModel extends Model {
                     model : 'Project',
                     key : 'id'
                 }
-            }
+            },
+            mediaUrl : {
+                type : DataTypes.STRING,
+                allowNull : false
+            },
         },
         {
             // Table name in the database
