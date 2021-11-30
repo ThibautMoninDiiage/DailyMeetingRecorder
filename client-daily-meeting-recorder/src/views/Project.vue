@@ -3,14 +3,14 @@
 
         <!-- formulaire du bouton pour créer un projet -->
             <div id="createProject" v-if="projectCreated === false">
-                <button class="btnComponent" type="submit" @click="createProject" >New Project</button>
+                <button class="btnComponent" @click="createProject" >New Project</button>
             </div>
   
 
         <!-- appelle du component pour la creation d'un nouveau projet -->
         <div v-if="projectCreated == true">
             <div id="cancelCreateProject">
-                <button class="btnComponent" @click="cancelCreateProject" type="submit">Cancel</button>
+                <button class="btnComponent" @click="cancelCreateProject">Cancel</button>
             </div>
             <ProjectComponents></ProjectComponents>
         </div>
@@ -32,7 +32,7 @@
                 </section>
                 <section>
                     <span class="listProject" v-for="project in projects" :key="project.id">
-                        <router-link class="btnLien" to="/">{{ project.title }} - {{ project.description }} - {{ project.name }}</router-link>
+                        <router-link class="btnLien" :to="{name: 'projectDetail', params: {projectId: project.id} }">{{ project.title }} - {{ project.description }} - {{ project.name }}</router-link>
                     </span>
                 </section>
             </span>

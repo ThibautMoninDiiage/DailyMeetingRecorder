@@ -4,7 +4,7 @@ import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Meeting from '../views/Meeting.vue'
 import Project from '../views/Project.vue'
-import SelectedProject from '../views/SelectedProject.vue';
+import projectDetail from '../views/ProjectDetail.vue';
 import RecordingComponent from '../components/RecordingComponent'
 
 Vue.use(VueRouter)
@@ -36,9 +36,10 @@ const routes = [
     component: Project
   },
   {
-    path: '/projectSelected',
-    name: 'ProjectSelected',
-    component: SelectedProject
+    path: '/projectDetail/:projectId',
+    name: 'projectDetail',
+    component: projectDetail,
+    meta: {requiresAuth: true}
   },
   {
     path : '/record',
@@ -52,5 +53,24 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(to.path)
+  if(routes.find(route => route.path === to.path)){
+    if (to.meta.requiresAuth) {
+      if (!sessionStorage.getItem("jwt")) {
+        next("/");
+      } else {
+        next();
+      }
+    } else {
+      next();
+    }
+  }
+  else{
+    next();
+  }
+  
+});
 
 export default router

@@ -4,7 +4,8 @@
     <div id="nav">
       <p>Welcome to the daily meeting recorder app.</p>
       <section>
-        <LogoutComponent></LogoutComponent>
+        <LogoutComponent></LogoutComponent><!--  v-if="checkPathLogout" -->
+        <ReturnComponent v-if="checkPathReturn"></ReturnComponent>
       </section>
     </div>
     <router-view/>
@@ -31,6 +32,34 @@
 //   }
 // })
 // </script> -->
+
+
+<script>
+    import LogoutComponent from './components/LogoutComponent.vue';
+    import ReturnComponent from './components/returnComponent.vue';
+    
+    export default {
+        name : 'App',
+        components : {
+            LogoutComponent,
+            ReturnComponent
+        },
+        data() {
+            return {
+                isLoggedIn : true
+            }
+        },
+        methods: {
+          // checkPathLogout(){
+          //   const e = 'er'
+          //   const path = e;
+          //   if(e = s){
+          //     path = e
+          //   }
+          // }
+        }
+    }
+</script>
 
 <style>
 #app {
@@ -107,18 +136,3 @@ textarea{
 
 </style>
 
-<script>
-    import LogoutComponent from './components/LogoutComponent.vue'
-    
-    export default {
-        name : 'App',
-        components : {
-            LogoutComponent
-        },
-        data() {
-            return {
-                isLoggedIn : true
-            }
-        }
-    }
-</script>
