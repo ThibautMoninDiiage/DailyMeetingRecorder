@@ -10,10 +10,6 @@ class RecordModel extends Model {
                 primaryKey : true,
                 autoIncrement : true
             },
-            duration : {
-                type : DataTypes.INTEGER,
-                allowNull : false
-            },
             url : {
                 type : DataTypes.STRING,
                 allowNull : false
@@ -21,10 +17,6 @@ class RecordModel extends Model {
             idMeeting : {
                 type : DataTypes.INTEGER,
                 allowNull : false,
-                references : {
-                    model : 'Meeting',
-                    key : 'id'
-                }
             }
         },
         {

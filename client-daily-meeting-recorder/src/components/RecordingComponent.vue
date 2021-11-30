@@ -8,7 +8,7 @@
         </form>
         <hr>
             <h1>My recordings</h1>
-        <div id="audiosContainer"></div>
+            <div id="audiosContainer"></div>
     </div>
 </template>
 
@@ -59,6 +59,7 @@
                 })
                 const mediaURL = window.URL.createObjectURL(blob)
                 const audioElement = document.createElement(mediaType)
+                audioElement.setAttribute('preload', 'metadata')
                 audioElement.setAttribute('controls', '')
                 audioElement.src = mediaURL
                 const audiosContainer = document.getElementById('audiosContainer')
@@ -72,7 +73,7 @@
                 // Reset the media recorder and the chunks
                 this.mediaRecorder = null
                 this.chunks = []
-                this.recordingService.saveRecording(30, mediaURL, 3)
+                this.recordingService.saveRecording(mediaURL, 3)
             }
         }
     }

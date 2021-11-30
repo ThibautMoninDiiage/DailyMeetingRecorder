@@ -17,7 +17,7 @@ class RecordingService {
         //     url : data.url,
         //     idMeeting : data.meetingId
         // });
-        return await sequelize.query(`INSERT INTO Record (duration, url, idMeeting, createdAt, updatedAt) VALUES ('${data.duration}', '${data.url}', '30', '2021-11-18 13:22:26', '2021-11-18 13:22:26')`)
+        return await sequelize.query(`INSERT INTO Record (url, idMeeting, createdAt, updatedAt) VALUES ('${data.url}', '30', '2021-11-18 13:22:26', '2021-11-18 13:22:26')`)
     }
 }
 

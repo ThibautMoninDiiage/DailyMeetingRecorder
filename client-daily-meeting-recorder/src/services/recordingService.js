@@ -2,10 +2,9 @@ import axios from 'axios'
 
 export default class RecordingService {
 
-    async saveRecording(duration, url, meetingId) {
+    async saveRecording(url, meetingId) {
         try {
             await axios.post('http://localhost:3000/recording/saveRecording', {
-                duration : duration,
                 url : url,
                 meetingId : meetingId
             })
