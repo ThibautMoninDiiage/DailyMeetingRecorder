@@ -7,8 +7,9 @@ class ProjectController {
 
     async createProject(request, response) {
         const data = request.body;
+        const token = request.headers.authorization;
         
-        const project = await projectService.createProject(data);
+        const project = await projectService.createProject(data, token);
 
         response.status(200).send(project);
     }
@@ -21,8 +22,9 @@ class ProjectController {
 
     async addProjectToTeam(request, response){
         const data = request.body;
+        const token = request.headers.authorization;
 
-        const project = await projectService.addProjectToTeam(data);
+        const project = await projectService.addProjectToTeam(data, token);
 
         response.status(200).send(project);
     }

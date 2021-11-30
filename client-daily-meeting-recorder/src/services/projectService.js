@@ -1,23 +1,33 @@
 import axios from 'axios';
 
 export default class ProjectService {
-    async createProject(userId, title, description){
+    async createProject(title, description){
         return new Promise((resolve) => {
             axios.post('http://localhost:3000/project/createProject', {
-            userId : userId,
             title : title,
             description : description,
             status : 1
+            },
+            {
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
             }).then((response) => {
                 resolve(response.data)
             })
+
         })
     }
     
-    async addProjectToTeam(userId, projectId){
+    async addProjectToTeam(projectId){
         await axios.post('http://localhost:3000/project/addProjectToTeam', {
-            userId : userId,
+
             projectId : projectId
+        },
+        {
+            headers: {
+                Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+            } 
         })
     }
 

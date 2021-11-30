@@ -2,10 +2,13 @@ const ProjectModel = require('../models/projectModel');
 const { Sequelize } = require('sequelize');
 const TeamModel = require('../models/teamModel');
 const MeetingModel = require('../models/meetingModel');
+const jwtdecode = require('jwt-decode');
 
 class ProjectService {
-    async createProject(data) {
+    async createProject(data, token) {
+        const userId = jwtdecode(token.substr(7)).sub;
         return await ProjectModel.create({
+            userId: userId,
             title : data.title,
             description : data.description,
             status : data.status
