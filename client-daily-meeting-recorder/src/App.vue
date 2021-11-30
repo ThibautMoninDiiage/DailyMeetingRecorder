@@ -4,8 +4,6 @@
     <div id="nav">
       <p>Welcome to the daily meeting recorder app.</p>
       <section>
-        <router-link class="btnLien" to="/">Retour liste projet</router-link> 
-        <router-link class="btnLien" to="/">retour au projet</router-link> 
         <LogoutComponent></LogoutComponent>
       </section>
     </div>

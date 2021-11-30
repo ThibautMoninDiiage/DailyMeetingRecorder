@@ -7,13 +7,12 @@
             <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
             <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
             <br/>
-            <input type="submit" value="Connexion" class="btnLien" style="width: 15vh;">
+            <input type="submit" value="Login" class="btnLien" style="width: 15vh;">
         </div>
         </form>
 
         <section id="btnNoAccount">
-            <router-link class="btnLien" to="/register">Mot de passe oublier</router-link> 
-            <router-link class="btnLien" to="/register">Créer un compte</router-link> 
+            <router-link class="btnLien" to="/register">Register</router-link> 
         </section>
         
     </div>
