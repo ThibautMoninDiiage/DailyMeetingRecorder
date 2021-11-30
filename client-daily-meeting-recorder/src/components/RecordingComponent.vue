@@ -21,12 +21,15 @@
             return {
                 mediaRecorder : null,
                 chunks : [],
-                recording : undefined,
-                recordingService : undefined
+                recordingService : undefined,
+                recordings : undefined
             }
         },
         mounted() {
             this.recordingService = new RecordingService()
+            this.recordings = this.recordingService.getMeetingRecording().then(recordings => {
+                this.recordings = recordings
+            })
         },
         methods : {
             // Function that will start an audio recording
@@ -59,7 +62,6 @@
                 })
                 const mediaURL = window.URL.createObjectURL(blob)
                 const audioElement = document.createElement(mediaType)
-                audioElement.setAttribute('preload', 'metadata')
                 audioElement.setAttribute('controls', '')
                 audioElement.src = mediaURL
                 const audiosContainer = document.getElementById('audiosContainer')

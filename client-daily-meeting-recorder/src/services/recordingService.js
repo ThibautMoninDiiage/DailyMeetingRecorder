@@ -13,4 +13,16 @@ export default class RecordingService {
         }
     }
 
+    async getMeetingRecording() {
+        try {
+            await axios.get('http://localhost:3000/recording/getMeetingRecording', {
+                // headers : {
+                //     Authorization : userId
+                // }
+            })
+        } catch (error) {
+            console.error('Get recording error : ' + error);
+        }
+    }
+
 }
