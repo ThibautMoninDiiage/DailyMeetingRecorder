@@ -7,6 +7,7 @@ import Project from '../views/Project.vue'
 import projectDetail from '../views/ProjectDetail.vue';
 import RecordingComponent from '../components/RecordingComponent'
 import PageNotFound from '../views/PageNotFound';
+import AuthenticationService from '../services/authenticationService'
 
 
 Vue.use(VueRouter)
@@ -72,15 +73,16 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
-    if(!sessionStorage.getItem('jwt')) {
-      next('/');
-    } else {
-      next();
-    }
+    AuthenticationService.checkToken().then((isAuthorized) => {
+      if(isAuthorized) {
+        next();
+      } else {
+        next('/');
+      }
+    })
   } else {
     next();
   }
-  
 });
 
 

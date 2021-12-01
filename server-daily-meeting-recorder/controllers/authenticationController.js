@@ -37,6 +37,9 @@ class AuthenticationController {
         }
     }
 
+    async CheckToken(request, response){
+        response.status(200).send()
+    }
 }
 
 // Exporting the AuthenticationController
