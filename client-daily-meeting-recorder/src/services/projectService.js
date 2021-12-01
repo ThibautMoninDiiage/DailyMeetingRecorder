@@ -15,13 +15,11 @@ export default class ProjectService {
             }).then((response) => {
                 resolve(response.data)
             })
-
         })
     }
     
     async addProjectToTeam(projectId){
         await axios.post('http://localhost:3000/project/addProjectToTeam', {
-
             projectId : projectId
         },
         {
@@ -61,7 +59,7 @@ export default class ProjectService {
     async getAllStatus(){
         const members = await axios.get('http://localhost:3000/member/getAllMemberByProject', {
             headers : {
-                
+        
             }
         })
         return members.data[0];

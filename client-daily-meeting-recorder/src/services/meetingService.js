@@ -15,14 +15,12 @@ export default class MeetingService {
             startDate : startDate,
             endDate : endDate,
             idProject : projectId
-
         },
         {
             headers : {
                 Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
-            },
+            }
         });
-
         // {
         //     name : name,
         //     startDate : startDate,

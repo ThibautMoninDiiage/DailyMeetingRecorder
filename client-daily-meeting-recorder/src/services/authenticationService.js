@@ -13,9 +13,8 @@ export default class AuthenticationService {
             password : password
         })
         } catch (error) {
-            console.log('Register error : ' + error);
+            console.error('Register error : ' + error);
         }
-
     }
 
     // Method that permit to the user to login on the website
@@ -34,7 +33,7 @@ export default class AuthenticationService {
             router.push('/project');
         }
         } catch (error) {
-            console.log('Login error : ' + error);
+            console.error('Login error : ' + error);
         }
     }
 
