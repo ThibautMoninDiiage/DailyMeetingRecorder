@@ -2,9 +2,10 @@ import axios from 'axios'
 
 export default class RecordingService {
 
-    async saveRecording(url, meetingId) {
+    async saveRecording(name, url, meetingId) {
         try {
             await axios.post('http://localhost:3000/recording/saveRecording', {
+                name : name,
                 url : url,
                 meetingId : meetingId
             })
@@ -15,11 +16,12 @@ export default class RecordingService {
 
     async getMeetingRecording() {
         try {
-            await axios.get('http://localhost:3000/recording/getMeetingRecording', {
+            const recording = await axios.get('http://localhost:3000/recording/getMeetingRecording', {
                 // headers : {
                 //     Authorization : userId
                 // }
             })
+            return recording.data[0]
         } catch (error) {
             console.error('Get recording error : ' + error);
         }

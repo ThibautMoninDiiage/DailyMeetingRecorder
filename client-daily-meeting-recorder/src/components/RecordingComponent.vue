@@ -1,10 +1,10 @@
 <template>
     <div>
         <form @submit="startAudioRecording">
-            <input id="btnStartAudioRecord" type="submit" value="Start audio record">
+            <input id="btnStartAudioRecord" type="submit" value="Start">
         </form>
         <form @submit="stopAudioRecording">
-            <input id="btnStopAudioRecord" type="submit" value="Stop audio record">
+            <input id="btnStopAudioRecord" type="submit" value="Stop">
         </form>
         <hr>
             <h1>My recordings</h1>
@@ -22,13 +22,14 @@
                 mediaRecorder : null,
                 chunks : [],
                 recordingService : undefined,
-                recordings : undefined
+                recording : undefined
             }
         },
         mounted() {
             this.recordingService = new RecordingService()
-            this.recordings = this.recordingService.getMeetingRecording().then(recordings => {
-                this.recordings = recordings
+            this.recordingService.getMeetingRecording().then(recording => {
+                this.recording = recording
+                console.log(this.recording);
             })
         },
         methods : {
@@ -75,7 +76,7 @@
                 // Reset the media recorder and the chunks
                 this.mediaRecorder = null
                 this.chunks = []
-                this.recordingService.saveRecording(mediaURL, 3)
+                this.recordingService.saveRecording(audioName, mediaURL, 3)
             }
         }
     }
