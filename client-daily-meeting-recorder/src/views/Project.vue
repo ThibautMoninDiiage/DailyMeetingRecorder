@@ -2,7 +2,7 @@
     <div class="bodyComponent">
 
         <!-- formulaire du bouton pour créer un projet -->
-            <div id="createProject" v-if="projectCreated === false">
+            <div id="createProject" v-if="projectCreated == false">
                 <button class="btnComponent" @click="createProject" >New Project</button>
             </div>
   

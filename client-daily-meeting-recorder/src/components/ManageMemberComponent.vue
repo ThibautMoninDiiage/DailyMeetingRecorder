@@ -2,7 +2,7 @@
     <div>
         <h2>Gérer les membres</h2>
 
-        <form @submit="addNewMember" v-if="newMember === false">
+        <form @submit="addNewMember" v-if="newMember == false">
             <div>
                 <input class="btnComponent" type="submit" value="add New member">
             </div>
