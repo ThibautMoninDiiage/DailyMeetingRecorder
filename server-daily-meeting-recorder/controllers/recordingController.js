@@ -15,11 +15,9 @@ class RecordingController {
     }
 
     async getMeetingRecording(request, response) {
-        const data = request.body
-
-        const recordings = await recordingService.getMeetingRecording(data)
-        console.log(recordings[0]);
-        response.status(200).send(recordings[0])
+        const meetingId = 2;
+        const recording = await recordingService.getMeetingRecording(meetingId)
+        response.status(200).send(recording[0])
     }
     
 }

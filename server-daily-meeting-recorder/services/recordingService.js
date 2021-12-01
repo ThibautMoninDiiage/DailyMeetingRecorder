@@ -21,10 +21,13 @@ class RecordingService {
         });
     }
 
-    async getMeetingRecording(data) {
-        return await MeetingModel.findAll({
-            
-        })
+    async getMeetingRecording(meetingId) {
+        // return await MeetingModel.findOne({
+        //     where : {
+        //         id : meetingId
+        //     }
+        // })
+        return await sequelize.query('SELECT * FROM Meeting WHERE Meeting.id = 2')
     }
 
 }

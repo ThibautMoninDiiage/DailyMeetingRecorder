@@ -22,14 +22,14 @@
                 mediaRecorder : null,
                 chunks : [],
                 recordingService : undefined,
-                recordings : undefined
+                recording : undefined
             }
         },
         mounted() {
             this.recordingService = new RecordingService()
-            this.recordings = this.recordingService.getMeetingRecording().then(recordings => {
-                this.recordings = recordings
-                console.log(recordings);
+            this.recordingService.getMeetingRecording().then(recording => {
+                this.recording = recording
+                console.log(this.recording);
             })
         },
         methods : {

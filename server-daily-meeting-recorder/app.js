@@ -26,7 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(passport.initialize());
 
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/authentication', authenticationRouter);
@@ -35,6 +34,7 @@ app.use('/recording', recordingRouter)
 app.use('/project', projectRouter);
 app.use('/projectSelected', projectSelectedRouter);
 app.use('/member', memberRouter);
+app.use(express.static('medias'))
 
 // Database initialization
 dbConnection.initialize();
