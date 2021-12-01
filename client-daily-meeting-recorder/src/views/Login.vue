@@ -43,6 +43,8 @@
                 event.preventDefault();
                 // We call the login method from the client authentication service
                 this.authenticationService.login(this.username, this.email, this.password);
+
+                console.log(this.$store.state)
             }
         }
     }
