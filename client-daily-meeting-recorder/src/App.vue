@@ -4,8 +4,8 @@
     <div id="nav">
       <p>Welcome to the daily meeting recorder app.</p>
       <section>
-        <LogoutComponent></LogoutComponent><!--  v-if="checkPathLogout" -->
-        <ReturnComponent v-if="checkPathReturn"></ReturnComponent>
+        <LogoutComponent v-if="pathLogout == true"></LogoutComponent>
+        <ReturnComponent v-if="pathReturn == true"></ReturnComponent>
       </section>
     </div>
     <router-view/>
@@ -13,14 +13,7 @@
 
 </template>
 
-<!-- <script>
-// // import { defineComponent } from '@vue/composition-api'
-
-// export default({
-//    name:{
-    
-//   },
-//   methods: {
+<!--
 //     homePage() {
 //       console.log(this.$route.path)
 //       if (this.$route.query.path == "/") {
@@ -33,10 +26,10 @@
 // })
 // </script> -->
 
-
 <script>
     import LogoutComponent from './components/LogoutComponent.vue';
     import ReturnComponent from './components/returnComponent.vue';
+    import router from './router';
     
     export default {
         name : 'App',
@@ -46,17 +39,31 @@
         },
         data() {
             return {
-                isLoggedIn : true
+                isLoggedIn: true,
+                pathLogout: false,
+                pathReturn: false
             }
         },
+        mounted(){
+          this.checkPathLogout()
+        },
         methods: {
-          // checkPathLogout(){
-          //   const e = 'er'
-          //   const path = e;
-          //   if(e = s){
-          //     path = e
-          //   }
-          // }
+          checkPathLogout(){  
+            var pathLogin = router.currentRoute;
+              if (pathLogin.name == 'Login' || pathLogin.name == 'Home' || pathLogin.name == 'Register'){
+                this.pathLogout = false
+              }else{
+                this.pathLogout = true
+              }
+          },
+          checkPathReturn(){
+            var pathLogin = router.currentRoute;
+              if (pathLogin.name == 'Login' || pathLogin.name == 'Home' || pathLogin.name == 'Project' || pathLogin.name == 'Register'){
+                this.pathReturn = false
+              }else{
+                this.pathReturn = true
+              }
+          } 
         }
     }
 </script>
