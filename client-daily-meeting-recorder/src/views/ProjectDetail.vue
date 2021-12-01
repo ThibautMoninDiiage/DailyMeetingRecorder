@@ -59,9 +59,9 @@ export default({
     mounted(){
         this.projectService = new ProjectService();
         // a faire
-        this.projectService.getAllStatus().then(status => {
-            this.status = status
-        })
+        // this.projectService.getAllStatus().then(status => {
+        //     this.status = status
+        // })
     },
     methods: {
         modifProject(){
