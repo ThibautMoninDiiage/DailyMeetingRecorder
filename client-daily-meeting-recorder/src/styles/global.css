@@ -1,0 +1,62 @@
+body {
+    background-color: #CCCCCC;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#appTitle {
+    color: white;
+}
+
+#nav {
+  width: 90%;
+  background-color: #2c3e50;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.bodyComponent{
+    margin: 1%;
+    background-color:#2c3e50;
+    border-radius: 5px;
+}
+
+.btnLien{
+  background-color: #2C9066;
+  padding: 1%;
+  border-radius: 10px;
+  cursor: pointer;
+  width: auto;
+  text-decoration: none;
+  color: black !important;
+  font-weight: normal !important;
+}
+
+.btnLien:hover{
+    background-color: #DDDDDD;
+    border-radius: 5px;
+}
+
+.btnComponent{
+    background-color: #2C9066;
+    padding: 1%;
+    border-radius: 10px;
+    cursor: pointer;
+    width: auto;
+    text-decoration: none;
+    color: black !important;
+    font-weight: normal !important;
+    margin-top: 20px;
+    width: 50vw;
+    border: none;
+}
+
+textarea{
+  resize: none;
+}
