@@ -13,19 +13,6 @@
 
 </template>
 
-<!--
-//     homePage() {
-//       console.log(this.$route.path)
-//       if (this.$route.query.path == "/") {
-//         return true;
-//     } else {
-//         return false;
-//       }
-//     }
-//   }
-// })
-// </script> -->
-
 <script>
     import LogoutComponent from './components/LogoutComponent.vue';
     import ReturnComponent from './components/returnComponent.vue';

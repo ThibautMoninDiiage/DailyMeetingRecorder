@@ -27,6 +27,7 @@
 
 <script>
 import createMember from '../components/CreateMemberComponent.vue';
+ //import router from '../router';
 import ProjectService from '../services/projectService';
 
 export default {
@@ -38,12 +39,13 @@ export default {
         return {
             newMember: false,
             members: undefined,
-            projectId: 14
+            projectId: this.$route.params.projectId
         }
     },
     mounted(){
         this.projectService = new ProjectService();
         // a faire
+        console.log(this.projectId)
         this.projectService.getAllMemberByProject(this.projectId).then(members => {
             this.members = members
         })

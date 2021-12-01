@@ -12,7 +12,7 @@
             <button class="btnComponent" @click="cancelCreateMeeting">Cancel</button>
             <CreateMeeting v-bind:projectId="2"></CreateMeeting>
         </div>
-        
+
 
         <table>
             <thead>
@@ -27,7 +27,7 @@
                     <td>{{meeting.endDate}}</td>
                 </tr>
             </tbody>
-        </table> 
+        </table>
     </div>
 </template>
 
@@ -60,9 +60,9 @@ export default {
     },
     mounted() {
         this.meetingService = new MeetingService()
-        this.lstMeeting = this.meetingService.getMeetingProject(this.projectId).then((meetings) => {
-            this.lstMeeting = meetings
-        })
+        // this.lstMeeting = this.meetingService.getMeetingProject(this.projectId).then((meetings) => {
+        //     this.lstMeeting = meetings
+        // })
     }
 }
 </script>
