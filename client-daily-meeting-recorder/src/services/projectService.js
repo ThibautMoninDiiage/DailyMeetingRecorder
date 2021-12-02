@@ -77,4 +77,23 @@ export default class ProjectService {
         return project.data;
     }
 
+    async updateProject(projectId, projectTitle, projectDescription, projectStatus){
+        return new Promise((resolve) => {
+            axios.post('http://localhost:3000/projectDetail/updateProject', {
+            id: projectId,
+            title: projectTitle,
+            description : projectDescription,
+            status: projectStatus
+            },
+            {
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }).then((response) => {
+                resolve(response.data)
+            })
+
+        })
+    }
+
 }
