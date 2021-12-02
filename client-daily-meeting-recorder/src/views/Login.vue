@@ -2,19 +2,17 @@
     <div class="bodyComponent">
         <form @submit="login">
         <div>
-            <div id="login-text">Login</div>
+            <h1 id="loginTitle">Login</h1>
             <input v-model="username" type="text" name="username" id="username" placeholder="Username" required>
             <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
             <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
             <br/>
-            <input type="submit" value="Login" class="btnLien" style="width: 15vh;">
+            <input id="btnLogin" type="submit" value="Login">
         </div>
         </form>
-
-        <section id="btnNoAccount">
-            <router-link class="btnLien" to="/register">Register</router-link> 
-        </section>
-        
+        <form action="/register">
+            <input id="btnRegister" type="submit" value="Register">
+        </form>
     </div>
 </template>
 

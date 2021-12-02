@@ -6,7 +6,6 @@
                 <button class="btnComponent" type="submit" @click="createProject" >New Project</button>
             </div>
   
-
         <!-- appelle du component pour la creation d'un nouveau projet -->
         <div v-if="projectCreated == true">
             <div id="cancelCreateProject">
