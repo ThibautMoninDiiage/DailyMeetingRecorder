@@ -8,8 +8,14 @@ passport.use(new JwtStrategy({
   secretOrKey: 'secret',
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken()
 }, async function(jwtPayload, done) {
-  const user = await User.findByPk(jwtPayload.sub);
-  
+  const user = await User.findOne({
+     where: { 
+       id: jwtPayload.sub,
+       username: jwtPayload.username,
+       email: jwtPayload.email 
+      } 
+    }
+  );
   if (user) {
     return done(null, user);
   }
