@@ -2,7 +2,7 @@
     <div>
         <h2>Gérer les membres</h2>
 
-        <form @submit="addNewMember" v-if="newMember === false">
+        <form @submit="addNewMember" v-if="newMember == false">
             <div>
                 <input class="btnComponent" type="submit" value="add New member">
             </div>
@@ -27,6 +27,7 @@
 
 <script>
 import createMember from '../components/CreateMemberComponent.vue';
+ //import router from '../router';
 import ProjectService from '../services/projectService';
 
 export default {
@@ -38,7 +39,7 @@ export default {
         return {
             newMember: false,
             members: undefined,
-            projectId: 14
+            projectId: this.$route.params.projectId
         }
     },
     mounted(){

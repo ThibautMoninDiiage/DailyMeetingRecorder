@@ -3,12 +3,12 @@
         <form @submit="projectModification">
             <div class="FormAddProject">
                 <label for="projectTitle" class="labelProject">Title</label>
-                <input type="text" v-bind:disabled="modifAccess" placeholder="Project Title" name="projectTitle" class="projectTitle" v-model="projectTitle">
+                <input type="text" v-bind:disabled="modifAccess" placeholder="Project Title"  name="projectTitle" class="projectTitle" v-bind:value="projectTitle">
                 <label for="projectDescription" class="labelProject">Description</label>
-                <textarea v-bind:disabled="modifAccess" placeholder="Project Description" name="projectDescription" class="projectDescription" v-model="projectDescription"></textarea>   
+                <textarea v-bind:disabled="modifAccess" placeholder="Project Description" name="projectDescription" class="projectDescription" v-bind:value="projectDescription"></textarea>   
                 <label for="" class="labelProject">Status</label> 
                 <select v-bind:disabled="modifAccess" name="StatusProject" class="statusProject">
-                    <option value="">1</option>
+                    <option v-for="stat in status" :key="stat.id" >{{stat.name}}</option>
                 </select>     
                 <div>
                     <input v-if="modifAccess === false" class="btnValide" type="submit" value="Validate">
@@ -18,8 +18,8 @@
         <input v-if="modifAccess === false" class="btnValide" type="submit" value="Cancel">
         
         <div id="createNewProject" v-if="modifAccess === true">
-            <button class="btnValide" @click="modifProject" type="submit">Modify the project</button>
-            <button class="btnValide" @click="deleteProject" type="submit">Delete the project</button>
+            <button class="btnValide" @click="modifProject">Modify the project</button>
+            <button class="btnValide" @click="deleteProject">Delete the project</button>
         </div>
 
         <hr/>
@@ -49,19 +49,28 @@ export default({
     data(){
         return{
             modifAccess: true,
+            projectId: this.$route.params.projectId,
             projectTitle: '',
             projectDescription: '',
+            projectStatus: '',
             newMember: false,
             membres: undefined,
-            status: undefined
+            status: undefined,
+            project: undefined
         }
     },
     mounted(){
         this.projectService = new ProjectService();
-        // a faire
         this.projectService.getAllStatus().then(status => {
             this.status = status
-        })
+        });
+        
+        this.projectService.getProjectById(this.projectId).then(project => {
+            this.projectTitle = project.title,
+            this.projectDescription = project.description
+        });
+
+        
     },
     methods: {
         modifProject(){
@@ -74,7 +83,11 @@ export default({
 
         },
         projectModification(){
-
+            if(this.projectTitle == '' || this.projectDescription == ''){
+                this.projectId = 1            
+            }else{
+                alert('You need to fill every fields !')
+            }
         }
 
     }

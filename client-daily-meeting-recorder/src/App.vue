@@ -1,10 +1,11 @@
 <template>
 
-  <div id="app">
-    <div id="nav">
-      <h1 id="appTitle">Welcome to the daily meeting recorder app.</h1>
+  <div id="app" >
+    <div id="nav" v-if="path404 == false">
+      <p>Welcome to the daily meeting recorder app.</p>
       <section>
-        <LogoutComponent></LogoutComponent>
+        <LogoutComponent v-if="pathLogout == true"></LogoutComponent>
+        <ReturnComponent v-if="pathReturn == true"></ReturnComponent>
       </section>
     </div>
     <router-view/>
@@ -12,42 +13,139 @@
 
 </template>
 
-<!-- <script>
-// // import { defineComponent } from '@vue/composition-api'
-
-// export default({
-//    name:{
-    
-//   },
-//   methods: {
-//     homePage() {
-//       console.log(this.$route.path)
-//       if (this.$route.query.path == "/") {
-//         return true;
-//     } else {
-//         return false;
-//       }
-//     }
-//   }
-// })
-// </script> -->
-
-<style>
-    @import './styles/global.css';
-</style>
-
 <script>
-    import LogoutComponent from './components/LogoutComponent.vue'
+    import LogoutComponent from './components/LogoutComponent.vue';
+    import ReturnComponent from './components/returnComponent.vue';
+    import router from './router';
     
     export default {
         name : 'App',
         components : {
-            LogoutComponent
+            LogoutComponent,
+            ReturnComponent
         },
         data() {
             return {
-                isLoggedIn : true
+                isLoggedIn: true,
+                pathLogout: false,
+                pathReturn: false,
+                path404: false
             }
+        },
+        watch :{
+          '$route' : function(){
+            this.checkPathLogout()
+            this.checkPathReturn()
+            this.checkPathNotFound()
+          }
+        },
+        mounted(){
+          this.checkPathLogout()
+          this.checkPathReturn(),
+          this.checkPathNotFound()
+        },
+        methods: {
+          checkPathLogout(){  
+            let pathLogin = router.currentRoute
+              if (pathLogin.name == 'Login' || pathLogin.name == 'Home' || pathLogin.name == 'Register'){
+                this.pathLogout = false
+              }else{
+                this.pathLogout = true
+              }
+          },
+          checkPathReturn(){
+              let pathLogin = router.currentRoute
+              if (pathLogin.name == 'Login' || pathLogin.name == 'Home' || pathLogin.name == 'Project' || pathLogin.name == 'Register'){
+                this.pathReturn = false
+              }else{
+                this.pathReturn = true
+              }
+          },
+          checkPathNotFound(){
+            let pathLogin = router.currentRoute
+            if (pathLogin.name == '404'){
+                this.path404 = true
+              }else{
+                this.path404 = false
+
+              }
+          }
         }
     }
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+  width: 80%;
+  background-color: #3DC9C9;
+  border-radius: 60px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#nav a {
+  font-weight: bold;
+  color: black;
+}
+
+#nav a.router-link-exact-active {
+  color: #09c6f9 ;
+}
+
+.bodyComponent{
+    margin: 1%;
+    background-color:#3DC9C9;
+    border-radius: 50px;
+}
+
+.btnLien{
+  background-color: #2C9066;
+  padding: 1%;
+  border-radius: 10px;
+  cursor: pointer;
+  width: auto;
+  text-decoration: none;
+  color: black !important;
+  font-weight: normal !important;
+}
+
+.btnLien:hover{
+    background-color: #DDDDDD;
+    border-radius: 5px;
+}
+
+.btnComponent{
+    background-color: #2C9066;
+    padding: 1%;
+    border-radius: 10px;
+    cursor: pointer;
+    width: auto;
+    text-decoration: none;
+    color: black !important;
+    font-weight: normal !important;
+    margin-top: 20px;
+    width: 50vw;
+    border: none;
+}
+
+button{
+     border: none;
+}
+
+textarea{
+  resize: none;
+}
+
+</style>
+

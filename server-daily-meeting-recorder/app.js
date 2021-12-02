@@ -13,7 +13,7 @@ var usersRouter = require('./routes/users');
 const authenticationRouter = require('./routes/authenticationRoutes');
 const meetingRouter = require('./routes/meetingRoutes');
 const projectRouter = require('./routes/projectRoutes');
-const projectSelectedRouter = require('./routes/projectSelectedRoutes');
+const projectDetailRouter = require('./routes/projectDetailRoutes');
 const memberRouter = require('./routes/memberRoutes');
 const recordingRouter = require('./routes/recordingRoutes')
 var app = express();
@@ -32,7 +32,7 @@ app.use('/authentication', authenticationRouter);
 app.use('/meeting', meetingRouter);
 app.use('/recording', recordingRouter)
 app.use('/project', projectRouter);
-app.use('/projectSelected', projectSelectedRouter);
+app.use('/projectDetail', projectDetailRouter);
 app.use('/member', memberRouter);
 app.use(express.static('medias'))
 

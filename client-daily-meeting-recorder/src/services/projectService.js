@@ -15,11 +15,13 @@ export default class ProjectService {
             }).then((response) => {
                 resolve(response.data)
             })
+
         })
     }
     
     async addProjectToTeam(projectId){
         await axios.post('http://localhost:3000/project/addProjectToTeam', {
+
             projectId : projectId
         },
         {
@@ -57,12 +59,22 @@ export default class ProjectService {
     }
 
     async getAllStatus(){
-        const members = await axios.get('http://localhost:3000/member/getAllMemberByProject', {
-            headers : {
-        
-            }
+        const status = await axios.get('http://localhost:3000/projectDetail/getAllStatus', {
+            headers: {
+                Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+            } 
         })
-        return members.data[0];
+        return status.data[0];
+    }
+
+    async getProjectById(projectId){
+        const project = await axios.get('http://localhost:3000/projectDetail/getProjectById/'+projectId,
+        {
+            headers: {
+                Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+            } 
+        })
+        return project.data;
     }
 
 }
