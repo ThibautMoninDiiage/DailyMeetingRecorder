@@ -1,7 +1,7 @@
 <template>
 
-  <div id="app">
-    <div id="nav">
+  <div id="app" >
+    <div id="nav" v-if="path404 == false">
       <p>Welcome to the daily meeting recorder app.</p>
       <section>
         <LogoutComponent v-if="pathLogout == true"></LogoutComponent>
@@ -28,15 +28,25 @@
             return {
                 isLoggedIn: true,
                 pathLogout: false,
-                pathReturn: false
+                pathReturn: false,
+                path404: false
             }
+        },
+        watch :{
+          '$route' : function(){
+            this.checkPathLogout()
+            this.checkPathReturn()
+            this.checkPathNotFound()
+          }
         },
         mounted(){
           this.checkPathLogout()
+          this.checkPathReturn(),
+          this.checkPathNotFound()
         },
         methods: {
           checkPathLogout(){  
-            var pathLogin = router.currentRoute;
+            let pathLogin = router.currentRoute
               if (pathLogin.name == 'Login' || pathLogin.name == 'Home' || pathLogin.name == 'Register'){
                 this.pathLogout = false
               }else{
@@ -44,13 +54,22 @@
               }
           },
           checkPathReturn(){
-            var pathLogin = router.currentRoute;
+              let pathLogin = router.currentRoute
               if (pathLogin.name == 'Login' || pathLogin.name == 'Home' || pathLogin.name == 'Project' || pathLogin.name == 'Register'){
                 this.pathReturn = false
               }else{
                 this.pathReturn = true
               }
-          } 
+          },
+          checkPathNotFound(){
+            let pathLogin = router.currentRoute
+            if (pathLogin.name == '404'){
+                this.path404 = true
+              }else{
+                this.path404 = false
+
+              }
+          }
         }
     }
 </script>
