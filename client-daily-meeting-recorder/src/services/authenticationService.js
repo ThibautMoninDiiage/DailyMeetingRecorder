@@ -38,4 +38,20 @@ export default class AuthenticationService {
         }
     }
 
+    static async checkToken(){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/authentication/checkToken', {
+            headers : {
+                Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+            }
+        }).then((response) => {
+            if(response.status === 200) resolve(true)
+            else resolve('error')
+        }).catch((err) => {
+            if(err.response.status === 401) resolve(false)
+            else resolve('error')
+        })
+            })
+    }
+
 }
