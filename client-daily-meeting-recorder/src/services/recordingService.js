@@ -26,5 +26,4 @@ export default class RecordingService {
             console.error('Get recording error : ' + error);
         }
     }
-
 }

@@ -77,6 +77,25 @@
                 this.mediaRecorder = null
                 this.chunks = []
                 this.recordingService.saveRecording(audioName, mediaURL, 3)
+                this.saveRecordingToServer('audio', blob, Date.now() + '.mp3')
+            },
+            saveRecordingToServer(type, audioBlob, fileName) {
+                console.log(type);
+                console.log(audioBlob);
+                console.log(fileName);
+                const formData = new FormData();
+                formData.append(type, audioBlob, fileName);
+                fetch('http://localhost:3000/saveRecordingToServer', {
+                    method : 'POST',
+                    body : formData,
+                })
+                .then((response) => response.json())
+                .then(() => {
+                    alert('Your recording is saved');
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
             }
         }
     }
