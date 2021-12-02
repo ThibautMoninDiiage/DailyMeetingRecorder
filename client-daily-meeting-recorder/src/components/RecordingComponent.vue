@@ -9,7 +9,7 @@
         <hr>
             <h1>My recordings</h1>
             <div id="audiosContainer">
-                <audio controls src=""></audio>
+                <audio controls src="../../../server-daily-meeting-recorder/medias/Test.mp3" {{ mediaUrl }}></audio>
             </div>
     </div>
 </template>
@@ -58,6 +58,10 @@
                 this.mediaRecorder.stop()
             },
             createMediaElement(mediaType, fileType) {
+                // Initialise a new date
+                const date = new Date()
+                // Format the current date
+                const todayDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
                 const blob = new Blob(this.chunks, {
                     type : fileType
                 })
@@ -67,7 +71,7 @@
                 audioElement.src = mediaURL
                 const audiosContainer = document.getElementById('audiosContainer')
                 const audioDiv = document.createElement('div')
-                const audioName = prompt('Audio recording name : ', 'Recording date : ' + Date())
+                const audioName = prompt('Audio recording name : ', 'Recording date : ' + todayDate)
                 const audioTitle = document.createElement('div')
                 audioTitle.innerText = audioName
                 audioDiv.appendChild(audioTitle)
@@ -77,7 +81,7 @@
                 this.mediaRecorder = null
                 this.chunks = []
                 this.recordingService.saveRecording(audioName, mediaURL, 3)
-                this.saveRecordingToServer('audio', blob, Date.now() + '.mp3')
+                this.saveRecordingToServer('audio', blob, audioName + '.mp3')
             },
             saveRecordingToServer(type, audioBlob, fileName) {
                 const formData = new FormData();
@@ -88,7 +92,7 @@
                 })
                 .then((response) => response.json())
                 .then(() => {
-                    alert('Your recording is saved');
+                    console.log('Audio saved on the server');
                 })
                 .catch((err) => {
                     console.error(err);
