@@ -50,7 +50,6 @@
 import ProjectService from '../services/projectService';
 import ProjectComponents from '../components/CreateProjectComponent.vue';
 import jwtdecode from 'jwt-decode'
-import router from '../router';
 
 export default {
     name : 'Project',
@@ -80,10 +79,6 @@ export default {
         },
         cancelCreateProject() {
             this.projectCreated = false;
-        },
-        getProjectMeetings(project) {
-            this.projectService.getProjectMeetings(project.id)
-            router.push({name : 'Meeting', params : { projectId : project.id}});
         }
     }
 }

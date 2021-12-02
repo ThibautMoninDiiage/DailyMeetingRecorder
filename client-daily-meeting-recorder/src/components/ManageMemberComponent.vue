@@ -45,7 +45,6 @@ export default {
     mounted(){
         this.projectService = new ProjectService();
         // a faire
-        console.log(this.projectId)
         this.projectService.getAllMemberByProject(this.projectId).then(members => {
             this.members = members
         })
