@@ -8,8 +8,7 @@ const storage = multer.diskStorage({
         callback(null, 'medias/')
     },
     filename(req, file, callback) {
-        const fileNameArr = file.originalname.split('.')
-        callback(null, '.mp3')
+        callback(null, file.originalname)
     },
 });
 

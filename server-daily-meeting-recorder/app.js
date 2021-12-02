@@ -34,7 +34,7 @@ app.use('/recording', recordingRouter)
 app.use('/project', projectRouter);
 app.use('/projectSelected', projectSelectedRouter);
 app.use('/member', memberRouter);
-app.use('/saveRecordingToServer', recordingRouter)
+app.use('/recording', recordingRouter)
 
 // Database initialization
 dbConnection.initialize();

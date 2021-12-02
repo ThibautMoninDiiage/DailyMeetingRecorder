@@ -8,7 +8,9 @@
         </form>
         <hr>
             <h1>My recordings</h1>
-            <div id="audiosContainer"></div>
+            <div id="audiosContainer">
+                <audio controls src=""></audio>
+            </div>
     </div>
 </template>
 
@@ -22,21 +24,20 @@
                 mediaRecorder : null,
                 chunks : [],
                 recordingService : undefined,
-                recording : undefined
+                recording : undefined,
+                mediaUrl : undefined
             }
         },
         mounted() {
             this.recordingService = new RecordingService()
             this.recordingService.getMeetingRecording().then(recording => {
                 this.recording = recording
-                console.log(this.recording);
             })
         },
         methods : {
             // Function that will start an audio recording
             startAudioRecording() {
                 event.preventDefault()
-                console.log('Audio record started')
                 // Asking the user to authorize the browser to record the audio
                 navigator.mediaDevices.getUserMedia({
                     audio : true
@@ -54,7 +55,6 @@
             // Function that will save the current audio recording
             stopAudioRecording() {
                 event.preventDefault()
-                console.log('Audio record stopped')
                 this.mediaRecorder.stop()
             },
             createMediaElement(mediaType, fileType) {
@@ -80,12 +80,9 @@
                 this.saveRecordingToServer('audio', blob, Date.now() + '.mp3')
             },
             saveRecordingToServer(type, audioBlob, fileName) {
-                console.log(type);
-                console.log(audioBlob);
-                console.log(fileName);
                 const formData = new FormData();
                 formData.append(type, audioBlob, fileName);
-                fetch('http://localhost:3000/saveRecordingToServer', {
+                fetch('http://localhost:3000/recording/saveRecordingToServer', {
                     method : 'POST',
                     body : formData,
                 })
