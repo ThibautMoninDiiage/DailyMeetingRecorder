@@ -4,6 +4,13 @@ const TeamModel = require('../models/teamModel');
 const MeetingModel = require('../models/meetingModel');
 const jwtdecode = require('jwt-decode');
 
+// Connecting to the database, with username, with password
+const sequelize = new Sequelize('DbDailyMeetingRecorder', 'DailyMeetingRecorder', 'root', {
+    host : '10.4.0.112',
+    // Specifying the used dialect in the database
+    dialect : 'mysql'
+})
+
 class ProjectService {
     async createProject(data, token) {
         const userId = jwtdecode(token.substr(7)).sub;
@@ -16,13 +23,6 @@ class ProjectService {
     }
 
     async getAllUserProjects(userId) {
-        // Connecting to the database, with username, with password
-        const sequelize = new Sequelize('DbDailyMeetingRecorder', 'root', 'Azerty@123', {
-            host : 'localhost',
-            // Specifying the used dialect in the database
-            dialect : 'mysql'
-        })
-
         return await sequelize.query("SELECT Project.id, Status.name, title, description, status FROM Status INNER JOIN Project ON Status.id = Project.status INNER JOIN Team ON Project.ID = Team.idProject WHERE idUser = " + userId);
     }
 
@@ -35,13 +35,6 @@ class ProjectService {
     }
 
     async getProjectMeetings(projectId) {
-        // Connecting to the database, with username, with password
-        const sequelize = new Sequelize('DbDailyMeetingRecorder', 'root', 'Azerty@123', {
-            host : 'localhost',
-            // Specifying the used dialect in the database
-            dialect : 'mysql'
-        })
-        
         return await sequelize.query('SELECT * FROM Meeting INNER JOIN Project ON Meeting.idProject = Project.id WHERE Project.id = ' + projectId);
     }
 
