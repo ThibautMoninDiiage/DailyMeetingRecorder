@@ -50,8 +50,8 @@ export default {
                     this.projectId = project.id
                     this.projectService.addProjectToTeam(this.projectId);
                 });
-                event.run();
                 alert('nice');
+                
             }
             else{
                 event.preventDefault();
