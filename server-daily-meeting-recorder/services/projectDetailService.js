@@ -21,7 +21,6 @@ class ProjectDetailService {
     }
 
     async updateProject(projectId, projectTitle, projectDescription, projectStatus, token) {
-        console.log(projectId);
         return await ProjectModel.update({
             title: projectTitle,
             description: projectDescription,
@@ -32,8 +31,7 @@ class ProjectDetailService {
                 id: projectId
             }
         })
-    }
-  
+    }  
 }
 
 module.exports = new ProjectDetailService();

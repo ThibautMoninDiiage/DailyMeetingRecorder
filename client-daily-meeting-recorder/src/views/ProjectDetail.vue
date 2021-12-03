@@ -24,7 +24,7 @@
 
         <hr/>
 
-        <ManageMember></ManageMember>
+        <ManageMember v-bind:projectId="projectId"></ManageMember>
         <ManageMeeting v-bind:projectId="1"></ManageMeeting>
 
     </div>
@@ -35,7 +35,6 @@
 </style>
 
 <script>
-//import ProjectService from '../services/projectService';
 import ManageMember from '../components/ManageMemberComponent.vue';
 import ManageMeeting from '../components/ManageMeetingComponent.vue';
 import ProjectService from '../services/projectService';
@@ -61,9 +60,6 @@ export default({
         }
     },
     mounted(){
-
-        
-
         this.projectService = new ProjectService();
         this.projectService.getAllStatus().then(status => {
             this.status = status
@@ -96,10 +92,9 @@ export default({
             console.log(this.selectStatus)
 
             if(this.projectTitle != '' || this.projectDescription != ''){
-                event.preventDefault();
                 this.projectService.updateProject(this.projectId, this.projectTitle, this.projectDescription, this.selectStatus);
                 
-                //event.run();
+                alert('project ' + this.projectTitle + ' est bien modifier')
             }else{
                 event.preventDefault();
                 alert('You need to fill every fields !')

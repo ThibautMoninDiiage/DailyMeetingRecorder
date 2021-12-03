@@ -22,9 +22,9 @@
             <h1>My Projects</h1>
 
             <!-- appelle de la fonction totalProject si false affiche un message que le user n'a pas de projet sinon on affiche la liste des projet -->
-            <span ><!--v-if="totalProjectCount == 0"--> 
+            <!-- <span v-if="totalProjectCount == 0">
                 <p>You don't have projects.</p>
-            </span>
+            </span> -->
 
             <span> <!--  v-if="totalProjectCount != 0" -->
                 <section>

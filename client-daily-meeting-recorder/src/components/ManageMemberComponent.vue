@@ -12,7 +12,7 @@
             <div>
                 <input class="btnComponent" type="submit" @click="cancelAddNewMember" value="Cancel add new member">
             </div>
-            <createMember></createMember>
+            <CreateMember></CreateMember>
         </div>
 
         <div>
@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import createMember from '../components/CreateMemberComponent.vue';
+import CreateMember from '../components/CreateMemberComponent.vue';
  //import router from '../router';
 import ProjectService from '../services/projectService';
 
 export default {
     name: 'manageMember',
     components: {
-        createMember
+        CreateMember
     },
     data() {
         return {
@@ -54,7 +54,10 @@ export default {
             this.newMember = true
         },
         cancelAddNewMember(){
-            this.newMember = false
+            if(confirm('are you sur !')){
+                this.newMember = false
+            }
+            
         }
 
     }    
