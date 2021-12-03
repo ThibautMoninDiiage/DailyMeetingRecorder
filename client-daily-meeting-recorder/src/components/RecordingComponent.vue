@@ -9,7 +9,7 @@
         <hr>
             <h1>My recordings</h1>
             <div id="audiosContainer">
-                <audio controls src="../../../server-daily-meeting-recorder/medias/Test.mp3"></audio>
+                <audio controls src=""></audio>
             </div>
     </div>
 </template>
