@@ -4,10 +4,11 @@ import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Meeting from '../views/Meeting.vue'
 import Project from '../views/Project.vue'
-import projectDetail from '../views/ProjectDetail.vue';
+import ProjectDetail from '../views/ProjectDetail.vue';
 import RecordingComponent from '../components/RecordingComponent'
 import PageNotFound from '../views/PageNotFound';
 import AuthenticationService from '../services/authenticationService'
+import MeetingDetail from '../views/MeetingDetail.vue'
 
 
 Vue.use(VueRouter)
@@ -41,7 +42,15 @@ const routes = [
   {
     path: '/projectDetail/:projectId',
     name: 'projectDetail',
-    component: projectDetail,
+    component: ProjectDetail,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/meetingDetail/:meetingId',
+    name: 'meetingDetail',
+    component: MeetingDetail,
     meta: {
       requiresAuth: true
     }

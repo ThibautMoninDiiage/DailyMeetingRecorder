@@ -25,7 +25,7 @@
         <hr/>
 
         <ManageMember></ManageMember>
-        <ManageMeeting v-bind:projectId="1"></ManageMeeting>
+        <ManageMeeting v-bind:projectId="this.projectId"></ManageMeeting>
 
     </div>
 </template>

@@ -4,30 +4,33 @@
 
         <!-- bouton pour créer un nouveau meeting -->
         <div v-if="meetingCreated === false">
-            <button class="btnComponent" @click="createMeeting">New Project</button>
+            <button class="btnComponent" @click="createMeeting">New Meeting</button>
         </div>
 
         <!-- appelle du component pour la creation d'un nouveau meeting -->
         <div v-if="meetingCreated === true">
             <button class="btnComponent" @click="cancelCreateMeeting">Cancel</button>
-            <CreateMeeting v-bind:projectId="2"></CreateMeeting>
+            <CreateMeeting v-bind:projectId="this.projectId"></CreateMeeting>
         </div>
 
 
-        <table>
+        <!-- <table>
             <thead>
                 <th>Name</th>
                 <th>Start Date</th>
                 <th>Start End</th>
             </thead>
             <tbody>
-                <tr v-for="meeting in lstMeeting" v-bind:key="meeting.id">
+                <tr v-for="meeting in lstMeeting" v-bind:key="meeting.id" @click="">
                     <td>{{meeting.name}}</td>
                     <td>{{meeting.startDate}}</td>
                     <td>{{meeting.endDate}}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
+        <span  v-for="meeting in lstMeeting" :key="meeting.id">
+            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id} }">{{ meeting.name }} - {{ meeting.startDate }} - {{ meeting.endDate }}</router-link>
+        </span>
     </div>
 </template>
 
@@ -60,9 +63,10 @@ export default {
     },
     mounted() {
         this.meetingService = new MeetingService()
-        // this.lstMeeting = this.meetingService.getMeetingProject(this.projectId).then((meetings) => {
-        //     this.lstMeeting = meetings
-        // })
+        this.lstMeeting = this.meetingService.getMeetingProject(this.projectId).then((meetings) => {
+            console.log(meetings)
+            this.lstMeeting = meetings
+        })
     }
 }
 </script>
