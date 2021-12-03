@@ -23,6 +23,7 @@ class ProjectDetailController {
     }
 
     async updateProject(request, response){
+        console.log(request.body.projectId)
         const projectId = request.body.projectId;
         const projectTitle = request.body.projectTitle;
         const projectDescription = request.body.projectDescription;

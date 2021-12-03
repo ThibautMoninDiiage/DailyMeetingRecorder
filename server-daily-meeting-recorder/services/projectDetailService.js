@@ -21,11 +21,16 @@ class ProjectDetailService {
     }
 
     async updateProject(projectId, projectTitle, projectDescription, projectStatus, token) {
+        console.log(projectId);
         return await ProjectModel.update({
             title: projectTitle,
             description: projectDescription,
-            status: projectStatus,
-            where: {id: projectId}
+            status: projectStatus
+        },
+        {
+            where: {
+                id: projectId
+            }
         })
     }
   

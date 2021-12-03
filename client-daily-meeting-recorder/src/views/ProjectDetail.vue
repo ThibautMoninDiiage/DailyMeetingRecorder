@@ -96,7 +96,7 @@ export default({
 
             if(this.projectTitle != '' || this.projectDescription != ''){
                 event.preventDefault();
-                this.projectService.updateProject(this.projectId, this.projectTitle, this.projectDescription, this.projectStatus);
+                this.projectService.updateProject(this.projectId, this.projectTitle, this.projectDescription, this.selectStatus);
                 
                 //event.run();
             }else{
