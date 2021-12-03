@@ -18,6 +18,10 @@
         <div id="createNewProject" v-if="modifAccess === true">
             <button class="btnValide" @click="modifMeeting" type="submit">Modify the meeting</button>
             <button class="btnValide" @click="deleteMeeting" type="submit">Delete the meeting</button>
+            <button class="btnValide" @click="createNewRecording" type="submit">Create a new recording</button>
+        </div>
+        <div v-if="showRecordingComponent === true">
+            <RecordingComponent></RecordingComponent>
         </div>
     </div>
 </template>
@@ -28,11 +32,12 @@
 
 <script>
 import ProjectService from '../services/projectService';
+import RecordingComponent from '../components/RecordingComponent.vue'
 
 export default({
     name:'ProjectSelected',
     components: {
-        
+        RecordingComponent
     },
     data(){
         return{
@@ -42,7 +47,8 @@ export default({
             endDate: '',
             newMember: false,
             membres: undefined,
-            status: undefined
+            status: undefined,
+            showRecordingComponent : false
         }
     },
     mounted(){
@@ -64,6 +70,13 @@ export default({
         },
         meetingModification(){
 
+        },
+        createNewRecording() {
+            if (this.showRecordingComponent === true) {
+                this.showRecordingComponent = false
+            } else {
+                this.showRecordingComponent = true
+            }
         }
 
     }
