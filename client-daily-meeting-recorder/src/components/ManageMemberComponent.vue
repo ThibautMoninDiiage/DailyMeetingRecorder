@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h2>Gérer les membres</h2>
+        <h2>Manage members</h2>
 
         <form @submit="addNewMember" v-if="newMember == false">
             <div>
-                <input class="btnComponent" type="submit" value="add New member">
+                <input class="btnComponent" type="submit" value="Add new member">
             </div>
         </form>
 
@@ -16,10 +16,9 @@
         </div>
 
         <div>
-            <p>liste des membre :</p>
-
+            <p>Member list</p>
             <span class="listMembre" v-for="member in members" :key="member.id">
-                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" type="submit" value="Supprimer"></p>
+                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" type="submit" value="Delete"></p>
             </span>
         </div>
     </div>

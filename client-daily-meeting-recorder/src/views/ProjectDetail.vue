@@ -6,7 +6,7 @@
                 <input type="text" v-bind:disabled="modifAccess" placeholder="Project Title"  name="projectTitle" class="projectTitle" v-model="projectTitle">
                 <label for="projectDescription" class="labelProject">Description</label>
                 <textarea v-bind:disabled="modifAccess" placeholder="Project Description" name="projectDescription" class="projectDescription" v-model="projectDescription"></textarea>   
-                <label for="" class="labelProject">Status</label> 
+                <label class="labelProject">Status</label> 
                 <select v-bind:disabled="modifAccess" v-model="selectStatus" name="StatusProject" class="statusProject">
                     <option v-for="stat in status" :key="stat.id" v-bind:value="stat.id"> {{stat.name}}</option>
                 </select>

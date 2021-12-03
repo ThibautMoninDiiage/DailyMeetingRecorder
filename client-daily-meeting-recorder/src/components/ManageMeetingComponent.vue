@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>My Meetings</h1>
+        <h1>My meetings</h1>
 
         <!-- bouton pour créer un nouveau meeting -->
         <div v-if="meetingCreated === false">
@@ -12,7 +12,6 @@
             <button class="btnComponent" @click="cancelCreateMeeting">Cancel</button>
             <CreateMeeting v-bind:projectId="this.projectId"></CreateMeeting>
         </div>
-
 
         <!-- <table>
             <thead>
