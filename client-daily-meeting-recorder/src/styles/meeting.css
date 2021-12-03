@@ -12,3 +12,8 @@ input:valid+span:after {
     width: 10%;
     cursor: pointer;
 }
+
+.inputDate{
+    margin: auto;
+    margin: 10px auto 10px auto
+}

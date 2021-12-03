@@ -6,7 +6,8 @@
             <span class="validity"></span>
             <input v-model="endDate" type="datetime-local" v-bind:min="minDate" name="meetingEndingDate" id="meetingEndingDate" required>
             <span class="validity"></span>
-            <input type="submit" value="New Meeting">
+            <br>
+            <input class="btnLien" type="submit" value="New Meeting">
         </form>
     </div>
 </template>
@@ -73,7 +74,7 @@
                 this.verifDate()
 
                 this.verifIfEmpty()
-
+                console.log(this.projectId)
                 this.meetingService.createMeeting(this.name, this.startDate, this.endDate, this.projectId)
 
                 // if (this.validDate && this.validNotEmpty) {

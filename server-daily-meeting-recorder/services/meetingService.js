@@ -9,7 +9,8 @@ class MeetingService {
             name: name,
             startDate : startDate,
             endDate : endDate,
-            idProject : projectId
+            idProject : projectId,
+            mediaUrl: ''
         })
         return meeting
     }
