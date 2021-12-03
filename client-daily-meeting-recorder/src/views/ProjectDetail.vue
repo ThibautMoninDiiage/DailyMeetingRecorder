@@ -61,6 +61,9 @@ export default({
         }
     },
     mounted(){
+
+        
+
         this.projectService = new ProjectService();
         this.projectService.getAllStatus().then(status => {
             this.status = status
@@ -72,13 +75,11 @@ export default({
             this.projectStatus = project.status
         });
 
-
     },
     updated() {
-        // a revoir 
-        this.$nextTick(() => {
+        this.$nextTick().then( () => {
             this.SetStatus()
-        }) 
+        });
     },
     methods: {
         modifProject(){

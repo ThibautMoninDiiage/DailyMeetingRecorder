@@ -80,18 +80,19 @@ export default class ProjectService {
     async updateProject(projectId, projectTitle, projectDescription, projectStatus){
         console.log(projectId, projectTitle, projectDescription, projectStatus);
 
-        // const project = await axios.get('http://localhost:3000/projectDetail/updateProject', {
-            // id: projectId,
-            // title: projectTitle,
-            // description : projectDescription,
-            // status: projectStatus
-            // },
+        // const project = await axios.post('http://localhost:3000/projectDetail/updateProject', {
+        //     id: projectId,
+        //     title: projectTitle,
+        //     description : projectDescription,
+        //     status: projectStatus
+        //     },
         // {
         //     headers: {
         //         Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
         //     } 
         // })
         // return project.data;
+        
         return new Promise((resolve) => {
         
             axios.post('http://localhost:3000/projectDetail/updateProject', {
