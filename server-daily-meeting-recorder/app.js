@@ -34,7 +34,7 @@ app.use('/recording', recordingRouter)
 app.use('/project', projectRouter);
 app.use('/projectDetail', projectDetailRouter);
 app.use('/member', memberRouter);
-app.use(express.static('medias'))
+app.use('/recording', recordingRouter)
 
 // Database initialization
 dbConnection.initialize();

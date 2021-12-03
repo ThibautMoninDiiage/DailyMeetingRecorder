@@ -1,3 +1,4 @@
+const { response } = require('../app');
 const recordingService = require('../services/recordingService');
 
 class RecordingController {
@@ -19,7 +20,6 @@ class RecordingController {
         const recording = await recordingService.getMeetingRecording(meetingId)
         response.status(200).send(recording[0])
     }
-    
 }
 
 module.exports = new RecordingController();
