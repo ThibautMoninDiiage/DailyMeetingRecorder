@@ -21,6 +21,19 @@ class ProjectDetailController {
 
         response.status(200).send(project);
     }
+
+    async updateProject(request, response){
+        console.log(request.body)
+        const projectId = request.body.id;
+        const projectTitle = request.body.title;
+        const projectDescription = request.body.description;
+        const projectStatus = request.body.status;
+        const token = request.headers.authorization;
+
+        const project = await projectDetailService.updateProject(projectId, projectTitle, projectDescription, projectStatus, token);
+
+        response.status(200).send(project);
+    }
      
 }
 

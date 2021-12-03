@@ -6,5 +6,6 @@ const projectDetailController = require('../controllers/projectDetailController'
 
 router.get('/getAllSTatus', passport.authenticate('jwt', { session: false }),projectDetailController.getAllStatus);
 router.get('/getProjectById/:projectId', passport.authenticate('jwt', { session: false }),projectDetailController.getProjectById);
+router.post('/updateProject', passport.authenticate('jwt', { session: false }),projectDetailController.updateProject);
 
 module.exports = router;

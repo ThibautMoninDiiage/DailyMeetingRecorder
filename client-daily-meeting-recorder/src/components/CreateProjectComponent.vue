@@ -44,15 +44,17 @@ export default {
             
         },
         createProject(){
-            event.preventDefault();
             this.checkForm();
             if(this.validFields == true){
                 this.projectService.createProject(this.projectTitle, this.projectDescription).then((project) => { 
                     this.projectId = project.id
                     this.projectService.addProjectToTeam(this.projectId);
                 });
+                event.run();
+                alert('nice');
             }
             else{
+                event.preventDefault();
                 alert('You need to fill every fields !');
             }
         }
