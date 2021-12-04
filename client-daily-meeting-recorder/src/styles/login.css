@@ -3,18 +3,30 @@
     font-size: 300%;
 }
 
-#btnRegister {
+#btnLogin {
+    width: 10%;
     color: white;
-    width: 5%;
-    background-color: #2565AE;
+    background-color: var(--main-button-color);
     border-radius: 5px;
     cursor: pointer;
 }
 
-#btnLogin {
-    width: 5%;
+#loginContainer {
+    margin: auto;
+    width: 50%;
+    height: 50vh;
+    border-radius: 10px;
+    background-image: var(--main-container-color);
+}
+
+#btnNoAccount {
+    font-size: 150%;
     color: white;
-    background-color: #2565AE;
-    border-radius: 5px;
-    cursor: pointer;
+}
+
+input {
+    width: 50%;
+    padding: 1%;
+    border: none;
+    margin: 1%;
 }

@@ -1,25 +1,34 @@
 <template>
-    <div class="bodyComponent">
+    <div id="mainContainer">
         <form @submit="projectModification">
             <div class="FormAddProject">
-                <label for="projectTitle" class="labelProject">Title</label>
-                <input type="text" v-bind:disabled="modifAccess" placeholder="Project Title"  name="projectTitle" class="projectTitle" v-model="projectTitle">
-                <label for="projectDescription" class="labelProject">Description</label>
-                <textarea v-bind:disabled="modifAccess" placeholder="Project Description" name="projectDescription" class="projectDescription" v-model="projectDescription"></textarea>   
-                <label class="labelProject">Status</label> 
-                <select v-bind:disabled="modifAccess" v-model="selectStatus" name="StatusProject" class="statusProject">
-                    <option v-for="stat in status" :key="stat.id" v-bind:value="stat.id"> {{stat.name}}</option>
-                </select>
                 <div>
-                    <input v-if="modifAccess === false" class="btnValide" type="submit" value="Validate">
+                    <div>Title</div>
+                    <input class="inputSize" type="text" v-bind:disabled="modifAccess" placeholder="Project Title"  name="projectTitle" v-model="projectTitle">
+                </div>
+
+                <div>
+                    <div>Description</div>
+                    <textarea class="inputSize" v-bind:disabled="modifAccess" placeholder="Project Description" name="projectDescription" v-model="projectDescription"></textarea>   
+                </div>
+
+                <div>
+                    <div>Status</div>
+                    <select class="inputSize" v-bind:disabled="modifAccess" v-model="selectStatus" name="StatusProject">
+                        <option v-for="stat in status" :key="stat.id" v-bind:value="stat.id">{{stat.name}}</option>
+                    </select>
+                </div>
+
+                <div>
+                    <input v-if="modifAccess === false" id="btnValidate" type="submit" value="Validate">
                 </div>
             </div>
         </form>
-        <input v-if="modifAccess === false" @click="cancelModifProject" class="btnValide" type="submit" value="Cancel">
+        <input v-if="modifAccess === false" @click="cancelModifProject" id="btnCancel" type="submit" value="Cancel">
         
         <div id="createNewProject" v-if="modifAccess === true">
-            <button class="btnValide" @click="modifProject">Modify the project</button>
-            <button class="btnValide" @click="deleteProject">Delete the project</button>
+            <button id="btnModifyProject" @click="modifProject">Modify the project</button>
+            <button id="btnDeleteProject" @click="deleteProject">Delete the project</button>
         </div>
 
         <hr/>
@@ -61,20 +70,15 @@ export default({
         }
     },
     mounted(){
-
-        
-
         this.projectService = new ProjectService();
         this.projectService.getAllStatus().then(status => {
             this.status = status
         });
-        
         this.projectService.getProjectById(this.projectId).then(project => {
             this.projectTitle = project.title
             this.projectDescription = project.description
             this.projectStatus = project.status
         });
-
     },
     updated() {
         this.$nextTick().then( () => {
@@ -86,9 +90,7 @@ export default({
             this.modifAccess = false
         },
         cancelModifProject(){
-            if(confirm('are you sur !')){
-                this.modifAccess = true
-            }
+            this.modifAccess = true
         },
         projectModification(){
             console.log(this.projectTitle)

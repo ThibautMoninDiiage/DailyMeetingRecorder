@@ -1,18 +1,14 @@
 <template>
-    <div class="bodyComponent">
+    <div id="loginContainer">
         <form @submit="login">
-        <div>
-            <h1 id="loginTitle">Login</h1>
+            <h1 class="mainTitle">Login</h1>
             <input v-model="username" type="text" name="username" id="username" placeholder="Username" required>
             <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
             <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
-            <br/>
+            <br>
             <input id="btnLogin" type="submit" value="Login">
-        </div>
         </form>
-        <form action="/register">
-            <input id="btnRegister" type="submit" value="Register">
-        </form>
+        <a id="btnNoAccount" v-bind:href="'/register'">Don't have an account ? Register</a>
     </div>
 </template>
 

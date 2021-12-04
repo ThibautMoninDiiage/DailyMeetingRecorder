@@ -18,7 +18,7 @@
         <div>
             <p>Member list</p>
             <span class="listMembre" v-for="member in members" :key="member.id">
-                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" type="submit" value="Delete"></p>
+                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" type="submit" value="Delete member"></p>
             </span>
         </div>
     </div>

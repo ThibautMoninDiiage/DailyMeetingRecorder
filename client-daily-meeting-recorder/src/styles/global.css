@@ -1,24 +1,45 @@
 body {
-    background-color: #CCCCCC;
+    background-color: #EEEEEE;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* CSS Variables */
+    --main-button-color : #2565AE;
+    --main-container-color : linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+    --validate-button-color : #00B01D;
+}
+
+button {
+    border: none;
+}
+
+.mainTitle {
+    color: white;
+    font-size: 200%;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
 #appTitle {
     color: white;
+    font-size: 150%;
+}
+
+input {
+    width: 50%;
+    padding: 1%;
+    border: none;
+    margin: 1%;
 }
 
 #nav {
-  width: 90%;
-  background-color: #2c3e50;
-  border-radius: 5px;
-  margin: auto;
+    width: 40%;
+    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
+    border-radius: 5px;
+    margin: auto;
 }
 
 .bodyComponent{
@@ -41,20 +62,6 @@ body {
 .btnLien:hover{
     background-color: #DDDDDD;
     border-radius: 5px;
-}
-
-.btnComponent{
-    background-color: #2C9066;
-    padding: 1%;
-    border-radius: 10px;
-    cursor: pointer;
-    width: auto;
-    text-decoration: none;
-    color: black !important;
-    font-weight: normal !important;
-    margin-top: 20px;
-    width: 50vw;
-    border: none;
 }
 
 textarea{

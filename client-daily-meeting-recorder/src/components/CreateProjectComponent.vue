@@ -5,7 +5,7 @@
             <input type="text" placeholder="Project Title" name="projectTitle" class="projectTitle" v-model="projectTitle">
             <textarea placeholder="Project Description" name="projectDescription" class="projectDescription" v-model="projectDescription"></textarea>         
             <br>
-            <input class="btnValide" type="submit" value="Validate">
+            <input id="btnValidate" type="submit" value="Validate">
         </div>
     </form>
 </template>

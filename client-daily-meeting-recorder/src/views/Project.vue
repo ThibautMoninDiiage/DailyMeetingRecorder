@@ -1,34 +1,32 @@
 <template>
-    <div class="bodyComponent">
+    <div id="mainContainer">
+
+        <h1 class="mainTitle">My projects</h1>
 
         <!-- formulaire du bouton pour créer un projet -->
-            <div id="createProject" v-if="projectCreated == false">
-                <button class="btnComponent" @click="createProject" >New Project</button>
-            </div>
+        <div id="createProject" v-if="projectCreated == false">
+            <button id="btnNewProject" class="btnComponent" @click="createProject" >New Project</button>
+        </div>
   
         <!-- appelle du component pour la creation d'un nouveau projet -->
         <div v-if="projectCreated == true">
             <div id="cancelCreateProject">
-                <button class="btnComponent" @click="cancelCreateProject">Cancel</button>
+                <button id="btnCancel" @click="cancelCreateProject">Cancel</button>
             </div>
             <ProjectComponents></ProjectComponents>
         </div>
 
         <hr>
 
-        <!-- liste des projet du user connecter --> 
         <div id="projectsContainer">
-            <h1>My Projects</h1>
-            <span> <!--  v-if="totalProjectCount != 0" -->
-                <section>
-                    <h2>Title - Description - Status</h2>
-                </section>
-                <section>
-                    <span class="listProject" v-for="project in projects" :key="project.id">
-                        <router-link class="btnLien" :to="{name: 'projectDetail', params: {projectId: project.id} }">{{ project.title }} - {{ project.description }} - {{ project.name }}</router-link>
-                    </span>
-                </section>
-            </span>
+            <section>
+                <h2>Title - Description - Status</h2>
+            </section>
+            <section>
+                <span class="listProject" v-for="project in projects" :key="project.id">
+                    <router-link id="projects" class="btnLien" :to="{name: 'projectDetail', params: {projectId: project.id} }">{{ project.title }} | {{ project.description }} | {{ project.name }}</router-link>
+                </span>
+            </section>
         </div>
     </div>
     

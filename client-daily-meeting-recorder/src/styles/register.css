@@ -1,54 +1,25 @@
-body {
-    margin: 0;
-    width: 100%;
-    background-color: white;
-}
-
-input {
-    width: 50%;
-    padding: 1%;
-    border: none;
-    margin: 1%;
-}
-
-#register-text {
+#registerTitle {
     color: white;
-    font-size: 50px;
+    font-size: 300%;
 }
 
-#alreadyHaveAccount {
+#btnRegister {
+    color: white;
+    width: 10%;
+    background-color: var(--main-button-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#registerContainer {
+    margin: auto;
+    width: 50%;
+    height: 60vh;
+    border-radius: 10px;
+    background-image: var(--main-container-color);
+}
+
+#btnAlreadyHaveAccount {
     color: white;
     font-size: 150%;
-}
-
-#btn-register {
-    background-color: white;
-    border-radius: 5px;
-    width: 100px;
-}
-
-#btn-register:hover {
-    background-color: #DDDDDD;
-    border-radius: 5px;
-}
-
-#separator {
-    border-top: 2px solid white;
-    width: 100%;
-}
-
-form {
-    width: 100%;
-}
-
-#register-box {
-    background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 30%;
-    height: 350px;
-    margin: auto;
-    border-radius: 5%;
-    box-shadow: -3px 3px 20px black;
 }

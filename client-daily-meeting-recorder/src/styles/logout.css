@@ -1,6 +1,15 @@
 #btnLogout {
     background-color: red;
     color: white;
-    width: 10%;
+    width: 20%;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#btnGoback {
+    background-color: orange;
+    color: white;
+    width: 20%;
+    border-radius: 10px;
     cursor: pointer;
 }

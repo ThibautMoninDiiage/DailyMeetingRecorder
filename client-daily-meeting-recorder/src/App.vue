@@ -2,11 +2,11 @@
 
   <div id="app" >
     <div id="nav" v-if="path404 == false">
-      <p>Welcome to the daily meeting recorder app.</p>
-      <section>
-        <LogoutComponent v-if="pathLogout == true"></LogoutComponent>
-        <ReturnComponent v-if="pathReturn == true"></ReturnComponent>
-      </section>
+      <div id="appTitle">Daily Meeting Recorder</div>
+        <section>
+            <LogoutComponent v-if="pathLogout == true"></LogoutComponent>
+            <ReturnComponent v-if="pathReturn == true"></ReturnComponent>
+        </section>
     </div>
     <router-view/>
   </div>
@@ -75,77 +75,5 @@
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-  width: 80%;
-  background-color: #3DC9C9;
-  border-radius: 60px;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-#nav a {
-  font-weight: bold;
-  color: black;
-}
-
-#nav a.router-link-exact-active {
-  color: #09c6f9 ;
-}
-
-.bodyComponent{
-    margin: 1%;
-    background-color:#3DC9C9;
-    border-radius: 50px;
-}
-
-.btnLien{
-  background-color: #2C9066;
-  padding: 1%;
-  border-radius: 10px;
-  cursor: pointer;
-  width: auto;
-  text-decoration: none;
-  color: black !important;
-  font-weight: normal !important;
-}
-
-.btnLien:hover{
-    background-color: #DDDDDD;
-    border-radius: 5px;
-}
-
-.btnComponent{
-    background-color: #2C9066;
-    padding: 1%;
-    border-radius: 10px;
-    cursor: pointer;
-    width: auto;
-    text-decoration: none;
-    color: black !important;
-    font-weight: normal !important;
-    margin-top: 20px;
-    width: 50vw;
-    border: none;
-}
-
-button{
-     border: none;
-}
-
-textarea{
-  resize: none;
-}
-
+    @import 'styles/global.css';
 </style>
-
