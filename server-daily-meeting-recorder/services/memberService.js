@@ -3,8 +3,8 @@ const { Sequelize } = require('sequelize');
 const TeamModel = require('../models/teamModel');
 
 // Connecting to the database, with username, with password
-const sequelize = new Sequelize('DbDailyMeetingRecorder', 'DailyMeetingRecorder', 'root', {
-    host : '10.4.0.112',
+const sequelize = new Sequelize('DbDailyMeetingRecorder', 'root', 'Azerty@123', {
+    host : 'localhost',
     // Specifying the used dialect in the database
     dialect : 'mysql'
 })

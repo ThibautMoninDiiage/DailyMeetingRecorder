@@ -12,8 +12,19 @@ class DbConnection {
 
     constructor() {
         // Connecting to the database, with username, with password
-        this.sequelize = new Sequelize('DbDailyMeetingRecorder', 'DailyMeetingRecorder', 'root', {
-            host : '10.4.0.112',
+        // this.sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+        //     host : process.env.DB_HOST,
+        //     // Specifying the used dialect in the database
+        //     dialect : 'mysql'
+        // })
+        // Connecting to the database, with username, with password
+        // this.sequelize = new Sequelize('DbDailyMeetingRecorder', 'root', 'Azerty@123', {
+        //     host : 'localhost',
+        //     // Specifying the used dialect in the database
+        //     dialect : 'mysql'
+        // })
+        this.sequelize = new Sequelize('DbDailyMeetingRecorder', 'root', 'Azerty@123', {
+            host : 'localhost',
             // Specifying the used dialect in the database
             dialect : 'mysql'
         })
