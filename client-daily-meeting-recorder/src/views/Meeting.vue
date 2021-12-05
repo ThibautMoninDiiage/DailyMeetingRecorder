@@ -4,7 +4,7 @@
         <!--On button click, call the meeting component to create a new meeting in the current project-->
         <form @submit="createMeeting" v-if="meetingCreated === false">
             <div id="createMeeting">
-                <input id="btnCreateMeeting" type="submit" value="New Meeting">
+                <input id="btnNew" type="submit" value="New Meeting">
             </div>
         </form>
         
@@ -40,9 +40,11 @@
     </div>
 </template>
 
+<!-- Importing external CSS file-->
 <style>
     @import '../styles/meeting.css';
 </style>
+
 
 <script>
     import ProjectService from '../services/projectService';

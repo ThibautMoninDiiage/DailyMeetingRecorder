@@ -8,10 +8,52 @@ body {
     --main-button-color : #2565AE;
     --main-container-color : linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
     --validate-button-color : #00B01D;
+    --cancel-button-color : red;
 }
 
+/* Buttons */
 button {
     border: none;
+}
+
+input {
+    border: none;
+}
+
+#btnNew {
+    width: 15%;
+    height: 5vh;
+    color: white;
+    background-color: var(--main-button-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btnModify {
+    width: 15%;
+    height: 5vh;
+    color: white;
+    background-color: var(--main-button-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btnDelete {
+    width: 15%;
+    height: 5vh;
+    color: white;
+    background-color: var(--main-button-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btnCancel {
+    width: 15%;
+    height: 5vh;
+    color: white;
+    background-color: var(--cancel-button-color);
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .mainTitle {
@@ -26,13 +68,6 @@ button {
 #appTitle {
     color: white;
     font-size: 150%;
-}
-
-input {
-    width: 50%;
-    padding: 1%;
-    border: none;
-    margin: 1%;
 }
 
 #nav {

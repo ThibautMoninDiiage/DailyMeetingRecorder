@@ -5,7 +5,7 @@
 
         <!-- formulaire du bouton pour créer un projet -->
         <div id="createProject" v-if="projectCreated == false">
-            <button id="btnNewProject" class="btnComponent" @click="createProject" >New Project</button>
+            <button id="btnNew" class="btnComponent" @click="createProject" >New Project</button>
         </div>
   
         <!-- appelle du component pour la creation d'un nouveau projet -->

@@ -1,24 +1,24 @@
 <template>
-    <div class="bodyComponent">
+    <div id="mainContainer">
         <form @submit="meetingModification">
             <div class="FormAddProject">
-                <label for="meetingTitle" class="labelMeeting">Name</label>
-                <input type="text" v-bind:disabled="modifAccess" placeholder="Meeting Name" name="projectTitle" class="projectTitle" v-model="meetingName">
-                <label for="meetingStratDate" class="labelMeeting">Start Date</label>
+                <label for="meetingTitle">Name</label>
+                <input type="text" v-bind:disabled="modifAccess" placeholder="Meeting Name" name="projectTitle" v-model="meetingName">
+                <label for="meetingStratDate">Start Date</label>
                 <input type="datetime-local" v-bind:disabled="modifAccess" class="inputDate" name="meetingStartingDate" v-model="startDate">   
-                <label for="meetingStratDate" class="labelMeeting">End Date</label>
+                <label for="meetingStratDate">End Date</label>
                 <input type="datetime-local" v-bind:disabled="modifAccess" name="meetingEndingDate" class="inputDate" v-model="endDate">   
                 <div>
-                    <input v-if="modifAccess === false" class="btnValide" type="submit" value="Validate">
+                    <input v-if="modifAccess === false" id="btnValidate" type="submit" value="Validate">
                 </div>
             </div>
         </form>
-        <input @click="cancelModifMeeting" v-if="modifAccess === false" class="btnValide" type="submit" value="Cancel">
+        <input @click="cancelModifMeeting" v-if="modifAccess === false" id="btnCancel" type="submit" value="Cancel">
         
         <div id="createNewProject" v-if="modifAccess === true">
-            <button class="btnValide" @click="modifMeeting" type="submit">Modify the meeting</button>
-            <button class="btnValide" @click="deleteMeeting" type="submit">Delete the meeting</button>
-            <button class="btnValide" @click="createNewRecording" type="submit">Create a new recording</button>
+            <button id="btnModify" @click="modifMeeting" type="submit">Modify the meeting</button>
+            <button id="btnDelete" @click="deleteMeeting" type="submit">Delete the meeting</button>
+            <button id="btnNew" @click="createNewRecording" type="submit">Create a new recording</button>
         </div>
         <div v-if="showRecordingComponent === true">
             <RecordingComponent></RecordingComponent>
@@ -26,6 +26,7 @@
     </div>
 </template>
 
+<!-- Importing external CSS file-->
 <style>
     @import '../styles/meeting.css';
 </style>

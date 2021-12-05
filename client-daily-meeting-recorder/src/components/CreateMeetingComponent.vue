@@ -7,13 +7,13 @@
             <input v-model="endDate" type="datetime-local" v-bind:min="minDate" name="meetingEndingDate" id="meetingEndingDate" required>
             <span class="validity"></span>
             <br>
-            <input class="btnLien" type="submit" value="New Meeting">
+            <input id="btnNew" type="submit" value="New Meeting">
         </form>
     </div>
 </template>
 
 <style>
-
+    @import '../styles/meeting.css';
 </style>
 
 <script>

@@ -4,12 +4,12 @@
 
         <!-- bouton pour créer un nouveau meeting -->
         <div v-if="meetingCreated === false">
-            <button class="btnComponent" @click="createMeeting">New Meeting</button>
+            <button id="btnNew" @click="createMeeting">New Meeting</button>
         </div>
 
         <!-- appelle du component pour la creation d'un nouveau meeting -->
         <div v-if="meetingCreated === true">
-            <button class="btnComponent" @click="cancelCreateMeeting">Cancel</button>
+            <button id="btnCancel" @click="cancelCreateMeeting">Cancel</button>
             <CreateMeeting v-bind:projectId="this.projectId"></CreateMeeting>
         </div>
 

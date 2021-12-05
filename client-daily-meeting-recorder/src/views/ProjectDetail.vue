@@ -27,8 +27,8 @@
         <input v-if="modifAccess === false" @click="cancelModifProject" id="btnCancel" type="submit" value="Cancel">
         
         <div id="createNewProject" v-if="modifAccess === true">
-            <button id="btnModifyProject" @click="modifProject">Modify the project</button>
-            <button id="btnDeleteProject" @click="deleteProject">Delete the project</button>
+            <button id="btnModify" @click="modifProject">Modify the project</button>
+            <button id="btnDelete" @click="deleteProject">Delete the project</button>
         </div>
 
         <hr/>

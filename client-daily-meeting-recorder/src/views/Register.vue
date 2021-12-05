@@ -2,14 +2,14 @@
      <div id="registerContainer">
         <form @submit="register">
             <div>
-                <div class="mainTitle">Register</div>
-                <input v-model="username" type="text" name="username" id="username" placeholder="Username" required>
-                <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
-                <input v-model="emailConfirmation" type="email" name="user-email-confirm" id="user-email-confirm" placeholder="E-Mail confirmation" required>
-                <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password" required>
-                <input v-model="passwordConfirmation" type="password" name="user-password-confirmation" id="user-password-confirmation" placeholder="Password confirmation" required>
+                <div id="registerTitle">Register</div>
+                <input class="registerInputs" v-model="username" type="text" name="username" id="username" placeholder="Username" required>
+                <input class="registerInputs" v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
+                <input class="registerInputs" v-model="emailConfirmation" type="email" name="user-email-confirm" id="user-email-confirm" placeholder="E-Mail confirmation" required>
+                <input class="registerInputs" v-model="password" type="password" name="user-password" id="user-password" placeholder="Password" required>
+                <input class="registerInputs" v-model="passwordConfirmation" type="password" name="user-password-confirmation" id="user-password-confirmation" placeholder="Password confirmation" required>
                 <br>
-                <input id="btnRegister" type="submit" value="Register">
+                <input class="registerInputs" id="btnRegister" type="submit" value="Register">
             </div>
         </form>
         <a id="btnAlreadyHaveAccount" v-bind:href="'/login'">Already have an account ? Login</a>

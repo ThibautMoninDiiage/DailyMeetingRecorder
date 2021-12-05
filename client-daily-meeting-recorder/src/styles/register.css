@@ -23,3 +23,9 @@
     color: white;
     font-size: 150%;
 }
+
+.registerInputs {
+    width: 50%;
+    padding: 1%;
+    margin: 1%;
+}

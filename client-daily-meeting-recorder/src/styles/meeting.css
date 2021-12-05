@@ -17,3 +17,9 @@ input:valid+span:after {
     margin: auto;
     margin: 10px auto 10px auto
 }
+
+input {
+    background-color: white;
+    color: black;
+    margin: auto;
+}

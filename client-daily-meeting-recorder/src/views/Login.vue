@@ -1,12 +1,12 @@
 <template>
     <div id="loginContainer">
         <form @submit="login">
-            <h1 class="mainTitle">Login</h1>
-            <input v-model="username" type="text" name="username" id="username" placeholder="Username" required>
-            <input v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
-            <input v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
+            <h1 id="loginTitle">Login</h1>
+            <input class="loginInputs" v-model="username" type="text" name="username" id="username" placeholder="Username" required>
+            <input class="loginInputs" v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
+            <input class="loginInputs" v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
             <br>
-            <input id="btnLogin" type="submit" value="Login">
+            <input class="loginInputs" id="btnLogin" type="submit" value="Login">
         </form>
         <a id="btnNoAccount" v-bind:href="'/register'">Don't have an account ? Register</a>
     </div>

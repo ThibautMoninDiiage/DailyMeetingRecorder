@@ -4,48 +4,12 @@
     font-size: 150%;
 }
 
-#btnNewProject {
-    width: 15%;
-    height: 5vh;
-    color: white;
-    background-color: var(--main-button-color);
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#btnModifyProject {
-    width: 15%;
-    height: 5vh;
-    color: white;
-    background-color: var(--main-button-color);
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#btnDeleteProject {
-    width: 15%;
-    height: 5vh;
-    color: white;
-    background-color: var(--main-button-color);
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .btnValide{
     margin: auto;
     width: 15vw;
     background-color: #2C9066;
     padding: 1%;
     border-radius: 10px;
-    cursor: pointer;
-}
-
-#btnCancel {
-    width: 15%;
-    height: 5vh;
-    color: white;
-    background-color: var(--main-button-color);
-    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -86,10 +50,6 @@
 }
 
 /* Project component */
-
-* {
-    box-sizing: border-box;
-}
 
 .inputSize {
     width: 500px;

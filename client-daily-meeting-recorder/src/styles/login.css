@@ -24,9 +24,8 @@
     color: white;
 }
 
-input {
+.loginInputs {
     width: 50%;
     padding: 1%;
-    border: none;
     margin: 1%;
 }
