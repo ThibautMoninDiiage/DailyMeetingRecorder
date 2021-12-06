@@ -12,23 +12,8 @@
             <button id="btnCancel" @click="cancelCreateMeeting">Cancel</button>
             <CreateMeeting v-bind:projectId="this.projectId"></CreateMeeting>
         </div>
-
-        <!-- <table>
-            <thead>
-                <th>Name</th>
-                <th>Start Date</th>
-                <th>Start End</th>
-            </thead>
-            <tbody>
-                <tr v-for="meeting in lstMeeting" v-bind:key="meeting.id" @click="">
-                    <td>{{meeting.name}}</td>
-                    <td>{{meeting.startDate}}</td>
-                    <td>{{meeting.endDate}}</td>
-                </tr>
-            </tbody>
-        </table> -->
         <span  v-for="meeting in lstMeeting" :key="meeting.id">
-            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id} }">{{ meeting.name }} - {{ meeting.startDate }} - {{ meeting.endDate }}</router-link>
+            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id} }">{{ meeting.name }} - {{ meeting.date }}</router-link>
         </span>
     </div>
 </template>
@@ -63,7 +48,6 @@ export default {
     mounted() {
         this.meetingService = new MeetingService()
         this.lstMeeting = this.meetingService.getMeetingProject(this.projectId).then((meetings) => {
-            console.log(meetings)
             this.lstMeeting = meetings
         })
     }

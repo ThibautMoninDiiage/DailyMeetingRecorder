@@ -4,10 +4,8 @@
             <div class="FormAddProject">
                 <label for="meetingTitle">Name</label>
                 <input type="text" v-bind:disabled="modifAccess" placeholder="Meeting Name" name="projectTitle" v-model="meetingName">
-                <label for="meetingStratDate">Start Date</label>
-                <input type="datetime-local" v-bind:disabled="modifAccess" class="inputDate" name="meetingStartingDate" v-model="startDate">   
-                <label for="meetingStratDate">End Date</label>
-                <input type="datetime-local" v-bind:disabled="modifAccess" name="meetingEndingDate" class="inputDate" v-model="endDate">   
+                <label for="meetingDate">Date</label>
+                <input type="date" v-bind:disabled="modifAccess" class="inputDate" name="meetingStartingDate" v-model="date">   
                 <div>
                     <input v-if="modifAccess === false" id="btnValidate" type="submit" value="Validate">
                 </div>
@@ -32,8 +30,8 @@
 </style>
 
 <script>
-import ProjectService from '../services/projectService';
 import RecordingComponent from '../components/RecordingComponent.vue'
+import MeetingService from '../services/meetingService';
 
 export default({
     name:'ProjectSelected',
@@ -44,19 +42,20 @@ export default({
         return{
             modifAccess: true,
             meetingName: '',
-            startDate: '',
-            endDate: '',
+            date: '',
+            meetingId : this.$route.params.meetingId,
             newMember: false,
             membres: undefined,
             status: undefined,
             showRecordingComponent : false
+            meetingService :undefined
         }
     },
     mounted(){
-        this.projectService = new ProjectService();
-        // a faire
-        this.projectService.getAllStatus().then(status => {
-            this.status = status
+        this.meetingService = new MeetingService()
+        this.meetingService.getMeeting(this.meetingId).then((meeting) => {
+            this.meetingName = meeting.name
+            this.date = meeting.date
         })
     },
     methods: {
@@ -67,10 +66,14 @@ export default({
             this.modifAccess = true
         },
         deleteMeeting(){
-
+            if(confirm('Are you sure to delete this meeting ?')) {
+                this.meetingService.deleteMeeting(this.meetingId)
+                router.go(-1)
+            }
         },
         meetingModification(){
-
+            event.preventDefault()
+            this.meetingService.updateMeeting(this.meetingName, this.date, this.meetingId)
         },
         createNewRecording() {
             if (this.showRecordingComponent === true) {
