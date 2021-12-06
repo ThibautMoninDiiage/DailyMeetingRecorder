@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit="searchMember">
+        <form @submit="addNewMember">
         <div>
             <input type="email" placeholder="email" name="email" id="email" v-model="emailMember">        
             <input class="btnValide" type="submit" value="Validate">
@@ -32,28 +32,31 @@ export default {
     },
     methods: {
         addNewMember(){
-            if (this.rechercherMember != ''){
-                alert('')
+            event.preventDefault()
+            if (this.emailMember != ''){
+                //this.searchMember()
+                alert('pas vide')
+            }else{
+                alert('vide')
             }
 
         },
         searchMember(){
             event.preventDefault()
             this.ProjectService.getMemberExist(this.emailMember).then((response) => {
-                if(response){
-                    console.log(response)
-                    alert('e')
+                if(response != null){
+                    if(this.ProjectService.getMemberInTeam(memberId, this.projectId) != false){
+                        this.ProjectService.addMemberToTeam(memberId, this.projectId)
+                    }else{
+                        alert('il est déjà dans la team')
+                    }
+                    
                 }else {
-                    alert('a')
+                    alert('il n\'existe pas')
                 }
                 
             });
-        },
-        searchMemberinTeam(){
-            
         }
-
-
     }    
     
 }

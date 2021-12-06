@@ -109,8 +109,55 @@ export default class ProjectService {
             }
             ).then((response) => {
                 console.log(response)
-                if(response) resolve(true)
-                else resolve(false)
+
+                if(response.status == 200) resolve(response.data)
+            }).catch(error => {
+                console.log(error)
+                if(error.response.status == 404) resolve(null)
+            })
+    
+        })
+    }
+
+    async getMemberInTeam(memberId, projectId){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/member/getMemberExist', {
+                params: {
+                    email: emailMember
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                console.log(response)
+
+                if(response.status == 200) resolve(response.data)
+            }).catch(error => {
+                console.log(error)
+                if(error.response.status == 404) resolve(null)
+            })
+    
+        })
+    }
+
+    async addMemberToTeam(memberId, projectId){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/member/getMemberExist', {
+                params: {
+                    email: emailMember
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                console.log(response)
+
+                if(response.status == 200) resolve(response.data)
+            }).catch(error => {
+                console.log(error)
+                if(error.response.status == 404) resolve(null)
             })
     
         })
