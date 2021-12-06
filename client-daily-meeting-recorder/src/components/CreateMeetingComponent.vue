@@ -2,9 +2,7 @@
     <div>
         <form @submit="createMeeting">
             <input v-model="name" type="text" name="meetingName" id="meetingName" placeholder="Meeting Name" required>
-            <input v-model="startDate" type="datetime-local" v-bind:min="minDate" name="meetingStartingDate" id="meetingStartingDate" required>
-            <span class="validity"></span>
-            <input v-model="endDate" type="datetime-local" v-bind:min="minDate" name="meetingEndingDate" id="meetingEndingDate" required>
+            <input v-model="date" type="date" v-bind:min="minDate" name="meetingStartingDate" id="meetingStartingDate" required>
             <span class="validity"></span>
             <br>
             <input class="btnLien" type="submit" value="New Meeting">
@@ -27,8 +25,7 @@
         data() {
             return {
                 name:'',
-                startDate:'',
-                endDate:'',
+                date:'',
                 minDate: '',
                 validDate : undefined,
                 validNotEmpty : undefined,
@@ -51,19 +48,11 @@
                 + date.getMinutes()
             },
             /**
-             * Verifie si les dates de la réunion sont cohérentes
-             * @returns {boolean} true => si ok / false => si ko
-             */
-            verifDate() {
-                if (this.endDate > this.startDate) this.validDate = true
-                else this.validDate = false
-            },
-            /**
              * Verifie si les champs sont remplis dans le formulaire
              * @returns {boolean} true => si ok / false => si ko
              */
             verifIfEmpty() {
-                if (this.startDate && this.endDate && this.name) this.validNotEmpty = true
+                if (this.date && this.name) this.validNotEmpty = true
                 else this.validNotEmpty = false 
             },
             /**
@@ -71,17 +60,9 @@
              */
             createMeeting(){
                 event.preventDefault()
-                this.verifDate()
-
                 this.verifIfEmpty()
                 console.log(this.projectId)
-                this.meetingService.createMeeting(this.name, this.startDate, this.endDate, this.projectId)
-
-                // if (this.validDate && this.validNotEmpty) {
-                    
-                // } else {
-                //     alert('Attention la durée de la réunion est négative ou un champs n\'est pas remplis');
-                // }
+                this.meetingService.createMeeting(this.name, this.date, this.projectId)
             },
         }
     }

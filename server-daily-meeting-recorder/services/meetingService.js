@@ -1,14 +1,18 @@
 const MeetingModel = require('../models/meetingModel');
-const ProjectModel = require('../models/projectModel');
+const TimestampModel = require('../models/timestampMeetingModel');
+const RemarkModel = require('../models/remarkModel');
 
 class MeetingService {
 
-    async createMeeting(name, startDate, endDate, projectId) {
+    async getMeeting(meetingId){
+        return await MeetingModel.findByPk(meetingId)
+    }
+
+    async createMeeting(name, date, projectId) {
         // We create a new user in the database
         const meeting = await MeetingModel.create({
             name: name,
-            startDate : startDate,
-            endDate : endDate,
+            date : date,
             idProject : projectId,
             mediaUrl: ''
         })
@@ -26,6 +30,49 @@ class MeetingService {
                 idProject : projectId
             }
         })
+    }
+    
+    async updateMeeting(name, date, meetingId){
+        if(this.getMeeting() != null){
+            return await MeetingModel.update(
+                {
+                    name : name,
+                    date : date
+                },
+                {
+                    where : {
+                        id : meetingId
+                    }
+                }
+            )
+        }
+        return null
+    }
+
+    async deleteMeeting(meetingId){
+
+        if(await this.getMeeting(meetingId) != null){
+            await TimestampModel.destroy({
+                where : {
+                    meetingId : meetingId
+                }
+            })
+    
+            await RemarkModel.destroy({
+                where : {
+                    idMeeting : meetingId
+                }
+            })
+    
+            await MeetingModel.destroy({
+                where : {
+                    id : meetingId
+                }
+            })
+            return 204
+        }
+        else return 404
+        
     }
 }
 

@@ -15,12 +15,8 @@ class MeetingModel extends Model {
                 type : DataTypes.STRING,
                 allowNull : false
             },
-            startDate : {
-                type : DataTypes.DATE,
-                allowNull : false
-            },
-            endDate : {
-                type : DataTypes.DATE,
+            date : {
+                type : DataTypes.DATEONLY,
                 allowNull : false
             },
             idProject : {
