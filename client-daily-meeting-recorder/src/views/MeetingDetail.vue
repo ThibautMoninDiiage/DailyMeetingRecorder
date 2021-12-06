@@ -32,6 +32,7 @@
 <script>
 import RecordingComponent from '../components/RecordingComponent.vue'
 import MeetingService from '../services/meetingService';
+import router from '../router'
 
 export default({
     name:'ProjectSelected',
@@ -47,7 +48,7 @@ export default({
             newMember: false,
             membres: undefined,
             status: undefined,
-            showRecordingComponent : false
+            showRecordingComponent : false,
             meetingService :undefined
         }
     },
