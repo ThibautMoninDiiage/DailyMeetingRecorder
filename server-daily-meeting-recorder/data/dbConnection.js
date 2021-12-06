@@ -23,8 +23,8 @@ class DbConnection {
         //     // Specifying the used dialect in the database
         //     dialect : 'mysql'
         // })
-        this.sequelize = new Sequelize('DbDailyMeetingRecorder', 'root', 'Azerty@123', {
-            host : 'localhost',
+        this.sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
+            host : process.env.DB_HOST,
             // Specifying the used dialect in the database
             dialect : 'mysql'
         })

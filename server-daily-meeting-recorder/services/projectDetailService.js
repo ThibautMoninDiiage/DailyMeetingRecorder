@@ -4,8 +4,8 @@ const { Sequelize } = require('sequelize');
 const jwtdecode = require('jwt-decode');
 
 // Connecting to the database, with username, with password
-const sequelize = new Sequelize('DbDailyMeetingRecorder', 'root', 'Azerty@123', {
-    host : 'localhost',
+const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host : process.env.DB_HOST,
     // Specifying the used dialect in the database
     dialect : 'mysql'
 })
