@@ -14,9 +14,10 @@ export default class RecordingService {
         }
     }
 
-    async getMeetingRecording() {
+    async getMeetingRecording(meetingId) {
+        meetingId = 2;
         try {
-            const recording = await axios.get('http://localhost:3000/recording/getMeetingRecording', {
+            const recording = await axios.get('http://localhost:3000/recording/getMeetingRecording/' + meetingId, {
                 // headers : {
                 //     Authorization : userId
                 // }

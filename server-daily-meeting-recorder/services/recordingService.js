@@ -27,7 +27,7 @@ class RecordingService {
         //         id : meetingId
         //     }
         // })
-        return await sequelize.query('SELECT * FROM Meeting WHERE Meeting.id = 2')
+        return await sequelize.query('SELECT mediaUrl FROM Meeting WHERE Meeting.id = ' + meetingId)
     }
 
 }

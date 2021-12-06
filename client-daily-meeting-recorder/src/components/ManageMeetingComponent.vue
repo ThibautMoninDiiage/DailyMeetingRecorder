@@ -28,7 +28,7 @@
             </tbody>
         </table> -->
         <span  v-for="meeting in lstMeeting" :key="meeting.id">
-            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id} }">{{ meeting.name }} - {{ meeting.startDate }} - {{ meeting.endDate }}</router-link>
+            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id, meetingName: meeting.name} }">{{ meeting.name }} - {{ meeting.startDate }} - {{ meeting.endDate }}</router-link>
         </span>
     </div>
 </template>

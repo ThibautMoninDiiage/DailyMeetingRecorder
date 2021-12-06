@@ -9,7 +9,7 @@
         <hr>
             <h1>My recordings</h1>
             <div id="audiosContainer">
-                <audio controls src=""></audio>
+                <audio id="audio" controls v-bind:src="mediaUrl"></audio>
             </div>
     </div>
 </template>
@@ -24,14 +24,15 @@
                 mediaRecorder : null,
                 chunks : [],
                 recordingService : undefined,
-                recording : undefined,
-                mediaUrl : undefined
+                mediaUrl : undefined,
+                meetingId : undefined
             }
         },
         mounted() {
+            this.meetingId = this.$route.params.meetingId;
             this.recordingService = new RecordingService()
-            this.recordingService.getMeetingRecording().then(recording => {
-                this.recording = recording
+            this.recordingService.getMeetingRecording(this.meetingId).then(response => {
+                this.mediaUrl = response.mediaUrl;
             })
         },
         methods : {
@@ -58,30 +59,19 @@
                 this.mediaRecorder.stop()
             },
             createMediaElement(mediaType, fileType) {
-                // Initialise a new date
-                const date = new Date()
-                // Format the current date
-                const todayDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear()
+                const audio = document.getElementById('audio');
                 const blob = new Blob(this.chunks, {
                     type : fileType
                 })
                 const mediaURL = window.URL.createObjectURL(blob)
-                const audioElement = document.createElement(mediaType)
-                audioElement.setAttribute('controls', '')
-                audioElement.src = mediaURL
-                const audiosContainer = document.getElementById('audiosContainer')
-                const audioDiv = document.createElement('div')
-                const audioName = prompt('Audio recording name : ', 'Recording date : ' + todayDate)
-                const audioTitle = document.createElement('div')
-                audioTitle.innerText = audioName
-                audioDiv.appendChild(audioTitle)
-                audioDiv.appendChild(audioElement)
-                audiosContainer.appendChild(audioDiv)
+                audio.src = mediaURL;
                 // Reset the media recorder and the chunks
                 this.mediaRecorder = null
                 this.chunks = []
+                const audioName = this.$route.params.meetingName;
                 this.recordingService.saveRecording(audioName, mediaURL, 3)
                 this.saveRecordingToServer('audio', blob, audioName + '.mp3')
+                alert('New recording saved !')
             },
             saveRecordingToServer(type, audioBlob, fileName) {
                 const formData = new FormData();
