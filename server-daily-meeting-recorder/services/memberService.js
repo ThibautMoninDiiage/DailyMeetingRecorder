@@ -41,14 +41,24 @@ class memberService {
         })
     }
 
-    async deleteMemberOnProject(idUser, token) {
-        return await TeamModel.destroy(
-        {
-            idProject: idProject,
-            idUser: idUser
+    async deleteMemberOnProject(idProject, idUser, token) {
+        this.getMemberInTeam(idProject, idUser, token).then(team => {
+            if(team != null){
+                console.log(idProject)
+                console.log(idUser)
+                TeamModel.destroy(
+                    {
+                        where: {
+                            idProject: idProject,
+                            idUser: idUser
+                        }
+                    })
+                return 204
+            }else{
+                return 404
+            }
         })
     }
-
 }
 
 module.exports = new memberService();

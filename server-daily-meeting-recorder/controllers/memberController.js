@@ -39,19 +39,16 @@ class MemberController {
         const idUser = request.query.idUser;
         const token = request.headers.authorization;
         const member = await memberService.addMemberToTeam(idProject, idUser, token);
-        if(member != null){
-            response.status(200).send(member)
-        }else{
-            response.status(404).send()
-        }
+        response.status(200).send(member)
+        
     }
 
     async deleteMemberOnProject(request, response) {
+        const idProject = request.query.idProject;
         const idUser = request.query.idUser;
         const token = request.headers.authorization;
-        const member = await memberService.deleteMemberOnProject(idUser, token);
+        const member = await memberService.deleteMemberOnProject(idProject, idUser, token);
         response.status(200).send(member)
-        
     }
      
 }

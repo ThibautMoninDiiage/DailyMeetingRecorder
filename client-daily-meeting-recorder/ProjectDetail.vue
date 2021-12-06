@@ -93,6 +93,9 @@ export default({
             this.modifAccess = true
         },
         projectModification(){
+            console.log(this.projectTitle)
+            console.log(this.projectDescription)
+            console.log(this.selectStatus)
 
             if(this.projectTitle != '' || this.projectDescription != ''){
                 event.preventDefault();

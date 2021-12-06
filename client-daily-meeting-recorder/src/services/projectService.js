@@ -155,11 +155,12 @@ export default class ProjectService {
         })
     }
 
-    async deleteMemberOnProject(memberId){
+    async deleteMemberOnProject(memberId, projectId){
         return new Promise((resolve) => {
             axios.get('http://localhost:3000/member/deleteMemberOnProject', {
                 params: {
-                    idUser: memberId
+                    idUser: memberId,
+                    idProject: projectId
                 },
                 headers: {
                     Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
