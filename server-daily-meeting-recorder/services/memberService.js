@@ -23,6 +23,32 @@ class memberService {
         })
     }
 
+    async getMemberInTeam(idProject, idUser, token) {
+        return await TeamModel.findOne(
+        {
+            where: {
+                idProject: idProject,
+                idUser: idUser
+            }
+        })
+    }
+
+    async addMemberToTeam(idProject, idUser, token) {
+        return await TeamModel.create(
+        {
+            idProject: idProject,
+            idUser: idUser
+        })
+    }
+
+    async deleteMemberOnProject(idUser, token) {
+        return await TeamModel.destroy(
+        {
+            idProject: idProject,
+            idUser: idUser
+        })
+    }
+
 }
 
 module.exports = new memberService();

@@ -108,8 +108,7 @@ export default class ProjectService {
                 } 
             }
             ).then((response) => {
-                console.log(response)
-
+                console.log(response.data)
                 if(response.status == 200) resolve(response.data)
             }).catch(error => {
                 console.log(error)
@@ -121,21 +120,19 @@ export default class ProjectService {
 
     async getMemberInTeam(memberId, projectId){
         return new Promise((resolve) => {
-            axios.get('http://localhost:3000/member/getMemberExist', {
+            axios.get('http://localhost:3000/member/getMemberInTeam', {
                 params: {
-                    email: emailMember
+                    idUser: memberId,
+                    idProject: projectId
                 },
                 headers: {
                     Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
                 } 
             }
             ).then((response) => {
-                console.log(response)
-
-                if(response.status == 200) resolve(response.data)
+                if(response.status == 200) resolve(true)
             }).catch(error => {
-                console.log(error)
-                if(error.response.status == 404) resolve(null)
+                if(error.response.status == 404) resolve(false)
             })
     
         })
@@ -143,23 +140,34 @@ export default class ProjectService {
 
     async addMemberToTeam(memberId, projectId){
         return new Promise((resolve) => {
-            axios.get('http://localhost:3000/member/getMemberExist', {
+            axios.get('http://localhost:3000/member/addMemberToTeam', {
                 params: {
-                    email: emailMember
+                    idUser: memberId,
+                    idProject: projectId
                 },
                 headers: {
                     Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
                 } 
             }
             ).then((response) => {
-                console.log(response)
+                resolve(response.data)
+            })                  
+        })
+    }
 
-                if(response.status == 200) resolve(response.data)
-            }).catch(error => {
-                console.log(error)
-                if(error.response.status == 404) resolve(null)
-            })
-    
+    async deleteMemberOnProject(memberId){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/member/deleteMemberOnProject', {
+                params: {
+                    idUser: memberId
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                resolve(response.data)
+            })                  
         })
     }
 

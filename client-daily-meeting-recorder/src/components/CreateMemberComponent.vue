@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit="addNewMember">
+        <form @submit="searchMember">
         <div>
             <input type="email" placeholder="email" name="email" id="email" v-model="emailMember">        
             <input class="btnValide" type="submit" value="Validate">
@@ -16,14 +16,11 @@ export default {
     name: 'createMember',
     components: {
     },
-    props: {
-        projectId: undefined
-    },
     data() {
         return {
            emailMember: '',
            memberId: undefined,
-           
+           projectId: this.$route.params.projectId           
         }
     },
     mounted(){
@@ -45,12 +42,15 @@ export default {
             event.preventDefault()
             this.ProjectService.getMemberExist(this.emailMember).then((response) => {
                 if(response != null){
-                    if(this.ProjectService.getMemberInTeam(memberId, this.projectId) != false){
-                        this.ProjectService.addMemberToTeam(memberId, this.projectId)
-                    }else{
-                        alert('il est déjà dans la team')
-                    }
-                    
+                    this.memberId = response.id;
+                    this.ProjectService.getMemberInTeam(this.memberId, this.projectId).then((response) => {
+                        if(response == false){
+                            this.ProjectService.addMemberToTeam(this.memberId, this.projectId)
+                            
+                        }else{
+                            alert('il est déjà dans la team')
+                        }
+                    })
                 }else {
                     alert('il n\'existe pas')
                 }
