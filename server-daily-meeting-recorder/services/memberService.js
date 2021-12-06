@@ -14,6 +14,15 @@ class memberService {
         return await sequelize.query("SELECT id, username, email FROM `User` INNER JOIN Team on Team.idUser = User.id WHERE Team.idProject = " + projectId);
     }
 
+    async getMemberExist(emailMember, token) {
+        return await UserModel.findOne(
+        {
+            where: {
+                email: emailMember
+            }
+        })
+    }
+
 }
 
 module.exports = new memberService();

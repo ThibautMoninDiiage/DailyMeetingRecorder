@@ -77,22 +77,7 @@ export default class ProjectService {
         return project.data;
     }
 
-    async updateProject(projectId, projectTitle, projectDescription, projectStatus){
-        console.log(projectId, projectTitle, projectDescription, projectStatus);
-
-        // const project = await axios.post('http://localhost:3000/projectDetail/updateProject', {
-        //     id: projectId,
-        //     title: projectTitle,
-        //     description : projectDescription,
-        //     status: projectStatus
-        //     },
-        // {
-        //     headers: {
-        //         Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
-        //     } 
-        // })
-        // return project.data;
-        
+    async updateProject(projectId, projectTitle, projectDescription, projectStatus){   
         return new Promise((resolve) => {
         
             axios.post('http://localhost:3000/projectDetail/updateProject', {
@@ -109,6 +94,25 @@ export default class ProjectService {
                 resolve(response.data)
             })
 
+        })
+    }
+
+    async getMemberExist(emailMember){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/member/getMemberExist', {
+                params: {
+                    email: emailMember
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                console.log(response)
+                if(response) resolve(true)
+                else resolve(false)
+            })
+    
         })
     }
 

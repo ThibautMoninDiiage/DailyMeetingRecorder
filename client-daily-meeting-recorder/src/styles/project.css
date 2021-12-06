@@ -44,7 +44,7 @@
 #mainContainer {
     margin: auto;
     width: 80%;
-    height: 80vh;
+    min-height: 80vh;
     border-radius: 10px;
     background-image: var(--main-container-color);
 }

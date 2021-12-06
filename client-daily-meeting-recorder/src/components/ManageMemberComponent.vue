@@ -53,10 +53,13 @@ export default {
             this.newMember = true
         },
         cancelAddNewMember(){
-            this.newMember = false
+            if(confirm('are you sur !')){
+                this.newMember = false
+            }
+            
         }
 
-    }    
+    } 
     
 }
 </script>
