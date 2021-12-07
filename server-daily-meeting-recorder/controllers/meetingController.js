@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+const jwtdecode = require('jwt-decode')
 const meetingService = require('../services/meetingService');
 
 class MeetingController {
@@ -6,11 +6,12 @@ class MeetingController {
     constructor() {
 
     }
-
+    
     async getMeeting(request, response){
-     const meeting = await meetingService.getMeeting(request.params.meetingId)   
-     if (meeting != null) response.status(200).send(meeting)
-     else response.status(404).send()
+        const idUser = jwtdecode(request.headers.authorization.substring(7)).sub
+        const meeting = await meetingService.getMeeting(request.params.meetingId, idUser)   
+        if (meeting != null) response.status(200).send(meeting)
+        else response.status(404).send()
     }
     
     async createMeeting(request, response) {

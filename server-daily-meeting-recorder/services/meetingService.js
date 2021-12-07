@@ -1,11 +1,33 @@
 const MeetingModel = require('../models/meetingModel');
 const TimestampModel = require('../models/timestampMeetingModel');
 const RemarkModel = require('../models/remarkModel');
+const ProjectModel = require('../models/projectModel');
+const UserModel = require('../models/userModel');
 
 class MeetingService {
 
-    async getMeeting(meetingId){
-        return await MeetingModel.findByPk(meetingId)
+    async getMeeting(meetingId, idUser){
+        return await MeetingModel.findOne({
+            attributes : ['id', 'name', 'date','idProject', 'mediaUrl'],
+            include:[
+                {
+                    model : ProjectModel,
+                    required : true,
+                    attributes : [],
+                    include : [{
+                        model: UserModel,
+                        required : true,
+                        attributes : [],
+                        where : {
+                            id: idUser
+                        }
+                    }]
+                }
+            ],
+            where : {
+                id : meetingId
+            },
+        })
     }
 
     async createMeeting(name, date, projectId) {

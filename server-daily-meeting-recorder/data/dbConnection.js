@@ -41,6 +41,18 @@ class DbConnection {
             await MeetingModel.init(this.sequelize);
             await RemarkModel.init(this.sequelize);
             await TimestampMeetingModel.init(this.sequelize);
+
+            ProjectModel.belongsToMany(UserModel, { through: TeamModel, foreignKey : 'idProject', sourceKey : 'id' })
+            UserModel.belongsToMany(ProjectModel, { through: TeamModel, foreignKey : 'idUser' , sourceKey : 'id'})
+
+            ProjectModel.belongsTo(StatusModel, {foreignKey : 'status' })
+            StatusModel.hasMany(ProjectModel, {
+                foreignKey: 'status'
+            })
+            ProjectModel.hasMany(MeetingModel, {
+                foreignKey: 'idProject'
+            })
+            MeetingModel.belongsTo(ProjectModel, {foreignKey : 'idProject' })
         })
     }
 
