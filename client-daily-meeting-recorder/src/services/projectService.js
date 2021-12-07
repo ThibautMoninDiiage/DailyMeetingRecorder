@@ -77,22 +77,7 @@ export default class ProjectService {
         return project.data;
     }
 
-    async updateProject(projectId, projectTitle, projectDescription, projectStatus){
-        console.log(projectId, projectTitle, projectDescription, projectStatus);
-
-        // const project = await axios.post('http://localhost:3000/projectDetail/updateProject', {
-        //     id: projectId,
-        //     title: projectTitle,
-        //     description : projectDescription,
-        //     status: projectStatus
-        //     },
-        // {
-        //     headers: {
-        //         Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
-        //     } 
-        // })
-        // return project.data;
-        
+    async updateProject(projectId, projectTitle, projectDescription, projectStatus){   
         return new Promise((resolve) => {
         
             axios.post('http://localhost:3000/projectDetail/updateProject', {
@@ -109,6 +94,98 @@ export default class ProjectService {
                 resolve(response.data)
             })
 
+        })
+    }
+
+    async deleteProject(projectId){
+        return new Promise((resolve) => {
+            axios.delete('http://localhost:3000/projectDetail/deleteProject', {
+                params: {
+                    idProject: projectId
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                resolve(response.data)
+            })                  
+        })
+    }
+
+    async getMemberExist(emailMember){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/member/getMemberExist', {
+                params: {
+                    email: emailMember
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                console.log(response.data)
+                if(response.status == 200) resolve(response.data)
+            }).catch(error => {
+                console.log(error)
+                if(error.response.status == 404) resolve(null)
+            })
+    
+        })
+    }
+
+    async getMemberInTeam(memberId, projectId){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/member/getMemberInTeam', {
+                params: {
+                    idUser: memberId,
+                    idProject: projectId
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                if(response.status == 200) resolve(true)
+            }).catch(error => {
+                if(error.response.status == 404) resolve(false)
+            })
+    
+        })
+    }
+
+    async addMemberToTeam(memberId, projectId){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/member/addMemberToTeam', {
+                params: {
+                    idUser: memberId,
+                    idProject: projectId
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                resolve(response.data)
+            })                  
+        })
+    }
+
+    async deleteMemberOnProject(projectId, memberId){
+        return new Promise((resolve) => {
+            axios.delete('http://localhost:3000/member/deleteMemberOnProject', {
+                params: {
+                    idProject: projectId,
+                    idUser: memberId
+                    
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                resolve(response.data)
+            })                  
         })
     }
 

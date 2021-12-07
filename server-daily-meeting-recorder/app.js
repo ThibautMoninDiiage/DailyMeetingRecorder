@@ -31,7 +31,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/meeting', meetingRouter);
-app.use('/recording', recordingRouter)
 app.use('/project', projectRouter);
 app.use('/projectDetail', projectDetailRouter);
 app.use('/member', memberRouter);

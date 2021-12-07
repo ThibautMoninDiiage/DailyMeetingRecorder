@@ -48,7 +48,6 @@
 import ManageMember from '../components/ManageMemberComponent.vue';
 import ManageMeeting from '../components/ManageMeetingComponent.vue';
 import ProjectService from '../services/projectService';
-import router from '../router';
 
 export default({
     name:'ProjectSelected',
@@ -94,6 +93,9 @@ export default({
             this.modifAccess = true
         },
         projectModification(){
+            console.log(this.projectTitle)
+            console.log(this.projectDescription)
+            console.log(this.selectStatus)
 
             if(this.projectTitle != '' || this.projectDescription != ''){
                 event.preventDefault();
@@ -106,11 +108,7 @@ export default({
             }
         },
         deleteProject(){
-            if(confirm('you are sur !')){
-                this.projectService.deleteProject(this.projectId)
-                router.push({path: '/project'})
-                location.reload()
-            }
+
         },
         SetStatus(){
             document.querySelector("option[value='"+this.projectStatus+"']").selected = true;

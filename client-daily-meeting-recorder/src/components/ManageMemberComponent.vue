@@ -18,7 +18,7 @@
         <div>
             <p>Member list</p>
             <span class="listMembre" v-for="member in members" :key="member.id">
-                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" type="submit" value="Delete member"></p>
+                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" @click="deleteMember(member.id)" type="submit" value="Delete member"></p>
             </span>
         </div>
     </div>
@@ -43,7 +43,6 @@ export default {
     },
     mounted(){
         this.projectService = new ProjectService();
-        // a faire
         this.projectService.getAllMemberByProject(this.projectId).then(members => {
             this.members = members
         })
@@ -53,10 +52,17 @@ export default {
             this.newMember = true
         },
         cancelAddNewMember(){
-            this.newMember = false
+            if(confirm('are you sur !')){
+                this.newMember = false
+            }
+        },
+        deleteMember(memberId){
+            if(confirm('are you sur !')){
+                this.projectService.deleteMemberOnProject(this.projectId, memberId);
+            }
         }
 
-    }    
+    } 
     
 }
 </script>
