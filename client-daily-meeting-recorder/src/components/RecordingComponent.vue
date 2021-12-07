@@ -61,8 +61,7 @@
                 const mediaUrl = window.URL.createObjectURL(blob)
                 this.mediaRecorder = null
                 this.chunks = []
-                // const audioName = this.$route.params.meetingName
-                const audioName = "agagagagaga"
+                const audioName = this.$route.params.meetingName
                 // Save the local path into the database
                 this.recordingService.saveRecording(audioName, mediaUrl, this.meetingId)
                 // Save the audio file to the server
