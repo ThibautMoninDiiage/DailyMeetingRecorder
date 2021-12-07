@@ -1,11 +1,12 @@
 <template>
     <div>
-        <h1>My meetings</h1>
+        <h2>My meetings</h2>
 
         <!-- bouton pour créer un nouveau meeting -->
-        <div v-if="meetingCreated === false">
+        <div class="divBtn" v-if="meetingCreated === false">
             <button id="btnNew" @click="createMeeting">New Meeting</button>
         </div>
+
 
         <!-- appelle du component pour la creation d'un nouveau meeting -->
         <div v-if="meetingCreated === true">
@@ -13,7 +14,7 @@
             <CreateMeeting v-bind:projectId="this.projectId"></CreateMeeting>
         </div>
         <span  v-for="meeting in lstMeeting" :key="meeting.id">
-            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id} }">{{ meeting.name }} - {{ meeting.date }}</router-link>
+            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id}}">{{ meeting.name }} - {{ meeting.date }}</router-link>
         </span>
     </div>
 </template>
@@ -53,14 +54,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    ul>li {
-        display: inline-block;
-        margin-right: 5px;
-    }
-    table {
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>

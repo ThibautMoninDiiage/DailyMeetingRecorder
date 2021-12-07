@@ -11,6 +11,16 @@ body {
     --cancel-button-color : red;
 }
 
+h2{
+    font-weight: bold;
+    font-size: 1.6em;
+}
+
+h3{
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
 /* Buttons */
 button {
     border: none;
@@ -21,7 +31,7 @@ input {
 }
 
 #btnNew {
-    width: 15%;
+    min-width: 14vh;
     height: 5vh;
     color: white;
     background-color: var(--main-button-color);
@@ -30,7 +40,7 @@ input {
 }
 
 #btnModify {
-    width: 15%;
+    min-width: 14vh;
     height: 5vh;
     color: white;
     background-color: var(--main-button-color);
@@ -39,7 +49,7 @@ input {
 }
 
 #btnDelete {
-    width: 15%;
+    min-width: 14vh;
     height: 5vh;
     color: white;
     background-color: var(--main-button-color);
@@ -48,7 +58,7 @@ input {
 }
 
 #btnCancel {
-    width: 15%;
+    min-width: 14vh;
     height: 5vh;
     color: white;
     background-color: var(--cancel-button-color);
@@ -75,6 +85,7 @@ input {
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
     border-radius: 5px;
     margin: auto;
+    margin-bottom: 2em;
 }
 
 .bodyComponent{

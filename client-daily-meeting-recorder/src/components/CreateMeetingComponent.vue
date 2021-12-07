@@ -5,7 +5,7 @@
             <input v-model="date" type="date" v-bind:min="minDate" name="meetingStartingDate" id="meetingStartingDate" required>
             <span class="validity"></span>
             <br>
-            <input id="btnNew" type="submit" value="New Meeting">
+            <input id="btnValidate" type="submit" value="Create Meeting">
         </form>
     </div>
 </template>
@@ -63,6 +63,7 @@
                 this.verifIfEmpty()
                 console.log(this.projectId)
                 this.meetingService.createMeeting(this.name, this.date, this.projectId)
+                location.reload()
             },
         }
     }

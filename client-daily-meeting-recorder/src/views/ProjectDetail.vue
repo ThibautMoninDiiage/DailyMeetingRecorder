@@ -18,16 +18,21 @@
                         <option v-for="stat in status" :key="stat.id" v-bind:value="stat.id">{{stat.name}}</option>
                     </select>
                 </div>
-
-                <div>
-                    <input v-if="modifAccess === false" id="btnValidate" type="submit" value="Validate">
+                
+                <div class="divBtn" v-if="modifAccess === false">
+                    <input  id="btnValidate" type="submit" value="Validate">
                 </div>
             </div>
         </form>
-        <input v-if="modifAccess === false" @click="cancelModifProject" id="btnCancel" type="submit" value="Cancel">
+        <div class="divBtn" v-if="modifAccess === false">
+            <input v-if="modifAccess === false" @click="cancelModifProject" id="btnCancel" type="submit" value="Cancel">
+        </div>
         
-        <div id="createNewProject" v-if="modifAccess === true">
+        
+        <div class="divBtn" v-if="modifAccess === true">
             <button id="btnModify" @click="modifProject">Modify the project</button>
+        </div>
+        <div class="divBtn" v-if="modifAccess === true">
             <button id="btnDelete" @click="deleteProject">Delete the project</button>
         </div>
 
@@ -91,15 +96,14 @@ export default({
             this.modifAccess = false
         },
         cancelModifProject(){
-            this.modifAccess = true
+            if(confirm('you are sur ?')){
+                this.modifAccess = true
+                location.reload()
+            }
         },
         projectModification(){
-
-            if(this.projectTitle != '' || this.projectDescription != ''){
-                event.preventDefault();
+            if(this.projectTitle != '' && this.projectDescription != ''){
                 this.projectService.updateProject(this.projectId, this.projectTitle, this.projectDescription, this.selectStatus);
-                
-                //event.run();
             }else{
                 event.preventDefault();
                 alert('You need to fill every fields !')
