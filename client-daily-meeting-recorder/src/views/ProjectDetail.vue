@@ -48,6 +48,7 @@
 import ManageMember from '../components/ManageMemberComponent.vue';
 import ManageMeeting from '../components/ManageMeetingComponent.vue';
 import ProjectService from '../services/projectService';
+import router from '../router';
 
 export default({
     name:'ProjectSelected',
@@ -107,7 +108,8 @@ export default({
         deleteProject(){
             if(confirm('you are sur !')){
                 this.projectService.deleteProject(this.projectId)
-                //this.$route.push('/project')
+                router.push({path: '/project'})
+                location.reload()
             }
         },
         SetStatus(){
