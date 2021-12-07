@@ -14,17 +14,17 @@ export default class RecordingService {
         }
     }
 
-    async getMeetingRecording(meetingId) {
-        meetingId = 2;
-        try {
-            const recording = await axios.get('http://localhost:3000/recording/getMeetingRecording/' + meetingId, {
-                // headers : {
-                //     Authorization : userId
-                // }
-            })
-            return recording.data[0]
-        } catch (error) {
-            console.error('Get recording error : ' + error);
-        }
-    }
+    // async getMeetingRecording(meetingId) {
+    //     try {
+    //         const recording = await axios.get('http://localhost:3000/recording/getMeetingRecording/' + meetingId, {
+    //             headers : {
+    //                 Authorization : meetingId
+    //             }
+    //         })
+    //         console.log(recording.data[0]);
+    //         return recording.data[0]
+    //     } catch (error) {
+    //         console.error('Get recording error : ' + error);
+    //     }
+    // }
 }

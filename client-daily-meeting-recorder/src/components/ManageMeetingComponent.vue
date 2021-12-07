@@ -63,7 +63,6 @@ export default {
     mounted() {
         this.meetingService = new MeetingService()
         this.lstMeeting = this.meetingService.getMeetingProject(this.projectId).then((meetings) => {
-            console.log(meetings)
             this.lstMeeting = meetings
         })
     }

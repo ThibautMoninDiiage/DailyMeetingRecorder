@@ -31,9 +31,10 @@
         mounted() {
             this.meetingId = this.$route.params.meetingId;
             this.recordingService = new RecordingService()
-            this.recordingService.getMeetingRecording(this.meetingId).then(response => {
-                this.mediaUrl = response.mediaUrl;
-            })
+            // this.recordingService.getMeetingRecording(this.meetingId).then(response => {
+            //     console.log(this.mediaUrl);
+            // })
+            this.mediaUrl = 'http://localhost:3000/recording/getMeetingRecording/' + this.meetingId
         },
         methods : {
             // Function that will start an audio recording
@@ -48,45 +49,43 @@
                         this.chunks.push(e.data)
                     }
                     this.mediaRecorder.onstop = () => {
-                        this.createMediaElement('audio', 'audio/mp3')
+                        this.saveRecording('audio/mp3')
                     }
                     this.mediaRecorder.start()
                 })
+            },
+            saveRecording(fileFormat) {
+                const blob = new Blob(this.chunks, {
+                    type : fileFormat
+                })
+                const mediaUrl = window.URL.createObjectURL(blob)
+                this.mediaRecorder = null
+                this.chunks = []
+                // const audioName = this.$route.params.meetingName
+                const audioName = "agagagagaga"
+                // Save the local path into the database
+                this.recordingService.saveRecording(audioName, mediaUrl, this.meetingId)
+                // Save the audio file to the server
+                const formData = new FormData()
+                formData.append('audio', blob, audioName + '.mp3')
+                fetch('http://localhost:3000/recording/saveRecordingToServer', {
+                    method : 'POST',
+                    body : formData
+                })
+                .then(response => response.json())
+                .then(() => {
+                    console.log('Audio saved');
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+                alert('New recording saved')
+                this.mediaUrl = 'http://localhost:3000/recording/getMeetingRecording/' + this.meetingId
             },
             // Function that will save the current audio recording
             stopAudioRecording() {
                 event.preventDefault()
                 this.mediaRecorder.stop()
-            },
-            createMediaElement(mediaType, fileType) {
-                const audio = document.getElementById('audio');
-                const blob = new Blob(this.chunks, {
-                    type : fileType
-                })
-                const mediaURL = window.URL.createObjectURL(blob)
-                audio.src = mediaURL;
-                // Reset the media recorder and the chunks
-                this.mediaRecorder = null
-                this.chunks = []
-                const audioName = this.$route.params.meetingName;
-                this.recordingService.saveRecording(audioName, mediaURL, 3)
-                this.saveRecordingToServer('audio', blob, audioName + '.mp3')
-                alert('New recording saved !')
-            },
-            saveRecordingToServer(type, audioBlob, fileName) {
-                const formData = new FormData();
-                formData.append(type, audioBlob, fileName);
-                fetch('http://localhost:3000/recording/saveRecordingToServer', {
-                    method : 'POST',
-                    body : formData,
-                })
-                .then((response) => response.json())
-                .then(() => {
-                    console.log('Audio saved on the server');
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
             }
         }
     }
