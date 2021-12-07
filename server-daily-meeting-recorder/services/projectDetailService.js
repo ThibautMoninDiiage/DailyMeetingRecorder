@@ -1,5 +1,8 @@
 const ProjectModel = require('../models/projectModel');
 const TeamModel = require('../models/teamModel');
+const MeetingModel = require('../models/meetingModel');
+const RemarkModel = require('../models/remarkModel');
+const TimestampModel = require('../models/timestampMeetingModel');
 const { Sequelize } = require('sequelize');
 const jwtdecode = require('jwt-decode');
 
@@ -20,8 +23,15 @@ class ProjectDetailService {
         return await ProjectModel.findByPk(projectId)
     }
 
+    async getMeetingByProject(idProject, token){
+        return await MeetingModel.findAll({
+            where: {
+                idProject: idProject
+            }
+        })
+    }
+
     async updateProject(projectId, projectTitle, projectDescription, projectStatus, token) {
-        console.log(projectId);
         return await ProjectModel.update({
             title: projectTitle,
             description: projectDescription,
@@ -32,6 +42,51 @@ class ProjectDetailService {
                 id: projectId
             }
         })
+    }
+
+    async deleteProject(projectId, token) {
+        if(await this.getProjectById(projectId, token) != null){
+            await TeamModel.destroy(
+                {
+                    where: {
+                        idProject: projectId
+                    }
+                });
+
+            const meetingTab = await this.getMeetingByProject(projectId) 
+            if(meetingTab != null){
+                meetingTab.forEach(meeting => {
+                     RemarkModel.destroy({ 
+                        where: {
+                            idMeeting: meeting.id
+                        }
+                    });
+
+                     TimestampModel.destroy({
+                        where:{
+                            meetingId: meeting.id
+                        }
+                    });
+
+                     MeetingModel.destroy({
+                        where:{
+                            id: meeting.id
+                        }
+                    });
+                    
+                });
+            }
+
+            await ProjectModel.destroy({
+                where:{
+                    id: projectId
+                }
+            });
+
+            return 204
+        }else{
+            return 404
+        }
     }
   
 }

@@ -105,7 +105,10 @@ export default({
             }
         },
         deleteProject(){
-
+            if(confirm('you are sur !')){
+                this.projectService.deleteProject(this.projectId)
+                //this.$route.push('/project')
+            }
         },
         SetStatus(){
             document.querySelector("option[value='"+this.projectStatus+"']").selected = true;

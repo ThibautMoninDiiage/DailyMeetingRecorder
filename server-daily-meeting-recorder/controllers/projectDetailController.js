@@ -23,7 +23,6 @@ class ProjectDetailController {
     }
 
     async updateProject(request, response){
-        console.log(request.body)
         const projectId = request.body.id;
         const projectTitle = request.body.title;
         const projectDescription = request.body.description;
@@ -33,6 +32,16 @@ class ProjectDetailController {
         const project = await projectDetailService.updateProject(projectId, projectTitle, projectDescription, projectStatus, token);
 
         response.status(200).send(project);
+    }
+
+    async deleteProject(request, response){
+        const projectId = request.query.idProject;
+        const token = request.headers.authorization;
+        console.log(projectId)
+
+        const project = await projectDetailService.deleteProject(projectId, token);
+
+        response.status(204).send(project);
     }
      
 }

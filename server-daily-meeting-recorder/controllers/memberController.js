@@ -47,8 +47,9 @@ class MemberController {
         const idProject = request.query.idProject;
         const idUser = request.query.idUser;
         const token = request.headers.authorization;
+        
         const member = await memberService.deleteMemberOnProject(idProject, idUser, token);
-        response.status(200).send(member)
+        response.status(204).send(member)
     }
      
 }

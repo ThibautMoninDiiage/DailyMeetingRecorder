@@ -42,22 +42,18 @@ class memberService {
     }
 
     async deleteMemberOnProject(idProject, idUser, token) {
-        this.getMemberInTeam(idProject, idUser, token).then(team => {
-            if(team != null){
-                console.log(idProject)
-                console.log(idUser)
-                TeamModel.destroy(
-                    {
-                        where: {
-                            idProject: idProject,
-                            idUser: idUser
-                        }
-                    })
-                return 204
-            }else{
-                return 404
-            }
-        })
+        if(await this.getMemberInTeam(idProject, idUser, token) != null){
+            await TeamModel.destroy(
+                {
+                    where: {
+                        idProject: idProject,
+                        idUser: idUser
+                    }
+                })
+            return 204
+        }else{
+            return 404
+        }
     }
 }
 

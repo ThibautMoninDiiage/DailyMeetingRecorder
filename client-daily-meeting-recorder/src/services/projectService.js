@@ -97,6 +97,22 @@ export default class ProjectService {
         })
     }
 
+    async deleteProject(projectId){
+        return new Promise((resolve) => {
+            axios.delete('http://localhost:3000/projectDetail/deleteProject', {
+                params: {
+                    idProject: projectId
+                },
+                headers: {
+                    Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
+                } 
+            }
+            ).then((response) => {
+                resolve(response.data)
+            })                  
+        })
+    }
+
     async getMemberExist(emailMember){
         return new Promise((resolve) => {
             axios.get('http://localhost:3000/member/getMemberExist', {
@@ -155,12 +171,13 @@ export default class ProjectService {
         })
     }
 
-    async deleteMemberOnProject(memberId, projectId){
+    async deleteMemberOnProject(projectId, memberId){
         return new Promise((resolve) => {
-            axios.get('http://localhost:3000/member/deleteMemberOnProject', {
+            axios.delete('http://localhost:3000/member/deleteMemberOnProject', {
                 params: {
-                    idUser: memberId,
-                    idProject: projectId
+                    idProject: projectId,
+                    idUser: memberId
+                    
                 },
                 headers: {
                     Authorization : 'Bearer ' + sessionStorage.getItem('jwt')
