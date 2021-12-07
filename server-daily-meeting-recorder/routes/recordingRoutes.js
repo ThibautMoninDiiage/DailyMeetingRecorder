@@ -19,21 +19,22 @@ const upload = multer({ storage }).single('audio')
 
 router.post('/saveRecording', recordingController.saveRecording)
 
-router.get('/getMeetingRecording/:meetingId', (request, response) => {
-    recordingController.getMeetingRecording(request.params.meetingId).then(link => {
-        const media = link[0].mediaUrl
-        response.status(200).sendFile(app + '/medias/' + media)
-    })
-})
-
 router.post('/saveRecordingToServer', upload, (req, res) => {
     try {
+        console.log(req.file);
         recordingController.saveRecording
         res.json({ success : true})
         res.status(200).send()
     } catch (error) {
         console.error(error);
     }
+})
+
+router.get('/getMeetingRecording/:meetingId', (request, response) => {
+    recordingController.getMeetingRecording(request.params.meetingId).then(link => {
+        const media = link[0].mediaUrl
+        response.status(200).sendFile(app + '/medias/' + media)
+    })
 })
 
 module.exports = router;

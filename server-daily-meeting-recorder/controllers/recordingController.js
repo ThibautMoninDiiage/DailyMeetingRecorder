@@ -8,7 +8,6 @@ class RecordingController {
 
     async saveRecording(request, response) {
         const data = request.body;
-        console.log(data);
         
         const recording = await recordingService.saveRecording(data);
 
