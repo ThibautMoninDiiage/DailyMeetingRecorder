@@ -16,7 +16,7 @@ class RecordingService {
             startDate : '2021-11-18 13:22:26',
             endDate : '2021-11-18 13:22:26',
             mediaUrl : data.url,
-            idProject : 3,
+            idProject : 1,
             name : data.name
         });
     }

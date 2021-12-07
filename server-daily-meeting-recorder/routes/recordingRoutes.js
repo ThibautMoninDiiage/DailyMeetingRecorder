@@ -18,10 +18,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage }).single('audio')
 
 router.post('/saveRecording', recordingController.saveRecording)
+
 router.get('/getMeetingRecording/:meetingId', (request, response) => {
-    // const media = recordingController.getMeetingRecording(request.params.meetingId)
-    const media = 'Oui.mp3'
-    response.status(200).sendFile(app + '/medias/' + media)
+    recordingController.getMeetingRecording(request.params.meetingId).then(link => {
+        const media = link[0].mediaUrl
+        response.status(200).sendFile(app + '/medias/' + media)
+    })
 })
 
 router.post('/saveRecordingToServer', upload, (req, res) => {

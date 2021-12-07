@@ -15,10 +15,9 @@ class RecordingController {
         response.status(200)
     }
 
-    async getMeetingRecording(request, response) {
-        const meetingId = 125
+    async getMeetingRecording(meetingId) {
         const recording = await recordingService.getMeetingRecording(meetingId);
-        // response.status(200).send(recording[0]);
+        return recording[0];
     }
 }
 
