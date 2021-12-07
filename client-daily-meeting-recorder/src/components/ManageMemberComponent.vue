@@ -4,21 +4,21 @@
 
         <form @submit="addNewMember" v-if="newMember == false">
             <div>
-                <input class="btnComponent" type="submit" value="Add new member">
+                <input id="btnNew" class="btnComponent" type="submit" value="Add new member">
             </div>
         </form>
 
         <div v-if="newMember == true">
             <div>
-                <input class="btnComponent" type="submit" @click="cancelAddNewMember" value="Cancel add new member">
+                <input id="btnCancel" type="submit" @click="cancelAddNewMember" value="Cancel add new member">
             </div>
             <createMember></createMember>
         </div>
 
         <div>
-            <p>Member list</p>
+            <h3>Member list</h3>
             <span class="listMembre" v-for="member in members" :key="member.id">
-                <p>{{ member.username }} - {{ member.email }} <input class="btnLien" @click="deleteMember(member.id)" type="submit" value="Delete member"></p>
+                <p>{{ member.username }} - {{ member.email }} <input id="btnCancel" @click="deleteMember(member.id)" type="submit" value="Delete member"></p>
             </span>
         </div>
     </div>
@@ -59,6 +59,7 @@ export default {
         deleteMember(memberId){
             if(confirm('are you sur !')){
                 this.projectService.deleteMemberOnProject(this.projectId, memberId);
+                location.reload()
             }
         }
 

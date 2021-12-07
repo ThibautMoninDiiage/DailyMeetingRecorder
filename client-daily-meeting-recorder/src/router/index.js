@@ -46,6 +46,7 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+
   },
   {
     path: '/meetingDetail/:meetingId',

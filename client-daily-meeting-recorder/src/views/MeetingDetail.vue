@@ -31,8 +31,8 @@
 
 <script>
 import RecordingComponent from '../components/RecordingComponent.vue'
+import router from '../router';
 import MeetingService from '../services/meetingService';
-import router from '../router'
 
 export default({
     name:'ProjectSelected',
