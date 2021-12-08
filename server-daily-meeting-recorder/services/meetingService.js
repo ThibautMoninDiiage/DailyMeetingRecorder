@@ -10,10 +10,17 @@ class MeetingService {
 
     async createMeeting(name, date, projectId) {
         // We create a new user in the database
+        await this.getLastMeeting(projectId).then((response) => {
+            const order = response
+            console.log(order.order);
+        })
+
+
         const meeting = await MeetingModel.create({
             name: name,
             date : date,
             idProject : projectId,
+            order : '',
             mediaUrl: ''
         })
         return meeting
@@ -32,12 +39,13 @@ class MeetingService {
         })
     }
     
-    async updateMeeting(name, date, meetingId){
+    async updateMeeting(name, date, meetingId, order){
         if(this.getMeeting() != null){
             return await MeetingModel.update(
                 {
                     name : name,
-                    date : date
+                    date : date, 
+                    order : order
                 },
                 {
                     where : {
@@ -73,6 +81,18 @@ class MeetingService {
         }
         else return 404
         
+    }
+
+    async getLastMeeting(projectId){
+        return await MeetingModel.findAll({
+            order : [
+                ['id', 'DESC']
+            ],
+            limit : 1,
+            where : {
+                idProject : projectId
+            }
+        })
     }
 }
 

@@ -5,7 +5,11 @@
                 <label for="meetingTitle">Name</label>
                 <input type="text" v-bind:disabled="modifAccess" placeholder="Meeting Name" name="projectTitle" v-model="meetingName">
                 <label for="meetingDate">Date</label>
-                <input type="date" v-bind:disabled="modifAccess" class="inputDate" name="meetingStartingDate" v-model="date">   
+                <input type="date" v-bind:disabled="modifAccess" class="inputDate" name="meetingStartingDate" v-model="date"> 
+                <div v-if="lastMeeting">
+                    <label for="meetingOrdre">Ordre</label>
+                    <input type="text" v-bind:disabled="modifAccess" class="inputDate" name="meetingStartingDate" v-model="order">   
+                </div> 
                 <div>
                     <input v-if="modifAccess === false" id="btnValidate" type="submit" value="Validate">
                 </div>
@@ -44,6 +48,9 @@ export default({
             modifAccess: true,
             meetingName: '',
             date: '',
+            order:'',
+            lastMeeting: undefined,
+            projectId : undefined,
             meetingId : this.$route.params.meetingId,
             newMember: false,
             membres: undefined,
@@ -54,9 +61,13 @@ export default({
     },
     mounted(){
         this.meetingService = new MeetingService()
+        
         this.meetingService.getMeeting(this.meetingId).then((meeting) => {
             this.meetingName = meeting.name
-            this.date = meeting.date
+            this.date = meeting.date,
+            this.order = meeting.order,
+            this.projectId = meeting.idProject
+            this.checkLastMeeting(this.projectId)
         })
     },
     methods: {
@@ -72,9 +83,15 @@ export default({
                 router.go(-1)
             }
         },
+        checkLastMeeting(projectId){
+            this.meetingService.getLastMeeting(projectId).then((response) => {
+            if (this.meetingId == response.id) this.lastMeeting = true
+            else this.lastMeeting = false
+        })
+        },
         meetingModification(){
             event.preventDefault()
-            this.meetingService.updateMeeting(this.meetingName, this.date, this.meetingId)
+            this.meetingService.updateMeeting(this.meetingName, this.date, this.meetingId, this.order)
         },
         createNewRecording() {
             if (this.showRecordingComponent === true) {

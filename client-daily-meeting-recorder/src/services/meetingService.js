@@ -45,11 +45,12 @@ export default class MeetingService {
           });
     }
 
-    async updateMeeting(name, date, meetingId){
+    async updateMeeting(name, date, meetingId, order){
         axios.patch('http://localhost:3000/meeting/' + meetingId,  
         {
             name : name,
-            date : date
+            date : date,
+            order : order
         },
         {
             headers : {
@@ -63,6 +64,18 @@ export default class MeetingService {
             headers : {
                 Authorization :  'Bearer ' + sessionStorage.getItem('jwt')
             }
+        })
+    }
+
+    async getLastMeeting(projectId){
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/meeting/lastMeeting/' + projectId,{
+                headers : {
+                    Authorization :  'Bearer ' + sessionStorage.getItem('jwt')
+                }
+            }).then((response) => {
+                resolve(response.data[0])
+            })
         })
     }
 }

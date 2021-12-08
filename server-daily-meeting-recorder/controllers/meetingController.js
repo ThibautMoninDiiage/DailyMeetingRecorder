@@ -30,7 +30,7 @@ class MeetingController {
     }
 
     async updateMeeting(request, response){
-        const meeting = await meetingService.updateMeeting(request.body.name, request.body.date, request.params.meetingId)
+        const meeting = await meetingService.updateMeeting(request.body.name, request.body.date, request.params.meetingId, request.body.order)
         if (meeting != null) response.status(200).send(meeting)
         else response.status(404).send();
     }
@@ -38,6 +38,11 @@ class MeetingController {
     async deleteMeeting(request, response){
         if(await meetingService.deleteMeeting(request.params.meetingId) == 204) response.status(204).send()
         else response.status(404).send()
+    }
+
+    async getLastMeeting(request, response){
+        const meeting = await meetingService.getLastMeeting(request.params.projectId)
+        response.status(200).send(meeting)
     }
 }
 

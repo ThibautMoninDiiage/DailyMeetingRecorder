@@ -19,6 +19,10 @@ class MeetingModel extends Model {
                 type : DataTypes.DATEONLY,
                 allowNull : false
             },
+            order : {
+                type : DataTypes.STRING,
+                allowNull : false
+            },
             idProject : {
                 type : DataTypes.INTEGER,
                 allowNull : false,
