@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>All remarks for meeting {{ this.meetingId }}</div>
-        <form @submit="newReport">
+        <form @submit="newRemark">
             <input placeholder="Comment" type="text" name="newReport" id="newReport" v-model="comment">
             <input id="btnNew" type="submit" value="New remark">
         </form>
@@ -33,7 +33,7 @@
             })
         },
         methods : {
-            newReport() {
+            newRemark() {
                 event.preventDefault()
                 console.log(this.comment);
                 this.remarkService.createRemark(this.comment, this.meetingId).then(() =>{
