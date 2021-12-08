@@ -4,13 +4,13 @@
 
         <form @submit="addNewMember" v-if="newMember == false">
             <div>
-                <input id="btnNew" class="btnComponent" type="submit" value="Add new member">
+                <input id="btnNew" class="btnComponent" type="submit" value="New member">
             </div>
         </form>
 
         <div v-if="newMember == true">
             <div>
-                <input id="btnCancel" type="submit" @click="cancelAddNewMember" value="Cancel add new member">
+                <input id="btnCancel" type="submit" @click="cancelAddNewMember" value="Cancel">
             </div>
             <createMember></createMember>
         </div>
@@ -52,12 +52,12 @@ export default {
             this.newMember = true
         },
         cancelAddNewMember(){
-            if(confirm('are you sur !')){
+            if(confirm('Are you sure ?')){
                 this.newMember = false
             }
         },
         deleteMember(memberId){
-            if(confirm('are you sur !')){
+            if(confirm('Are you sure ?')){
                 this.projectService.deleteMemberOnProject(this.projectId, memberId);
                 location.reload()
             }

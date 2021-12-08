@@ -13,8 +13,7 @@ class RecordingService {
 
     async saveRecording(data) {
         return await MeetingModel.create({
-            startDate : '2021-11-18 13:22:26',
-            endDate : '2021-11-18 13:22:26',
+            date : '2021-11-18 13:22:26',
             mediaUrl : data.url,
             idProject : 1,
             name : data.name

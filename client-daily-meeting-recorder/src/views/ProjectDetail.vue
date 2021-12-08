@@ -28,14 +28,11 @@
             <input v-if="modifAccess === false" @click="cancelModifProject" id="btnCancel" type="submit" value="Cancel">
         </div>
         
-        
         <div class="divBtn" v-if="modifAccess === true">
             <button id="btnModify" @click="modifProject">Modify the project</button>
-        </div>
-        <div class="divBtn" v-if="modifAccess === true">
             <button id="btnDelete" @click="deleteProject">Delete the project</button>
         </div>
-
+        
         <hr/>
 
         <ManageMember></ManageMember>

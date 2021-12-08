@@ -33,7 +33,7 @@ export default {
             if (this.emailMember != ''){
                 this.searchMember()
             }else{
-                alert('vide')
+                alert('Empty field')
             }
 
         },
@@ -47,11 +47,11 @@ export default {
                             this.ProjectService.addMemberToTeam(this.memberId, this.projectId)
                             location.reload()
                         }else{
-                            alert('il est déjà dans la team')
+                            alert('This user is already in the team')
                         }
                     })
                 }else {
-                    alert('il n\'existe pas')
+                    alert('This user doesn\'t exists')
                 }
                 
             });

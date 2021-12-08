@@ -24,6 +24,7 @@ h3{
 /* Buttons */
 button {
     border: none;
+    margin: 0.1%;
 }
 
 input {
