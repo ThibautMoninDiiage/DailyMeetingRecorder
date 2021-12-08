@@ -10,7 +10,6 @@ import PageNotFound from '../views/PageNotFound';
 import AuthenticationService from '../services/authenticationService'
 import MeetingDetail from '../views/MeetingDetail.vue'
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -65,7 +64,7 @@ const routes = [
     name: '404',
     component: PageNotFound
   },
-  { 
+  {
     path: '*',
      beforeEnter: (to, from, next) => {
         next('/404') 

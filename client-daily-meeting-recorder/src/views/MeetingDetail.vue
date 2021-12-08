@@ -21,6 +21,9 @@
         <div v-if="showRecordingComponent === true">
             <RecordingComponent></RecordingComponent>
         </div>
+        
+        <h1>Reports</h1>
+        <ReportComponent></ReportComponent>
     </div>
 </template>
 
@@ -32,12 +35,14 @@
 <script>
 import RecordingComponent from '../components/RecordingComponent.vue'
 import MeetingService from '../services/meetingService';
+import ReportComponent from '../components/ReportComponent.vue'
 import router from '../router'
 
 export default({
     name:'ProjectSelected',
     components: {
-        RecordingComponent
+        RecordingComponent,
+        ReportComponent
     },
     data(){
         return{
