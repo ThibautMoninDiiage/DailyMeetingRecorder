@@ -17,7 +17,7 @@ const projectRouter = require('./routes/projectRoutes');
 const projectDetailRouter = require('./routes/projectDetailRoutes');
 const memberRouter = require('./routes/memberRoutes');
 const recordingRouter = require('./routes/recordingRoutes')
-const reportRouter = require('./routes/reportRoutes')
+const remarkRouter = require('./routes/remarkRoutes')
 var app = express();
 
 app.use(logger('dev'));
@@ -36,7 +36,7 @@ app.use('/project', projectRouter);
 app.use('/projectDetail', projectDetailRouter);
 app.use('/member', memberRouter);
 app.use('/recording', recordingRouter)
-app.use('/report', reportRouter)
+app.use('/remark', remarkRouter)
 
 // Database initialization
 dbConnection.initialize();

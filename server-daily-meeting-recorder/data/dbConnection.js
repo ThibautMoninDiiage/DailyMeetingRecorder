@@ -3,7 +3,6 @@ const { Sequelize } = require('sequelize');
 const MeetingModel = require('../models/meetingModel');
 const ProjectModel = require('../models/projectModel');
 const RemarkModel = require('../models/remarkModel');
-const ReportModel = require('../models/reportModel');
 const StatusModel = require('../models/statusModel');
 const TeamModel = require('../models/teamModel');
 const TimestampMeetingModel = require('../models/timestampMeetingModel');
@@ -42,7 +41,6 @@ class DbConnection {
             await MeetingModel.init(this.sequelize);
             await RemarkModel.init(this.sequelize);
             await TimestampMeetingModel.init(this.sequelize);
-            await ReportModel.init(this.sequelize);
         })
     }
 

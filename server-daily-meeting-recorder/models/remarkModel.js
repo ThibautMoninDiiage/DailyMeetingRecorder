@@ -21,6 +21,14 @@ class RemarkModel extends Model {
                     model : 'Meeting',
                     key : 'id'
                 }
+            },
+            idUser : {
+                type : DataTypes.INTEGER,
+                allowNull : false,
+                references : {
+                    model : 'User',
+                    key : 'id'
+                }
             }
         },
         {
