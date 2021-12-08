@@ -19,6 +19,7 @@
             <h3>Member list</h3>
             <span class="listMembre" v-for="member in members" :key="member.id">
                 <p>{{ member.username }} - {{ member.email }} <input id="btnCancel" @click="deleteMember(member.id)" type="submit" value="Delete member"></p>
+                <hr class="hrSpe">
             </span>
         </div>
     </div>
@@ -52,12 +53,12 @@ export default {
             this.newMember = true
         },
         cancelAddNewMember(){
-            if(confirm('are you sur !')){
+            if(confirm('Are you sure you want to cancel the add ?')){
                 this.newMember = false
             }
         },
         deleteMember(memberId){
-            if(confirm('are you sur !')){
+            if(confirm('Are you sure you want to delete the member ')){
                 this.projectService.deleteMemberOnProject(this.projectId, memberId);
                 location.reload()
             }

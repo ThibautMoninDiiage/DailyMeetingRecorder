@@ -1,5 +1,6 @@
 <template>
     <div id="mainContainer">
+        <h2>Manage my project</h2>
         <form @submit="projectModification">
             <div class="FormAddProject">
                 <div>
@@ -96,7 +97,7 @@ export default({
             this.modifAccess = false
         },
         cancelModifProject(){
-            if(confirm('you are sur ?')){
+            if(confirm('Are you sure you want to cancel the modification ?')){
                 this.modifAccess = true
                 location.reload()
             }
@@ -110,7 +111,7 @@ export default({
             }
         },
         deleteProject(){
-            if(confirm('you are sur !')){
+            if(confirm('Are you sure you want to delete the project : '+ this.projectTitle +' ?')){
                 this.projectService.deleteProject(this.projectId)
                 router.push({path: '/project'})
                 location.reload()

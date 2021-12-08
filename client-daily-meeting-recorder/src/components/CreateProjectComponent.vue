@@ -2,8 +2,8 @@
     <!-- formulaire de création d'un nouveau projet -->
     <form @submit="createProject">
         <div id="createProjectContainer">
-            <input type="text" placeholder="Project Title" name="projectTitle" class="projectTitle" v-model="projectTitle">
-            <textarea placeholder="Project Description" name="projectDescription" class="projectDescription" v-model="projectDescription"></textarea>         
+            <input type="text" placeholder="Project Title" name="projectTitle" class="inputSize" v-model="projectTitle">
+            <textarea placeholder="Project Description" name="projectDescription" class="inputSize" v-model="projectDescription"></textarea>         
             <br>
             <input id="btnValidate" type="submit" value="Validate">
         </div>

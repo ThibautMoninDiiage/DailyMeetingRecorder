@@ -6,7 +6,7 @@
             <input class="loginInputs" v-model="email" type="email" name="user-email" id="user-email" placeholder="E-Mail" required>
             <input class="loginInputs" v-model="password" type="password" name="user-password" id="user-password" placeholder="Password">
             <br>
-            <input class="loginInputs" id="btnLogin" type="submit" value="Login">
+            <input id="btnLogin" type="submit" value="Login">
         </form>
         <a id="btnNoAccount" v-bind:href="'/register'">Don't have an account ? Register</a>
     </div>

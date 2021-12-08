@@ -1,7 +1,7 @@
 <template>
     <div>
         <form @submit="addNewMember">
-        <div>
+        <div id="formCreateMember">
             <input type="email" placeholder="email" name="email" id="email" v-model="emailMember">        
             <input id="btnValidate" type="submit" value="Validate">
         </div>
@@ -33,7 +33,7 @@ export default {
             if (this.emailMember != ''){
                 this.searchMember()
             }else{
-                alert('vide')
+                alert('the field is empty !')
             }
 
         },
@@ -47,11 +47,11 @@ export default {
                             this.ProjectService.addMemberToTeam(this.memberId, this.projectId)
                             location.reload()
                         }else{
-                            alert('il est déjà dans la team')
+                            alert('this user is already in this project ')
                         }
                     })
                 }else {
-                    alert('il n\'existe pas')
+                    alert('the mail is invalide')
                 }
                 
             });

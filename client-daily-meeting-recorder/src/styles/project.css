@@ -59,3 +59,17 @@
 .divBtn{
     margin: 5vh;
 }
+
+#formCreateMember{
+    margin: 2vh;
+}
+
+#formCreateMember input{
+    margin-right: 2vh;
+    margin-left: 2vh;
+}
+
+.listMembre input{
+    margin-left: 4vh;
+}
+

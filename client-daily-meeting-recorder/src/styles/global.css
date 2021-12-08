@@ -113,3 +113,8 @@ input {
 textarea{
   resize: none;
 }
+
+.hrSpe{
+    width: 50%;
+    margin: auto;
+}
