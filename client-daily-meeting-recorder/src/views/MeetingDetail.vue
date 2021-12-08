@@ -21,6 +21,9 @@
         <div v-if="showRecordingComponent === true">
             <RecordingComponent></RecordingComponent>
         </div>
+        
+        <h1>Remarks</h1>
+        <RemarkComponent v-bind:meetingId="meetingId"></RemarkComponent>
     </div>
 </template>
 
@@ -31,13 +34,15 @@
 
 <script>
 import RecordingComponent from '../components/RecordingComponent.vue'
-import router from '../router';
 import MeetingService from '../services/meetingService';
+import RemarkComponent from '../components/RemarkComponent.vue'
+import router from '../router'
 
 export default({
     name:'ProjectSelected',
     components: {
-        RecordingComponent
+        RecordingComponent,
+        RemarkComponent
     },
     data(){
         return{
