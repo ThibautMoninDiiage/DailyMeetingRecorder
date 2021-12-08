@@ -1,6 +1,14 @@
 const MeetingModel = require('../models/meetingModel');
 const TimestampModel = require('../models/timestampMeetingModel');
 const RemarkModel = require('../models/remarkModel');
+const { Sequelize } = require('sequelize');
+
+// Connecting to the database, with username, with password
+const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host : process.env.DB_HOST,
+    // Specifying the used dialect in the database
+    dialect : 'mysql'
+})
 
 class MeetingService {
 
@@ -73,6 +81,10 @@ class MeetingService {
         }
         else return 404
         
+    }
+
+    async getOrdre(meetingId, token){
+        return await sequelize.query("SELECT description FROM `ordreJourMeeting`INNER JOIN Meeting on Meeting.idOrdreMeeting = ordreJourMeeting.id WHERE Meeting.id = " + meetingId);
     }
 }
 

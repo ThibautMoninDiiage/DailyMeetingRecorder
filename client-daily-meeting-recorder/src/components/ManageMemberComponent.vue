@@ -21,6 +21,8 @@
                 <p>{{ member.username }} - {{ member.email }} <input id="btnCancel" @click="deleteMember(member.id)" type="submit" value="Delete member"></p>
             </span>
         </div>
+
+        <CreateMember></CreateMember>
     </div>
 </template>
 
@@ -28,6 +30,7 @@
 import createMember from '../components/CreateMemberComponent.vue';
  //import router from '../router';
 import ProjectService from '../services/projectService';
+
 
 export default {
     name: 'manageMember',

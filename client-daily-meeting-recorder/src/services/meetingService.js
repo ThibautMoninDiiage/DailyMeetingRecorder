@@ -65,4 +65,18 @@ export default class MeetingService {
             }
         })
     }
+
+    async getOrdre(meetingId){
+        console.log(meetingId)
+        return new Promise((resolve) => {
+            axios.get('http://localhost:3000/meeting/getOrdre/'  + meetingId, {
+                headers : {
+                    Authorization :  'Bearer ' + sessionStorage.getItem('jwt')
+                }
+            }).then((response) => {
+                resolve(response.data)
+            })
+        })
+    }
+
 }

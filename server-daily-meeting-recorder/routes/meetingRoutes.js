@@ -8,5 +8,6 @@ router.get('/getMeetingProject/:projectId', meetingController.getMeetingProject)
 router.get('/:meetingId', passport.authenticate('jwt', { session: false }), meetingController.getMeeting);
 router.patch('/:meetingId', passport.authenticate('jwt', { session: false }), meetingController.updateMeeting);
 router.delete('/:meetingId', passport.authenticate('jwt', { session: false }), meetingController.deleteMeeting);
+router.get('/getOrdre/:meetingId',passport.authenticate('jwt', { session: false }), meetingController.getOrdre);
 
 module.exports = router;

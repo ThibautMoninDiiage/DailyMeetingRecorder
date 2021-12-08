@@ -39,6 +39,14 @@ class MeetingController {
         if(await meetingService.deleteMeeting(request.params.meetingId) == 204) response.status(204).send()
         else response.status(404).send()
     }
+
+    async getOrdre(request, response){
+        const meetingId = request.params.meetingId
+        const token = request.headers.authorization;
+        const meetings = await meetingService.getOrdre(meetingId, token)
+        response.status(200).send(meetings);
+    }
+    
 }
 
 // Exporting the MeetingController

@@ -21,6 +21,10 @@
         <div v-if="showRecordingComponent === true">
             <RecordingComponent></RecordingComponent>
         </div>
+
+        <hr>
+
+        <OrdreMeeting></OrdreMeeting>
     </div>
 </template>
 
@@ -33,11 +37,13 @@
 import RecordingComponent from '../components/RecordingComponent.vue'
 import router from '../router';
 import MeetingService from '../services/meetingService';
+import OrdreMeeting from '../components/ordreJourMeetingComponent.vue';
 
 export default({
     name:'ProjectSelected',
     components: {
-        RecordingComponent
+        RecordingComponent,
+        OrdreMeeting
     },
     data(){
         return{

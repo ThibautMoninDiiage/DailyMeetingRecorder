@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 
-class MeetingModel extends Model {
+class OrdreModel extends Model {
 
     static async init(sequelizeInstance) {
         super.init({
@@ -11,39 +11,18 @@ class MeetingModel extends Model {
                 autoIncrement : true,
                 unique : true
             },
-            name : {
+            description : {
                 type : DataTypes.STRING,
                 allowNull : false
             },
             date : {
                 type : DataTypes.DATEONLY,
                 allowNull : false
-            },
-            idProject : {
-                type : DataTypes.INTEGER,
-                allowNull : false,
-                references : {
-                    model : 'Project',
-                    key : 'id'
-                }
-            },
-            mediaUrl : {
-                type : DataTypes.STRING,
-                allowNull : false
-            },
-            idOrdreMeeting: {
-                type: DataTypes.INTEGER,
-                allowNull : false,
-                references : {
-                    model : 'ordreJourMeeting',
-                    key : 'id'
-                }
-
             }
         },
         {
             // Table name in the database
-            modelName : "Meeting",
+            modelName : "ordreJourMeeting",
             sequelize : sequelizeInstance,
             freezeTableName : true
         })
@@ -53,4 +32,4 @@ class MeetingModel extends Model {
 
 }
 // Exporting the meeting model
-module.exports = MeetingModel;
+module.exports = OrdreModel;
