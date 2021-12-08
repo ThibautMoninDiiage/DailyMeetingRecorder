@@ -1,4 +1,3 @@
-const { response } = require('../app');
 const recordingService = require('../services/recordingService');
 
 class RecordingController {
@@ -12,13 +11,12 @@ class RecordingController {
         
         const recording = await recordingService.saveRecording(data);
 
-        response.status(200).send(recording);
+        response.status(200)
     }
 
-    async getMeetingRecording(request, response) {
-        const meetingId = 2;
-        const recording = await recordingService.getMeetingRecording(meetingId)
-        response.status(200).send(recording[0])
+    async getMeetingRecording(meetingId) {
+        const recording = await recordingService.getMeetingRecording(meetingId);
+        return recording[0];
     }
 }
 

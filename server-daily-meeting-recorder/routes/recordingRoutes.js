@@ -1,7 +1,10 @@
 const express = require('express');
 const recordingController = require('../controllers/recordingController');
 const router = express.Router();
-const multer = require('multer')
+const multer = require('multer');
+const fs = require('fs')
+const path = require('path')
+const app = path.dirname(__dirname)
 
 const storage = multer.diskStorage({
     destination(req, file, callback) {
@@ -12,10 +15,26 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage })
+const upload = multer({ storage }).single('audio')
 
 router.post('/saveRecording', recordingController.saveRecording)
-router.get('/getMeetingRecording', recordingController.getMeetingRecording)
-router.post('/saveRecordingToServer', upload.single('audio'), (req, res) => res.json({ success : true }))
+
+router.post('/saveRecordingToServer', upload, (req, res) => {
+    try {
+        console.log(req.file);
+        recordingController.saveRecording
+        res.json({ success : true})
+        res.status(200).send()
+    } catch (error) {
+        console.error(error);
+    }
+})
+
+router.get('/getMeetingRecording/:meetingId', (request, response) => {
+    recordingController.getMeetingRecording(request.params.meetingId).then(link => {
+        const media = link[0].mediaUrl
+        response.status(200).sendFile(app + '/medias/' + media)
+    })
+})
 
 module.exports = router;
