@@ -13,18 +13,4 @@ export default class RecordingService {
             console.error('Recording save error : ' + error)
         }
     }
-
-    // async getMeetingRecording(meetingId) {
-    //     try {
-    //         const recording = await axios.get('http://localhost:3000/recording/getMeetingRecording/' + meetingId, {
-    //             headers : {
-    //                 Authorization : meetingId
-    //             }
-    //         })
-    //         console.log(recording.data[0]);
-    //         return recording.data[0]
-    //     } catch (error) {
-    //         console.error('Get recording error : ' + error);
-    //     }
-    // }
 }
