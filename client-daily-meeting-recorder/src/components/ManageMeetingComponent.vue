@@ -13,9 +13,20 @@
             <button id="btnCancel" @click="cancelCreateMeeting">Cancel</button>
             <CreateMeeting v-bind:projectId="this.projectId"></CreateMeeting>
         </div>
-        <span  v-for="meeting in lstMeeting" :key="meeting.id">
-            <router-link class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id, meetingName: meeting.name} }">{{ meeting.name }} - {{ meeting.date }}</router-link>
-        </span>
+        
+
+        
+
+        <div id="projectsContainer">
+            <section>
+                <div>
+                    <h3>Meeting list</h3>
+                    <span class="listProject" v-for="meeting in lstMeeting" :key="meeting.id">
+                        <router-link id="projects" class="btnLien" :to="{name: 'meetingDetail', params: {meetingId: meeting.id}}">{{ meeting.name }} - {{ meeting.date }}</router-link>
+                    </span>
+                </div>
+            </section>
+        </div>
     </div>
 </template>
 

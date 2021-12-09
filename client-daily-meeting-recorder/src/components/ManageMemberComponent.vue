@@ -4,13 +4,13 @@
 
         <form @submit="addNewMember" v-if="newMember == false">
             <div>
-                <input id="btnNew" class="btnComponent" type="submit" value="New member">
+                <input id="btnNew" class="btnComponent" type="submit" value="Add new member">
             </div>
         </form>
 
         <div v-if="newMember == true">
             <div>
-                <input id="btnCancel" type="submit" @click="cancelAddNewMember" value="Cancel">
+                <input id="btnCancel" type="submit" @click="cancelAddNewMember" value="Cancel add new member">
             </div>
             <createMember></createMember>
         </div>
@@ -19,6 +19,7 @@
             <h3>Member list</h3>
             <span class="listMembre" v-for="member in members" :key="member.id">
                 <p>{{ member.username }} - {{ member.email }} <input id="btnCancel" @click="deleteMember(member.id)" type="submit" value="Delete member"></p>
+                <hr class="hrSpe">
             </span>
         </div>
     </div>
@@ -52,12 +53,12 @@ export default {
             this.newMember = true
         },
         cancelAddNewMember(){
-            if(confirm('Are you sure ?')){
+            if(confirm('Are you sure you want to cancel the add ?')){
                 this.newMember = false
             }
         },
         deleteMember(memberId){
-            if(confirm('Are you sure ?')){
+            if(confirm('Are you sure you want to delete the member ')){
                 this.projectService.deleteMemberOnProject(this.projectId, memberId);
                 location.reload()
             }

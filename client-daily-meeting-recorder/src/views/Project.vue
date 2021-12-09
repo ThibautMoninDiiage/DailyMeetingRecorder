@@ -69,7 +69,10 @@ export default {
             this.projectCreated = true
         },
         cancelCreateProject() {
-            this.projectCreated = false;
+            if(confirm('Are you sure you want to cancel the add project ?')){
+                this.projectCreated = false;
+            }
+            
         }
     }
 }
