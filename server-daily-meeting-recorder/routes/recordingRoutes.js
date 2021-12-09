@@ -21,10 +21,7 @@ router.post('/saveRecording', recordingController.saveRecording)
 
 router.post('/saveRecordingToServer', upload, (req, res) => {
     try {
-        console.log(req.file);
-        recordingController.saveRecording
-        res.json({ success : true})
-        res.status(200).send()
+        res.status(200).send(req.file.originalname)
     } catch (error) {
         console.error(error);
     }
@@ -32,6 +29,7 @@ router.post('/saveRecordingToServer', upload, (req, res) => {
 
 router.get('/getMeetingRecording/:meetingId', (request, response) => {
     recordingController.getMeetingRecording(request.params.meetingId).then(link => {
+        console.log(link);
         const media = link[0].mediaUrl
         response.status(200).sendFile(app + '/medias/' + media)
     })

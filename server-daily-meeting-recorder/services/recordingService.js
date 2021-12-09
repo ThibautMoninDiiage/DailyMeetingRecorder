@@ -12,12 +12,15 @@ const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, pr
 class RecordingService {
 
     async saveRecording(data) {
-        return await MeetingModel.create({
-            date : '2021-11-18 13:22:26',
-            mediaUrl : data.url,
-            idProject : 1,
-            name : data.name
-        });
+        return await MeetingModel.update(
+            {
+                mediaUrl : data.url,
+            },
+            {
+                where : {
+                    id : data.meetingId
+                }
+            });
     }
 
     async getMeetingRecording(meetingId) {

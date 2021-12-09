@@ -30,6 +30,7 @@
         },
         mounted() {
             this.meetingId = this.$route.params.meetingId;
+            this.meetingName = this.$route.params.meetingName;
             this.recordingService = new RecordingService()
             // this.recordingService.getMeetingRecording(this.meetingId).then(response => {
             //     console.log(this.mediaUrl);
@@ -62,8 +63,6 @@
                 this.mediaRecorder = null
                 this.chunks = []
                 const audioName = this.$route.params.meetingName
-                // Save the local path into the database
-                this.recordingService.saveRecording(audioName, mediaUrl, this.meetingId)
                 // Save the audio file to the server
                 const formData = new FormData()
                 formData.append('audio', blob, audioName + '.mp3')
@@ -71,9 +70,13 @@
                     method : 'POST',
                     body : formData
                 })
-                .then(response => response.json())
+                .then(response => {
+                    response.json
+                })
                 .then(() => {
                     console.log('Audio saved');
+                    // Save the local path into the database
+                    this.recordingService.saveRecording(audioName, this.meetingName + '.mp3', this.meetingId)
                 })
                 .catch(error => {
                     console.log(error);
